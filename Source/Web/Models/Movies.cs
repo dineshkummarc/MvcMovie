@@ -19,7 +19,8 @@ namespace MvcMovie.Models
 //                            or slug LIKE('%'+@0+'%')
 //                            ", query);
 //        }
-        public override void Validate(dynamic item) {
+        public override void Validate(dynamic item)
+        {
             this.ValidatesPresenceOf(item.Title, "Title is required");
             if (this.ValidatesPresenceOf(item.Price, "Price is required"))
             {

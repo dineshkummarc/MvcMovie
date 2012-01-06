@@ -24,8 +24,10 @@ namespace MvcMovie.Controllers
 
 
         [HttpGet]
-        public virtual ActionResult PersonalInfo(int id)
-        { 
+        public virtual ActionResult PersonalInfo()
+        {
+
+            this.FlashInfo("Hi Jamahal");
             return View( );
         }
 
@@ -52,14 +54,15 @@ namespace MvcMovie.Controllers
 
 
         [HttpGet]
-        public ActionResult PersonalInfo()
+        public ActionResult PaymentInfo()
         {
+            this.FlashError("hello");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PaymentInfo()
+        public ActionResult PaymentInfo(FormCollection collection)
         {
             return View();
         }

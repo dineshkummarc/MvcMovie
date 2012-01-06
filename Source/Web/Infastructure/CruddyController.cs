@@ -40,7 +40,8 @@ namespace Web.Infrastructure
             try
             {
                 // TODO: Add update logic here
-                _table.Update(model, id);
+                _table.Update(model, id); 
+                this.FlashWarning("warning");
                 return RedirectToAction("Index");
             }
             catch (Exception x)
@@ -78,6 +79,9 @@ namespace Web.Infrastructure
             { 
                 // TODO: Add insert logic here
                 _table.Insert(model);
+
+                this.FlashInfo("Item Created");
+
                 return RedirectToAction("Index");
             }
             catch (Exception x)
