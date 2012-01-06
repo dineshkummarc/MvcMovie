@@ -499,29 +499,37 @@ namespace Massive {
         public virtual void Deleted(dynamic item) { }
 
         //validation methods
-        public virtual void ValidatesPresenceOf(object value, string message = "Required") {
+        public virtual bool ValidatesPresenceOf(object value, string message = "Required") {
             if (value == null)
                 Errors.Add(message);
             if (String.IsNullOrEmpty(value.ToString()))
+            {
                 Errors.Add(message);
+                return false;
+            }
+            return true;
         }
         //fun methods
-        public virtual void ValidatesNumericalityOf(object value, string message = "Should be a number") {
+        public virtual bool ValidatesNumericalityOf(object value, string message = "Should be a number") {
             var type = value.GetType().Name;
             var numerics = new string[]{ "Int32","Int16","Int64", "Decimal", "Double","Single","Float" };
-            if (!numerics.Contains(type)) {
+            if (!numerics.Contains(type))
+            {
                 Errors.Add(message);
+                return false;
             }
+            return true;
         }
-        public virtual void ValidateIsCurrency(object value, string message = "Should be money") {
+        public virtual bool ValidateIsCurrency(object value, string message = "Should be money") {
             if (value == null)
                 Errors.Add(message);
-            decimal val = decimal.MinValue;
-            decimal.TryParse(value.ToString(), out val);
-            if (val == decimal.MinValue)
+            decimal val = decimal.MinValue; 
+            if (!decimal.TryParse(value.ToString(), out val))
+            {
                 Errors.Add(message);
-
-           
+                return false;
+            }
+            return true;
         }
         /// <summary>
         /// A helpful query tool

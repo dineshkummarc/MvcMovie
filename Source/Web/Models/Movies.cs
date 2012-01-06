@@ -21,11 +21,16 @@ namespace MvcMovie.Models
 //        }
         public override void Validate(dynamic item) {
             this.ValidatesPresenceOf(item.Title, "Title is required");
-            this.ValidatesPresenceOf(item.Price, "Price is required");
-            this.ValidateIsCurrency(item.Price, "Should be a number");
-            //price needs to be > 0
-            if (decimal.Parse(item.Price) <= 0) {
-                Errors.Add("Price has to be more than 0 - can't give this stuff away!");
+            if (this.ValidatesPresenceOf(item.Price, "Price is required"))
+            {
+                if (this.ValidateIsCurrency(item.Price, "Should be a number"))
+                {
+                    //price needs to be > 0
+                    if (decimal.Parse(item.Price) <= 0)
+                    {
+                        Errors.Add("Price has to be more than 0 - can't give this stuff away!");
+                    }
+                }
             }
         }
     }

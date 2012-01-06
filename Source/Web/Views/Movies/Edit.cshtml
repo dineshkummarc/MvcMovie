@@ -12,7 +12,7 @@
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true) 
         @Form.HiddenID(Model.ID) 
-        @Form.TextBoxRequired(name: "Title", value: Model.Title) 
+        @Form.TextBox(name: "Title", value: Model.Title) 
         @Form.TextBox(name: "Genre", value: Model.Genre) 
         @Form.TextBoxNumber(name: "Price", value: Model.Price) 
         @Form.TextBox(name: "Rating", value: Model.Rating) 

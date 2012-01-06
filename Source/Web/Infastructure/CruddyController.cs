@@ -46,7 +46,8 @@ namespace Web.Infrastructure
             catch (Exception x)
             {
                 TempData["Error"] = "There was a problem editing this record";
-                ModelState.AddModelError(string.Empty, x.Message); 
+                ModelState.AddModelError(string.Empty, x.Message);
+                var s = ToJsonString(model);
                 return View(model);
             }
         }
@@ -83,8 +84,9 @@ namespace Web.Infrastructure
             }
             catch (Exception x)
             {
-                TempData["Error"] = "There was a problem adding this record";
+                TempData["Error"] = "There was a problem creating this record";
                 ModelState.AddModelError(string.Empty, x.Message);
+                var s = ToJsonString(model);
                 return View(model);
             }
         }
