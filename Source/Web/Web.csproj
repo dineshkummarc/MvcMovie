@@ -93,7 +93,9 @@
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Infastructure\ExpandoObjectConverter.cs" />
-    <Compile Include="Infastructure\FlashHelpers.cs" />
+    <Compile Include="Infastructure\FlashHelpers.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Infastructure\FormsAuthTokenStore.cs" />
     <Compile Include="Controllers\HelloWorldController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

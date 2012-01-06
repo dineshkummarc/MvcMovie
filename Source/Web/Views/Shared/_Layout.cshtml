@@ -26,10 +26,8 @@
             </nav>
         </header>
         <section id="main">
-            @Html.Raw(@Html.Flash())
-            
-            <div id="flash" style="display: none">
-            </div>
+             @Html.Raw(@Html.Flash())
+            <div id="flash" style="display: none"></div>
             @RenderBody()
         </section>
         <footer>

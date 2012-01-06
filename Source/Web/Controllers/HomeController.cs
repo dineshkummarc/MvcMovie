@@ -26,8 +26,7 @@ namespace MvcMovie.Controllers
         [HttpGet]
         public virtual ActionResult PersonalInfo()
         {
-
-            this.FlashInfo("Hi Jamahal");
+            this.FlashInfo("Hi");
             return View( );
         }
 
@@ -56,7 +55,7 @@ namespace MvcMovie.Controllers
         [HttpGet]
         public ActionResult PaymentInfo()
         {
-            this.FlashError("hello");
+            this.FlashInfo("hello");
             return View();
         }
 

@@ -329,9 +329,7 @@ div#title {
 ----------------------------------------------------------*/
 .info
 {
-    background-color: #CCFFCC;
-    border-top: 1px solid #FFCC66;
-    border-bottom: 4px solid #FFCC66;
+    background-color: #CCFFCC; 
     padding: 6px;
     font-family: helvetica;
     font-size: 1.1em;
@@ -344,9 +342,7 @@ div#title {
 }
 .warning
 {
-    background-color: #FFFF99;
-    border-top: 1px solid #FFCC66;
-    border-bottom: 4px solid #FFCC66;
+    background-color: #FFFF99; 
     padding: 6px;
     font-family: helvetica;
     font-size: 0.9em;
@@ -359,9 +355,7 @@ div#title {
 }
 .error
 {
-    background-color: #FFCC99;
-    border-top: 1px solid #FFCC66;
-    border-bottom: 4px solid #FFCC66;
+    background-color: #FFCC99; 
     padding: 4px;
     font-family: helvetica;
     font-size: 1.1em;
