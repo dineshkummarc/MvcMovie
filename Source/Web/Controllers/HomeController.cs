@@ -56,6 +56,7 @@ namespace MvcMovie.Controllers
         public ActionResult PaymentInfo()
         {
             this.FlashInfo("hello");
+            throw new Exception("asdfasdfasdf");
             return View();
         }
 

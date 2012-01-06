@@ -40,9 +40,10 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Customers](
 	[ID] [int] IDENTITY(1,1) NOT NULL  PRIMARY KEY  CLUSTERED (	[ID] ASC) ON [PRIMARY],
-	[FirstName] [nvarchar](55) NOT NULL,  
-	[LastName] [nvarchar](55) NOT NULL,  
-	[Email] [nvarchar](55) NOT NULL,  
+	[FirstName] [nvarchar](55)  ,  
+	[LastName] [nvarchar](55)  ,  
+	[Email] [nvarchar](55)  ,  
+	[Address] [nvarchar](55)  ,  
 	[CreatedAt] [datetime] NULL default(getdate()),
 	[UpdatedAt] [datetime] NULL default(getdate()) 
 ) ON [PRIMARY]
@@ -52,6 +53,7 @@ INSERT INTO  [Customers] ([Email], [FirstName], [LastName] ) VALUES
 ('cust1@test.com' , 'Joe', 'Smith'  ) 
 ,('Bart@test.com', 'Bart', 'Simpson'     ) 
 ,('Homer@test.com' , 'Homer', 'Simpson'    ) 
+,('Barney@test.com' , 'Barney', 'Gumble'    ) 
    
 
 
