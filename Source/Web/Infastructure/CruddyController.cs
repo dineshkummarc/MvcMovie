@@ -46,8 +46,7 @@ namespace Web.Infrastructure
             catch (Exception x)
             {
                 TempData["Error"] = "There was a problem editing this record";
-                ModelState.AddModelError(string.Empty, x.Message);
-                var s = ToJsonString(model);
+                ModelState.AddModelError(string.Empty, x.Message); 
                 return View(model);
             }
         }
@@ -76,8 +75,7 @@ namespace Web.Infrastructure
         {
             var model = _table.CreateFrom(collection);
             try
-            {
-                var s = ToJsonString(model);
+            { 
                 // TODO: Add insert logic here
                 _table.Insert(model);
                 return RedirectToAction("Index");
@@ -85,8 +83,7 @@ namespace Web.Infrastructure
             catch (Exception x)
             {
                 TempData["Error"] = "There was a problem creating this record";
-                ModelState.AddModelError(string.Empty, x.Message);
-                var s = ToJsonString(model);
+                ModelState.AddModelError(string.Empty, x.Message); 
                 return View(model);
             }
         }

@@ -23,7 +23,7 @@ namespace MvcMovie.Models
             this.ValidatesPresenceOf(item.Title, "Title is required");
             if (this.ValidatesPresenceOf(item.Price, "Price is required"))
             {
-                if (this.ValidateIsCurrency(item.Price, "Should be a number"))
+                if (this.ValidateIsCurrency(item.Price, "Price should be a number"))
                 {
                     //price needs to be > 0
                     if (decimal.Parse(item.Price) <= 0)
