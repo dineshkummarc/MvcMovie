@@ -19,5 +19,49 @@ namespace MvcMovie.Controllers
         {
             return View();
         }
+
+
+
+
+        [HttpGet]
+        public virtual ActionResult PersonalInfo(int id)
+        { 
+            return View( );
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public virtual ActionResult PersonalInfo(int id, FormCollection collection)
+        {
+            return View( );
+            //var model = _table.CreateFrom(collection);
+            //try
+            //{
+            //    // TODO: Add update logic here
+            //    _table.Update(model, id);
+            //    return RedirectToAction("Index");
+            //}
+            //catch (Exception x)
+            //{
+            //    TempData["Error"] = "There was a problem editing this record";
+            //    ModelState.AddModelError(string.Empty, x.Message);
+            //    return View(model);
+            //}
+        }
+
+
+
+        [HttpGet]
+        public ActionResult PersonalInfo()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PaymentInfo()
+        {
+            return View();
+        }
     }
 }

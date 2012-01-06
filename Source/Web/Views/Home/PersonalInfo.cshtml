@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "PersonalInfo";
+}
+
+<h2>PersonalInfo</h2>
+
+
+
+
+@Assets.Script("jquery.validate.min.js")  
+@Assets.Script("jquery.validate.unobtrusive.min.js")   
+
+<div class="vidform">
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)  
+        //@Form.TextBox(name: "Title", value: Model.Title)  
+        @Form.TextBoxRequired(name: "FirstName", value: Model.FirstName) 
+        @Form.TextBox(name: "LastName", value: Model.LastName) 
+        @Form.TextBoxNumber(name: "Email", value: Model.Email)  
+        @Form.Submit()
+    }
+</div>
+ 
+

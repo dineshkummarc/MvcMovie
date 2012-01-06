@@ -58,13 +58,21 @@ namespace  Web.Controllers
                 return CurrentUser != null;
             }
         }
-        //public ActionResult VidpubJSON(dynamic content) {
-        //    var serializer = new JavaScriptSerializer();
-        //    serializer.RegisterConverters(new JavaScriptConverter[] { new ExpandoObjectConverter() });
-        //    var json = serializer.Serialize(content);
-        //    Response.ContentType = "application/json";
-        //    return Content(json);
-        //}
+        public ActionResult ToJson(dynamic content)
+        {
+            var json = ToJsonString(content);
+            Response.ContentType = "application/json";
+            return Content(json);
+        }
+
+        public static string ToJsonString(dynamic content)
+        {
+            var serializer = new JavaScriptSerializer();
+            serializer.RegisterConverters(new JavaScriptConverter[] {new ExpandoObjectConverter()});
+            var json = serializer.Serialize(content);
+            return json;
+        }
+
         public string ReadJson() {
             var bodyText = "";
             using (var stream = Request.InputStream) {
@@ -74,19 +82,19 @@ namespace  Web.Controllers
             }
             return bodyText;
         }
-        //public dynamic SqueezeJson()
-        //{
-        //    var serializer = new JavaScriptSerializer();
-        //    serializer.RegisterConverters(new JavaScriptConverter[] { new ExpandoObjectConverter() });
-        //    var bodyText = "";
-        //    using (var stream = Request.InputStream)
-        //    {
-        //        stream.Seek(0, SeekOrigin.Begin);
-        //        using (var reader = new StreamReader(stream))
-        //            bodyText = reader.ReadToEnd();
-        //    }
-        //    return serializer.Deserialize(bodyText, typeof(ExpandoObject));
-        //}
+        public dynamic SqueezeJson()
+        {
+            var serializer = new JavaScriptSerializer();
+            serializer.RegisterConverters(new JavaScriptConverter[] { new ExpandoObjectConverter() });
+            var bodyText = "";
+            using (var stream = Request.InputStream)
+            {
+                stream.Seek(0, SeekOrigin.Begin);
+                using (var reader = new StreamReader(stream))
+                    bodyText = reader.ReadToEnd();
+            }
+            return serializer.Deserialize(bodyText, typeof(ExpandoObject));
+        }
 
         //public ActionResult CSV(IEnumerable<dynamic> data, string fileName) {
         //    return new CSVResult(data, fileName);

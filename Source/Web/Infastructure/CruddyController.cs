@@ -76,6 +76,7 @@ namespace Web.Infrastructure
             var model = _table.CreateFrom(collection);
             try
             {
+                var s = ToJsonString(model);
                 // TODO: Add insert logic here
                 _table.Insert(model);
                 return RedirectToAction("Index");
@@ -83,8 +84,8 @@ namespace Web.Infrastructure
             catch (Exception x)
             {
                 TempData["Error"] = "There was a problem adding this record";
-                ModelState.AddModelError(string.Empty, x.Message); 
-                return View();
+                ModelState.AddModelError(string.Empty, x.Message);
+                return View(model);
             }
         }
 
