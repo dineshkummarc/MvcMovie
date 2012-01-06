@@ -32,6 +32,29 @@ INSERT INTO  [Movies] ([Title], [Genre], [Price], [Rating]) VALUES
 
   
 
+IF EXISTS ( SELECT  * FROM    sys.objects  WHERE   object_id = OBJECT_ID(N'[dbo].[Customers]')  AND type IN ( N'U' ) )  DROP TABLE [Customers] 
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Customers](
+	[ID] [int] IDENTITY(1,1) NOT NULL  PRIMARY KEY  CLUSTERED (	[ID] ASC) ON [PRIMARY],
+	[FirstName] [nvarchar](55) NOT NULL,  
+	[LastName] [nvarchar](55) NOT NULL,  
+	[Email] [nvarchar](55) NOT NULL,  
+	[CreatedAt] [datetime] NULL default(getdate()),
+	[UpdatedAt] [datetime] NULL default(getdate()) 
+) ON [PRIMARY]
+GO
+
+INSERT INTO  [Customers] ([Email], [FirstName], [LastName] ) VALUES  
+('cust1@test.com' , 'Joe', 'Smith'  ) 
+,('Bart@test.com', 'Bart', 'Simpson'     ) 
+,('Homer@test.com' , 'Homer', 'Simpson'    ) 
+   
+
+
 
 IF EXISTS ( SELECT  * FROM    sys.objects  WHERE   object_id = OBJECT_ID(N'[dbo].[Users]')  AND type IN ( N'U' ) )  DROP TABLE [Users] 
 
@@ -52,7 +75,8 @@ CREATE TABLE [dbo].[Users](
 GO
 
 INSERT INTO  [Users] ([Email], [HashedPassword]) VALUES  
-('test123@test.com', 'aaaaaaaaaaaa'  ) 
+('test123@test.com', 'tttttttttt'  ) 
 ,('a@test.com', 'aaaaaaaaaaaa'  ) 
-,('b@test.com', 'aaaaaaaaaaaa'  ) 
+,('b@test.com', 'bbbbbbbbbbbb'  ) 
+,('c@test.com', 'cccccccccccc'  ) 
    

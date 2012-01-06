@@ -40,7 +40,8 @@ namespace Web.Infrastructure
             try
             {
                 // TODO: Add update logic here
-                _table.Update(model, id);  
+                _table.Update(model, id);
+                this.FlashInfo("Item Saved");
                 return RedirectToAction("Index");
             }
             catch (Exception x)
@@ -78,12 +79,12 @@ namespace Web.Infrastructure
             { 
                 // TODO: Add insert logic here
                 _table.Insert(model);
-                //this.FlashInfo("Item Saved");
+                this.FlashInfo("Item Created");
                 return RedirectToAction("Index");
             }
             catch (Exception x)
             { 
-                //this.FlashError("There was a problem creating this record");
+                this.FlashError("There was a problem creating this record");
                 ModelState.AddModelError(string.Empty, x.Message); 
                 return View(model);
             }
