@@ -1,4 +1,10 @@
-﻿/*----------------------------------------------------------
+﻿
+/* Common   
+----------------------------------------------------------*/
+.left{float:left;}.right{float:right;}.clear{clear:both;}.none{display:none !important;}.hidden{visibility:hidden;}.highlight{ background-color:Yellow;}.inline{ display:inline;}.blockImage{ text-indent:-9999px; display:block; }.hand{cursor:pointer;}
+
+
+/*----------------------------------------------------------
 The base color for this template is #5c87b2. If you'd like
 to use a different color start by replacing all instances of
 #5c87b2 with your new color.
@@ -366,3 +372,4 @@ div#title {
     color: #990000;
     cursor:pointer;
 }
+

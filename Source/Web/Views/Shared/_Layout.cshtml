@@ -18,10 +18,10 @@
             </div>
             <nav>
                 <ul id="menu">
-                    <li>@Html.ActionLink("Movie", "Index", "Movies")</li>
+                    <li>@Html.ActionLink("Movie", "Index", "Movies", new { area = "" }, new { })</li>
                     <li>@Html.ActionLink("User", "Index", "Users",   new { area="Admin"}, new {} )</li>
-                    <li>@Html.ActionLink("Search", "SearchIndex", "Movies")</li> 
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { })</li>
+                    <li class="none">@Html.ActionLink("Search", "SearchIndex", "Movies", new { area = "" }, new { }  )</li> 
                 </ul>
             </nav>
         </header>
