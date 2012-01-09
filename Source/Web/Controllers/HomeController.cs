@@ -35,9 +35,7 @@ namespace MvcMovie.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public virtual ActionResult PersonalInfo(FormCollection collection)
-        {
-            var a = 9;
-
+        { 
             var gateway = new BraintreeGateway
             {
                 Environment = Braintree.Environment.SANDBOX,
@@ -86,10 +84,10 @@ namespace MvcMovie.Controllers
                 }
                 this.FlashInfo(sb.ToString());
             }
-
-
-
+             
             return View( );
+
+
             //var model = _table.CreateFrom(collection);
             //try
             //{
