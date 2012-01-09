@@ -5,13 +5,25 @@ using System.Web;
 using System.Web.Mvc;
 using Web.Models;
 using Web.Infrastructure;
-namespace MvcMovie.Controllers{
+namespace MvcMovie.Areas.Admin.Controllers{
     public class UsersController : CruddyController {
-        public UsersController(ITokenHandler tokenStore):base(tokenStore) {
+        public UsersController(ITokenHandler tokenStore)
+            : base(tokenStore)
+        {
             _table = new Users();
             ViewBag.Table = _table;
         }
-         
+
+
+
+
+        //           /Test/Joe/About 
+        public ActionResult About()
+        {
+            return View();
+        }
+
+
     }
 }
 

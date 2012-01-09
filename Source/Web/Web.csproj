@@ -90,14 +90,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectMVC3.cs" />
-    <Compile Include="Areas\Admin\AdminAreaRegistration.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Areas\Admin\Controllers\ElmahController.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ElmahController.cs" />
+    <Compile Include="Areas\Admin\Controllers\JoeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Infastructure\ExpandoObjectConverter.cs" />
     <Compile Include="Infastructure\FlashHelpers.cs">
       <SubType>Code</SubType>
@@ -170,6 +167,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Public\images\" />
   </ItemGroup>
   <ItemGroup>
@@ -206,14 +205,12 @@
     <Content Include="App_Code\URL.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Views\Web.config" />
+    <Content Include="Areas\Admin\Views\Joe\About.cshtml" />
     <None Include="CodeTemplates\AddController\Controller.tt" />
     <None Include="CodeTemplates\AddView\CSHTML\Create.tt" />
     <None Include="CodeTemplates\AddView\CSHTML\Edit.tt" />
     <None Include="CodeTemplates\AddView\CSHTML\List.tt" />
-    <Content Include="Views\Users\Index.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
-    <Content Include="Views\Users\Details.cshtml" />
-    <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Home\PersonalInfo.cshtml" />
     <Content Include="Views\Home\PaymentInfo.cshtml" />
   </ItemGroup>
