@@ -6,11 +6,16 @@
 
 
 
-
 @Assets.Script("jquery.validate.min.js")  
 @Assets.Script("jquery.validate.unobtrusive.min.js")   
 
-<div class="vidform"> 
+<div class="vidform">
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)  
+        @Form.TextBoxRequired(name: "Card Number", value: "4111111111111111") 
+        @Form.TextBox(name: "Exp Date", value: "05/2012")  
+        @Form.Submit()
+    }
 </div>
  
-
