@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Braintree;
 using System.Text;
+using System.Configuration;
 
 namespace MvcMovie.Controllers
 {
@@ -35,13 +36,14 @@ namespace MvcMovie.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public virtual ActionResult PersonalInfo(FormCollection collection)
-        { 
+        {
+
             var gateway = new BraintreeGateway
             {
                 Environment = Braintree.Environment.SANDBOX,
-                MerchantId = "the_merchant_id",
-                PublicKey = "a_public_key",
-                PrivateKey = "a_private_key"
+                MerchantId = ConfigurationManager.AppSettings["BrainTree-MerchantId"],
+                PublicKey = ConfigurationManager.AppSettings["BrainTree-PublicKey"],
+                PrivateKey = ConfigurationManager.AppSettings["BrainTree-PrivateKey"]
             };
 
             var request = new TransactionRequest
