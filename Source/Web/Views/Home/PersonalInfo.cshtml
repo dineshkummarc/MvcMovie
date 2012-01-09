@@ -13,7 +13,9 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)  
-        @Form.TextBoxRequired(name: "Card Number", value: "4111111111111111") 
+         
+            
+        @Form.TextBoxRequired(name: "Card Number", value: Model.Number, maxLength: 16) 
         @Form.TextBox(name: "Exp Date", value: "05/2012")  
         @Form.Submit()
     }

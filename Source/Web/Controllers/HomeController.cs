@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Braintree;
 using System.Text;
 using System.Configuration;
+using MvcMovie.Models;
 
 namespace MvcMovie.Controllers
 {
@@ -27,17 +28,28 @@ namespace MvcMovie.Controllers
 
 
         [HttpGet]
+        public virtual ActionResult ThankYou()
+        { 
+            return View();
+        }
+
+        [HttpGet]
         public virtual ActionResult PersonalInfo()
         {
-            this.FlashInfo("Hi");
-            return View( );
+            this.FlashWarning("about to test the Braintree sandbox"); 
+            var payment = new Payment { Number = "4111111111111111", ExpirationDate = "05/2012" }  ;
+            return View(payment);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public virtual ActionResult PersonalInfo(FormCollection collection)
-        {
-
+        { 
+            var payment = new Payment
+            {
+                Number = collection["Card Number"],
+                ExpirationDate = collection["Exp Date"]
+            };
             var gateway = new BraintreeGateway
             {
                 Environment = Braintree.Environment.SANDBOX,
@@ -48,20 +60,20 @@ namespace MvcMovie.Controllers
 
             var request = new TransactionRequest
             {
-                Amount = 1000M,
+                Amount = 0.10M,
                 CreditCard = new TransactionCreditCardRequest
                 {
-                    Number = collection["Card Number"],       // "4111111111111111",
-                    ExpirationDate = collection["Exp Date"]   // "05/2012"
+                    Number = payment.Number,        
+                    ExpirationDate = payment.ExpirationDate   
                 }
-            };
-
+            }; 
             Result<Transaction> result = gateway.Transaction.Sale(request);
 
             if (result.IsSuccess())
             {
                 Transaction transaction = result.Target;
                 this.FlashInfo("Success!: " + transaction.Id);
+                return RedirectToAction("ThankYou");
             }
             else if (result.Transaction != null)
             {
@@ -72,7 +84,7 @@ namespace MvcMovie.Controllers
                 sb.AppendFormat("  Status:  {0}", transaction.Status);
                 sb.AppendFormat("  Code:  {0}", transaction.ProcessorResponseCode);
                 sb.AppendFormat("  Text:  {0}", transaction.ProcessorResponseText);
-
+                this.FlashError(sb.ToString());
             }
             else
             {
@@ -84,25 +96,10 @@ namespace MvcMovie.Controllers
                     sb.AppendFormat("  Code: {0}", error.Code);
                     sb.AppendFormat("  Message: {0}", error.Message);
                 }
-                this.FlashInfo(sb.ToString());
+                var errorMessage = sb.ToString();
+                this.FlashError("Error");
             }
-             
-            return View( );
-
-
-            //var model = _table.CreateFrom(collection);
-            //try
-            //{
-            //    // TODO: Add update logic here
-            //    _table.Update(model, id);
-            //    return RedirectToAction("Index");
-            //}
-            //catch (Exception x)
-            //{
-            //    TempData["Error"] = "There was a problem editing this record";
-            //    ModelState.AddModelError(string.Empty, x.Message);
-            //    return View(model);
-            //}
+            return View(payment); 
         }
 
 
@@ -110,8 +107,8 @@ namespace MvcMovie.Controllers
         [HttpGet]
         public ActionResult PaymentInfo()
         {
-            this.FlashInfo("hello");
-            throw new Exception("asdfasdfasdf");
+            this.FlashError("Error");
+            //throw new Exception("asdfasdfasdf");
             return View();
         }
 

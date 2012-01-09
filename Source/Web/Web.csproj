@@ -117,6 +117,7 @@
     <Compile Include="Infastructure\Logging\NLogger.cs" />
     <Compile Include="Infastructure\Massive.cs" />
     <Compile Include="Models\Movies.cs" />
+    <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -220,6 +221,7 @@
     <None Include="CodeTemplates\AddView\CSHTML\List.tt" />
     <Content Include="Views\Home\PersonalInfo.cshtml" />
     <Content Include="Views\Home\PaymentInfo.cshtml" />
+    <Content Include="Views\Home\ThankYou.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -22,11 +22,11 @@
     </p>
 }
 
-@helper TextBoxRequired(string name, object value = null, string requiredMessage = "Required") {
+@helper TextBoxRequired(string name, object value = null, string requiredMessage = "Required", int maxLength = 50 ) {
     var val = value ?? "";
     <p>
         <label>@name *</label>
-        <input type="text" name="@name" id="@name" value="@val" data-val="true" data-val-required="@requiredMessage" />
+        <input type="text" name="@name" id="@name" value="@val" maxlength="@maxLength" data-val="true" data-val-required="@requiredMessage" />
         @ValidationMessage(name)
     </p>
     
