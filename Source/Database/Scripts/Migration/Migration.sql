@@ -3,6 +3,28 @@ GO
 
 
  
+ 
+IF EXISTS ( SELECT  * FROM    sys.objects  WHERE   object_id = OBJECT_ID(N'[dbo].[Config]')  AND type IN ( N'U' ) )  DROP TABLE [Config] 
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Config](
+	[ID] [int] IDENTITY(1,1) NOT NULL  PRIMARY KEY  CLUSTERED (	[ID] ASC) ON [PRIMARY],
+	[Name] [nvarchar](50) NULL,  
+	[Value] [nvarchar](50) NULL,
+	[CreatedAt] [datetime] not null default(getdate()) ,
+	[UpdatedAt] [datetime]  not null default(getdate()) 
+	) ON [PRIMARY]
+GO
+INSERT INTO  [Config] ( [Name], [Value] ) VALUES  
+('BrainTree-MerchantId', 'BrainTree-MerchantId'  )  ,
+('BrainTree-PublicKey', 'BrainTree-PublicKey'  )  ,
+('BrainTree-PrivateKey', 'BrainTree-PrivateKey'  )  
+
+ 
+
 
 IF EXISTS ( SELECT  * FROM    sys.objects  WHERE   object_id = OBJECT_ID(N'[dbo].[Movies]')  AND type IN ( N'U' ) )  DROP TABLE [Movies] 
 
@@ -22,13 +44,13 @@ CREATE TABLE [dbo].[Movies](
 	) ON [PRIMARY]
 GO
 INSERT INTO  [Movies] ([Title], [Genre], [Price], [Rating]) VALUES  
-('The Lost Boys', 'Action', 3.99, 'G'  ) 
-,('When Harry Met Sally', 'Romantic Comedy', 3.99, 'G'  ) 
-,('Raiders of the lost arc', 'Action', 3.99, 'G'  ) 
-,('Ghostbusters', 'Comedy', 4.99, 'G'  )  
-,('Ghostbusters 2', 'Comedy', 2.99, 'G'  )  
-,('Spaceballs', 'Comedy', 7.99, 'G'  )  
-  
+('The Lost Boys', 'Action', 3.99, 'G'  )  ,
+('When Harry Met Sally', 'Romantic Comedy', 3.99, 'G'  ) ,
+('Raiders of the lost arc', 'Action', 3.99, 'G'  ) ,
+('Ghostbusters', 'Comedy', 4.99, 'G'  )  ,
+('Ghostbusters 2', 'Comedy', 2.99, 'G'  ) ,
+('Spaceballs', 'Comedy', 7.99, 'G'  )  							    
+ 
 
   
 
