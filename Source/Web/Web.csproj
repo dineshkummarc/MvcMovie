@@ -117,7 +117,7 @@
     <Compile Include="Infastructure\Logging\NLogger.cs" />
     <Compile Include="Infastructure\Massive.cs" />
     <Compile Include="Models\Movies.cs" />
-    <Compile Include="Models\Payment.cs" />
+    <Compile Include="Models\PaymentModel.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

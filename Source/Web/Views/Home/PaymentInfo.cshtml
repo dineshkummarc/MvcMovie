@@ -1,5 +1,40 @@
-﻿@{
+﻿@model MvcMovie.Models.PaymentModel
+@{
     ViewBag.Title = "PaymentInfo";
 }
 
 <h2>PaymentInfo</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "  Please correct the errors and try again.")
+    <div>
+        <fieldset> 
+            <legend>payment Information</legend>
+            
+            @* @  Form.TextBox(name: "Number", value: Model.Number) *@
+            
+            
+            <div class="editor-label">
+                @Html.LabelFor(m => m.Number)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.Number) 
+                @Html.ValidationMessageFor(m => m.Number)
+            </div>
+              
+
+            <div class="editor-label">
+                @Html.LabelFor(m => m.ExpirationDate)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.ExpirationDate) 
+                @Html.ValidationMessageFor(m => m.ExpirationDate)
+            </div>
+             
+            <p>
+                <input type="submit" value="Submit" />
+            </p>
+        </fieldset>
+    </div>
+}
