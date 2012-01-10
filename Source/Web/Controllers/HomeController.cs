@@ -7,13 +7,16 @@ using Braintree;
 using System.Text;
 using System.Configuration;
 using MvcMovie.Models;
+using NLog;
 
 namespace MvcMovie.Controllers
 {
     public class HomeController : Controller
     {
+        private static readonly Logger log = LogManager.GetLogger(typeof (HomeController).Name);
         public ActionResult Index()
         {
+            log.Info("I am a new log to be setn to logentires");
             ViewBag.Message = "Welcome to ASP.NET MVC!";
 
             return View();
