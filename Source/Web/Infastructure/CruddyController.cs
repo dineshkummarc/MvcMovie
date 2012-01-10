@@ -18,16 +18,23 @@ namespace Web.Infrastructure
          
         public ViewResult Index()
         {
-            IEnumerable<dynamic> items = _table.All();
+            IEnumerable<dynamic> items = Get();
             return View(items);
         }
 
-
+        protected virtual dynamic Get()
+        {
+            return _table.All();
+        }
+        protected virtual dynamic Get(int id)
+        {
+            return _table.Get(ID: id);
+        }
 
         [HttpGet]
         public virtual ActionResult Edit(int id)
         {
-            var model = _table.Get(ID: id);
+            var model = Get(id);
             model._Table = _table;
             return View(model);
         }
@@ -36,10 +43,11 @@ namespace Web.Infrastructure
         [ValidateAntiForgeryToken]
         public virtual ActionResult Edit(int id, FormCollection collection)
         {
+            collection["UpdatedAt"] = DateTime.Now.ToString();
             var model = _table.CreateFrom(collection);
             try
             {
-                // TODO: Add update logic here
+                // TODO: Add update logic here 
                 _table.Update(model, id);
                 this.FlashInfo("Item Saved");
                 return RedirectToAction("Index");
@@ -57,7 +65,7 @@ namespace Web.Infrastructure
         [HttpGet]
         public virtual ActionResult Details(int id)
         {
-            var model = _table.Get(ID: id);
+            var model = Get(id);
             return View(model);
         }
 
