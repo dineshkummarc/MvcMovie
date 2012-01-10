@@ -15,7 +15,27 @@
     @Html.ActionLink("PersonalInfo", "PersonalInfo", "Home")  
 </p>
 
+
+
 <p>
     <a href="elmah.axd">errors</a>
 
 </p>
+
+<p> 
+<div class="vidform">
+    @using (Html.BeginForm("ThrowError", "Home"))
+    {    
+        @Form.Submit(value: "ThrowError")
+    }
+</div> 
+</p>
+<p> 
+<div class="vidform">
+    @using (Html.BeginForm("LogError", "Home"))
+    {    
+        @Form.Submit(value: "LogError")
+    }
+</div> 
+</p>
+

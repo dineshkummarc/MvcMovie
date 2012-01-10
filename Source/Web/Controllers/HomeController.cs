@@ -127,5 +127,21 @@ namespace MvcMovie.Controllers
             }
             return View(model);
         }
+
+
+
+        [HttpPost]
+        public ActionResult ThrowError(FormCollection collection)
+        {
+            throw new Exception("inside throw error testing logger");
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public ActionResult LogError(FormCollection collection)
+        {
+            log.Error("inside log error");
+            return RedirectToAction("Index");
+        }
+
     }
 }
