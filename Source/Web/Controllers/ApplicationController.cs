@@ -16,24 +16,19 @@ namespace  Web.Controllers
     {
         public ITokenHandler TokenStore;
         public ILogger Logger;
-        public ApplicationController(ITokenHandler tokenStore,ILogger logger) {
+
+        public ApplicationController(ITokenHandler tokenStore, ILogger logger)
+        {
             TokenStore = tokenStore;
             Logger = logger;
             //initialize this
-            ViewBag.CurrentUser = CurrentUser ?? new { Email = "" };
-
-        }       
-        public ApplicationController(ITokenHandler tokenStore) {
-            TokenStore = tokenStore;
-            Logger = new NLogger();
-            //initialize this
-            ViewBag.CurrentUser = CurrentUser ?? new { Email = "" };
-
+            ViewBag.CurrentUser = CurrentUser ?? new {Email = ""};
         }
-        public ApplicationController() {
-            Logger = new NLogger();
-            TokenStore = new FormsAuthTokenStore();
-        }
+
+        public ApplicationController(ITokenHandler tokenStore):this( tokenStore, new NLogger()) { }
+
+        public ApplicationController():this(new FormsAuthTokenStore()) {}
+
         dynamic _currentUser;
         public dynamic CurrentUser {
             get {

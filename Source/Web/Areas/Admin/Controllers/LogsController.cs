@@ -5,26 +5,23 @@ using System.Web;
 using System.Web.Mvc;
 using Web.Models;
 using Web.Infrastructure;
+using MvcMovie.Models;
 namespace MvcMovie.Areas.Admin.Controllers{
-    public class JoeController : CruddyController {
-
-
-
-        public JoeController(ITokenHandler tokenStore)
+    public class LogsController : CruddyController
+    {
+        public LogsController(ITokenHandler tokenStore)
             : base(tokenStore)
         {
+            _table = new Log();
+            ViewBag.Table = _table;
         }
 
+         
 
-        //           /Test/Joe/About 
-        public ActionResult About()
-        {
-            return View();
-        }
+         
 
 
 
     }
 }
-
 

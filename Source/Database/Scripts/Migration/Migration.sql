@@ -2,14 +2,49 @@
 GO
 
 
- 
- 
-IF EXISTS ( SELECT  * FROM    sys.objects  WHERE   object_id = OBJECT_ID(N'[dbo].[Config]')  AND type IN ( N'U' ) )  DROP TABLE [Config] 
 
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Schema]') AND type in (N'U'))  Drop Table [Schema] 
+CREATE TABLE [dbo].[Schema](
+	[Id] [int] IDENTITY(1, 1) NOT NULL , 
+	[Version] [bigint] NOT NULL,
+	[UtcDate]  [datetime] DEFAULT (GETUTCDATE()),
+	[BuildNumber] [nvarchar](100)  , 
+	[Status] [nvarchar](50) NULL ,
+	[CreatedAt] [datetime] not null default(getdate()) ,
+	[UpdatedAt] [datetime]  not null default(getdate())  
+) ;
+INSERT [Schema] ([Version] ) Values(1 )
+
+
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Log]') AND type in (N'U'))  Drop Table [Log] 
+CREATE TABLE [dbo].[Log]
+	(
+	  [Id] [int] IDENTITY(1, 1) NOT NULL, 
+	  [Description] [nvarchar](MAX) NULL,
+	  [Summary] [nvarchar](100) NULL,
+	  [Level] [nvarchar](16) NULL,
+	  [Logger] [nvarchar](128) NULL,
+	  [Status] [nvarchar](50) NULL,
+	  [IpAddress] [nvarchar](100) NULL,
+	  [Browser] [nvarchar](100) NULL,
+	  [Server] [nvarchar](100) NULL,
+	  [Session] [nvarchar](100) NULL,
+	  [UserName] [nvarchar](100) NULL, 
+	  [Application] [nvarchar](100) NULL,
+	  [Type] [nvarchar](100) NULL,
+	  [Tag] [nvarchar](100),   
+	  [UpdatedAt] [datetime]  not null default(getdate())  
+) ; 
+
+
+
+ 
+ 
+IF EXISTS ( SELECT  * FROM    sys.objects  WHERE   object_id = OBJECT_ID(N'[dbo].[Config]')  AND type IN ( N'U' ) )  DROP TABLE [Config]
 CREATE TABLE [dbo].[Config](
 	[ID] [int] IDENTITY(1,1) NOT NULL  PRIMARY KEY  CLUSTERED (	[ID] ASC) ON [PRIMARY],
 	[Name] [nvarchar](50) NULL,  
@@ -26,13 +61,7 @@ INSERT INTO  [Config] ( [Name], [Value] ) VALUES
  
 
 
-IF EXISTS ( SELECT  * FROM    sys.objects  WHERE   object_id = OBJECT_ID(N'[dbo].[Movies]')  AND type IN ( N'U' ) )  DROP TABLE [Movies] 
-
-
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+IF EXISTS ( SELECT  * FROM    sys.objects  WHERE   object_id = OBJECT_ID(N'[dbo].[Movies]')  AND type IN ( N'U' ) )  DROP TABLE [Movies]
 CREATE TABLE [dbo].[Movies](
 	[ID] [int] IDENTITY(1,1) NOT NULL  PRIMARY KEY  CLUSTERED (	[ID] ASC) ON [PRIMARY],
 	[Title] [nvarchar](50) NULL,  
@@ -55,11 +84,6 @@ INSERT INTO  [Movies] ([Title], [Genre], [Price], [Rating]) VALUES
   
 
 IF EXISTS ( SELECT  * FROM    sys.objects  WHERE   object_id = OBJECT_ID(N'[dbo].[Customers]')  AND type IN ( N'U' ) )  DROP TABLE [Customers] 
-
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 CREATE TABLE [dbo].[Customers](
 	[ID] [int] IDENTITY(1,1) NOT NULL  PRIMARY KEY  CLUSTERED (	[ID] ASC) ON [PRIMARY],
 	[FirstName] [nvarchar](55)  ,  
@@ -81,7 +105,6 @@ INSERT INTO  [Customers] ([Email], [FirstName], [LastName] ) VALUES
 
 
 IF EXISTS ( SELECT  * FROM    sys.objects  WHERE   object_id = OBJECT_ID(N'[dbo].[Users]')  AND type IN ( N'U' ) )  DROP TABLE [Users] 
-
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -97,7 +120,6 @@ CREATE TABLE [dbo].[Users](
 	[IsBanned] [bit] NOT NULL default(0)
 ) ON [PRIMARY]
 GO
-
 INSERT INTO  [Users] ([Email], [HashedPassword]) VALUES  
 ('test123@test.com', 'tttttttttt'  ) 
 ,('a@test.com', 'aaaaaaaaaaaa'  ) 

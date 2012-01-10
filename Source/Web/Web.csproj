@@ -99,8 +99,9 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ConfigsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ElmahController.cs" />
-    <Compile Include="Areas\Admin\Controllers\JoeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LogsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Admin\Models\Log.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Infastructure\CacheHelper.cs" />
     <Compile Include="Infastructure\ExpandoObjectConverter.cs" />
@@ -118,7 +119,7 @@
     <Compile Include="Infastructure\Logging\ILogger.cs" />
     <Compile Include="Infastructure\Logging\NLogger.cs" />
     <Compile Include="Infastructure\Massive.cs" />
-    <Compile Include="Models\Config.cs" />
+    <Compile Include="Areas\Admin\Models\Config.cs" />
     <Compile Include="Models\Movies.cs" />
     <Compile Include="Models\PaymentModel.cs" />
     <Compile Include="Models\Users.cs" />
@@ -177,7 +178,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Public\images\" />
   </ItemGroup>
   <ItemGroup>
@@ -215,13 +215,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Web.config" />
-    <Content Include="Areas\Admin\Views\Joe\About.cshtml" />
     <Content Include="Areas\Admin\Views\Configs\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Configs\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Configs\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Configs\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Configs\About.cshtml" />
+    <Content Include="Areas\Admin\Views\Logs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Logs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Logs\Details.cshtml" />
     <None Include="CodeTemplates\AddController\Controller.tt" />
     <None Include="CodeTemplates\AddView\CSHTML\Create.tt" />
     <None Include="CodeTemplates\AddView\CSHTML\Edit.tt" />
