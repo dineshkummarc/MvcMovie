@@ -37,6 +37,7 @@ CREATE TABLE [dbo].[Log]
 	  [Application] [nvarchar](100) NULL,
 	  [Type] [nvarchar](100) NULL,
 	  [Tag] [nvarchar](100),   
+	  [Layout] [nvarchar](MAX) NULL,
 	  [UpdatedAt] [datetime]  not null default(getdate())  
 ) ; 
 
