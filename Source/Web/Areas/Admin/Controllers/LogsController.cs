@@ -16,8 +16,14 @@ namespace MvcMovie.Areas.Admin.Controllers{
             ViewBag.Table = _table;
         }
 
+
          
 
+        protected override dynamic Get()
+        { 
+             var   ret = _table.All(  orderby:"UpdatedAt DESC"); 
+            return ret;
+        } 
          
 
 
