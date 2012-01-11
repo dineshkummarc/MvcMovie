@@ -24,9 +24,17 @@
 
 <p> 
 <div class="vidform">
-    @using (Html.BeginForm("ThrowError", "Home"))
+    @using (Html.BeginForm("LogInfo", "Home"))
     {    
-        @Form.Submit(value: "ThrowError")
+        @Form.Submit(value: "Loginfo")
+    }
+</div> 
+</p>
+<p> 
+<div class="vidform">
+    @using (Html.BeginForm("LogWarn", "Home"))
+    {    
+        @Form.Submit(value: "LogWarn")
     }
 </div> 
 </p>
@@ -39,3 +47,11 @@
 </div> 
 </p>
 
+<p> 
+<div class="vidform">
+    @using (Html.BeginForm("ThrowError", "Home"))
+    {    
+        @Form.Submit(value: "ThrowError")
+    }
+</div> 
+</p>

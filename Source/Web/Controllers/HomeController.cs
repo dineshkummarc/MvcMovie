@@ -14,9 +14,9 @@ namespace MvcMovie.Controllers
     public class HomeController : Controller
     {
         private static readonly Logger Log = LogManager.GetLogger(typeof (HomeController).Name);
+         
         public ActionResult Index()
         {
-            Log.Info("I am a new log to be setn to logentires");
             ViewBag.Message = "Welcome to ASP.NET MVC!";
 
             return View();
@@ -129,6 +129,20 @@ namespace MvcMovie.Controllers
         }
 
 
+
+        [HttpPost]
+        public ActionResult LogInfo(FormCollection collection)
+        {
+            Log.Info("testing loginfo");
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult LogWarn(FormCollection collection)
+        {
+            Log.Warn("testing LogWarn");
+            return RedirectToAction("Index");
+        }
 
         [HttpPost]
         public ActionResult ThrowError(FormCollection collection)

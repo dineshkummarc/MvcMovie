@@ -235,6 +235,13 @@
     <Content Include="Views\Home\PersonalInfo.cshtml" />
     <Content Include="Views\Home\PaymentInfo.cshtml" />
     <Content Include="Views\Home\ThankYou.cshtml" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

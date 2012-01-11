@@ -10,4 +10,5 @@ _ReSharper.*/
 *.user
 **/**/App.config
 **/**/log.txt
+**/**/logs
 **/**/**/**/Secret.sql
