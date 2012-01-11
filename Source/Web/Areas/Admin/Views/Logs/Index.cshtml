@@ -26,7 +26,9 @@
 </p>
 <table>
     <tr>
+        <th>Description</th> 
         <th>Summary</th> 
+        <th>Level</th> 
         <th>IpAddress</th>
         <th>Browser</th>
         <th>Server</th>
@@ -36,10 +38,14 @@
     </tr>
 @foreach (var item in Model) {
     <tr>
-        <td>@item.Title</td>  
-        <td>@item.Genre</td> 
-        <td>@item.Price</td> 
-        <td>@item.Rating</td>  
+        <td>@item.Description</td>  
+        <td>@item.Summary</td> 
+        <td>@item.Level</td> 
+        <td>@item.IpAddress</td>  
+        <td>@item.Browser</td> 
+        <td>@item.Server</td> 
+        <td>@item.Session</td> 
+        <td>@item.Type</td>  
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID }) 

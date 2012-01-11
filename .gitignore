@@ -9,4 +9,5 @@ build/
 _ReSharper.*/
 *.user
 **/**/App.config
+**/**/log.txt
 **/**/**/**/Secret.sql

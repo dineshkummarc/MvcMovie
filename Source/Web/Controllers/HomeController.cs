@@ -13,10 +13,10 @@ namespace MvcMovie.Controllers
 {
     public class HomeController : Controller
     {
-        private static readonly Logger log = LogManager.GetLogger(typeof (HomeController).Name);
+        private static readonly Logger Log = LogManager.GetLogger(typeof (HomeController).Name);
         public ActionResult Index()
         {
-            log.Info("I am a new log to be setn to logentires");
+            Log.Info("I am a new log to be setn to logentires");
             ViewBag.Message = "Welcome to ASP.NET MVC!";
 
             return View();
@@ -139,7 +139,7 @@ namespace MvcMovie.Controllers
         [HttpPost]
         public ActionResult LogError(FormCollection collection)
         {
-            log.Error("inside log error");
+            Log.Error("inside log error");
             return RedirectToAction("Index");
         }
 
