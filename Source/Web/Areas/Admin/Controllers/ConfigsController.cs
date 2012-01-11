@@ -32,7 +32,7 @@ namespace MvcMovie.Areas.Admin.Controllers
 
         protected override dynamic Get(int id)
         {
-            return _table.Get(ID: id); // TODO look at this.Get() and return that item
+            return this.Get().Get(ID: id); // TODO look at this.Get() and return that item
         }
 
         protected override dynamic Get()

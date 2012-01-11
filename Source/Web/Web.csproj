@@ -54,6 +54,12 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Glimpse.Core">
+      <HintPath>..\packages\Glimpse.0.86\lib\net40\Glimpse.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Mvc3">
+      <HintPath>..\packages\Glimpse.Mvc3.0.86\lib\net40\Glimpse.Mvc3.dll</HintPath>
+    </Reference>
     <Reference Include="le_nlog">
       <HintPath>..\packages\le_nlog.1.5\lib\4.0\le_nlog.dll</HintPath>
     </Reference>
@@ -132,6 +138,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Readme\glimpse.mvc3.readme.txt" />
+    <Content Include="App_Readme\glimpse.readme.txt" />
     <Content Include="Public\stylesheets\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Public\stylesheets\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Public\stylesheets\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
