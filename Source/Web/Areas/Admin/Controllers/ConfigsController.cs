@@ -9,12 +9,15 @@ using Web.Infrastructure;
 using MvcMovie.Models;
 using Web.Controllers;
 using System.Text;
-using Microsoft.CSharp; 
+using Microsoft.CSharp;
+using NLog; 
 
 namespace MvcMovie.Areas.Admin.Controllers
 {
-    public class ConfigsController : CruddyController 
+    public class ConfigsController : CruddyController
     {
+        private static readonly Logger Log = LogManager.GetLogger(typeof(ConfigsController).Name);
+
         public ConfigsController(ITokenHandler tokenStore) : base(tokenStore)
         {
             _table = new Config();
@@ -32,7 +35,9 @@ namespace MvcMovie.Areas.Admin.Controllers
 
         protected override dynamic Get(int id)
         {
-            return _table.Get(ID: id); // TODO look at this.Get() and return that item
+            Func<dynamic, bool> check = x => x.ID == id;
+            return Enumerable.Where<dynamic>(this.Get(), check);
+            //return _table.Get(ID: id); // TODO look at this.Get() and return that item
             //return this.Get().Get(ID: id); // TODO look at this.Get() and return that item
         }
 
@@ -42,14 +47,15 @@ namespace MvcMovie.Areas.Admin.Controllers
             if (ret == null)
             {
                 ret = _table.All();
-                HttpRuntime.Cache.Add("Config", ret, null, DateTime.Now.AddMinutes(2), Cache.NoSlidingExpiration,CacheItemPriority.Low,RemovedCallback);
+                Log.Info("getting config from database");
+                HttpRuntime.Cache.Add("Config", ret, null, DateTime.Now.AddMinutes(1), Cache.NoSlidingExpiration,CacheItemPriority.Low,RemovedCallback);
             }
             return ret; 
         } 
         public static void RemovedCallback(String k, Object v, CacheItemRemovedReason r)
         {
-            var s = string.Format("Key: {0}   Object: {1}    Reason: {2}     ", k, v.ToString(), r); 
-
+            var s = string.Format("Key: {0}   Object: {1}    Reason: {2}     ", k, v.ToString(), r);
+            Log.Info("remove the config cache");
         } 
     }
 }
