@@ -140,6 +140,8 @@
   <ItemGroup>
     <Content Include="App_Readme\glimpse.mvc3.readme.txt" />
     <Content Include="App_Readme\glimpse.readme.txt" />
+    <Content Include="Public\javascripts\backbone-min.js" />
+    <Content Include="Public\javascripts\underscore-min.js" />
     <Content Include="Public\stylesheets\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Public\stylesheets\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Public\stylesheets\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -169,8 +171,6 @@
     <Content Include="Public\stylesheets\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
     <Content Include="Public\stylesheets\plugins\buttons\icons\tick.png" />
-    <Content Include="Public\javascripts\jquery-ui-1.8.11.js" />
-    <Content Include="Public\javascripts\jquery-ui-1.8.11.min.js" />
     <Content Include="Public\javascripts\jquery.validate.min.js" />
     <Content Include="Public\javascripts\modernizr-1.7.min.js" />
     <Content Include="Web.config">
@@ -183,7 +183,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Public\stylesheets\Site.css" />
-    <Content Include="Public\javascripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Public\javascripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
