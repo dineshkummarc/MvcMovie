@@ -11,11 +11,9 @@ using NLog;
 
 namespace MvcMovie.Controllers
 {
-    public class HomeController : ApplicationController
-
+    public class HomeController : ApplicationController 
     {
-        private static readonly Logger Log = LogManager.GetLogger(typeof (HomeController).Name);
-         
+        private static readonly Logger Log = LogManager.GetLogger(typeof (HomeController).Name); 
         public ActionResult Index()
         {
             ViewBag.Message = "Welcome to ASP.NET MVC!";
