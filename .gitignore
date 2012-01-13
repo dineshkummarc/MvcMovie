@@ -8,7 +8,7 @@ build/
 *.sln.cache
 _ReSharper.*/
 *.user
-**/**/App.config
+**/Web/App.config
 **/**/log.txt
 **/**/logs
 **/**/**/**/Secret.sql
