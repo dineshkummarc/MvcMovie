@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Web.Models;
 using Web.Infrastructure;
+using MvcMovie.Models;
 namespace MvcMovie.Areas.Admin.Controllers{
     public class UsersController : CruddyController {
         public UsersController(ITokenHandler tokenStore)

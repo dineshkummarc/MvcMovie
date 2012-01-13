@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.Dynamic;
 using System.Collections.ObjectModel;
-using Web.Controllers;
+using MvcMovie.Controllers;
 
 namespace Web.Infrastructure
 {

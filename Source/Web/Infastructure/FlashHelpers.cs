@@ -17,6 +17,7 @@ namespace System.Web.Mvc
             controller.TempData["error"] = message;
         }
 
+
         public static string Flash(this HtmlHelper helper)
         {
 

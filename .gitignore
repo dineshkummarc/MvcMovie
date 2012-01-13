@@ -12,3 +12,5 @@ _ReSharper.*/
 **/**/log.txt
 **/**/logs
 **/**/**/**/Secret.sql
+**/*.testsettings
+**/*.vsmdi

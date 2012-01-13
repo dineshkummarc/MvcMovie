@@ -114,6 +114,7 @@
     <Compile Include="Areas\Admin\Controllers\LogsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Models\Log.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Infastructure\CacheHelper.cs" />
     <Compile Include="Infastructure\ExpandoObjectConverter.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Infastructure\Logging\NLogger.cs" />
     <Compile Include="Infastructure\Massive.cs" />
     <Compile Include="Areas\Admin\Models\Config.cs" />
+    <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\Movies.cs" />
     <Compile Include="Models\PaymentModel.cs" />
     <Compile Include="Models\Users.cs" />
@@ -254,6 +256,11 @@
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
+    <Content Include="Views\Account\LogOn.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -8,9 +8,10 @@ using System.IO;
 using System.Dynamic;
 using Web.Infrastructure.Logging;
 using Web.Infrastructure;
-using Web.Models; 
+using Web.Models;
+using MvcMovie.Models;
 
-namespace  Web.Controllers
+namespace MvcMovie.Controllers
 {
     public class ApplicationController : Controller
     {

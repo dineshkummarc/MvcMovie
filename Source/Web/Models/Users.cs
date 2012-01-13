@@ -7,16 +7,18 @@ using Massive;
 using System.Security.Cryptography;
 using System.Data.SqlClient;
 
-namespace Web.Models
+namespace MvcMovie.Models
 {
     public class Users:DynamicModel {
 
         public Users() : base("ApplicationConnectionString", "Users", "ID", "Email") { }
 
-        public dynamic Register(string email, string password, string confirm) {
+        public dynamic Register(string email, string password, string confirm) 
+        {
             dynamic result = new ExpandoObject();
             result.Success = false;
-            if (email.Length >= 6 && password.Length >= 6 && password.Equals(confirm)) {
+            if (email.Length >= 6 && password.Length >= 6 && password.Equals(confirm)) 
+            {
                 try {
                     result.UserID = this.Insert(new { Email = email, HashedPassword = Hash(password) });
                     result.Success = true;
@@ -33,6 +35,8 @@ namespace Web.Models
             }
             return result;
         }
+
+
         public static string Hash(string userPassword) {
             return
                 BitConverter.ToString(SHA1Managed.Create().ComputeHash(Encoding.Default.GetBytes(userPassword))).Replace

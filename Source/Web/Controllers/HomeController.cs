@@ -11,7 +11,8 @@ using NLog;
 
 namespace MvcMovie.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : ApplicationController
+
     {
         private static readonly Logger Log = LogManager.GetLogger(typeof (HomeController).Name);
          
