@@ -95,5 +95,14 @@ namespace MvcMovie.Controllers
         //public ActionResult CSV(IEnumerable<dynamic> data, string fileName) {
         //    return new CSVResult(data, fileName);
         //}
+
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            //filterContext.Exception.ToString()
+
+            Logger.LogError(filterContext.Exception.ToString());
+            //WriteLog(Settings.LogErrorFile, filterContext.Exception.ToString());
+        }
+
     }
 }
