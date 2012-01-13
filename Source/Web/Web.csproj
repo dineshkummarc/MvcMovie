@@ -242,6 +242,7 @@
     <Content Include="Areas\Admin\Views\Logs\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Logs\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Logs\Details.cshtml" />
+    <Content Include="App.config" />
     <None Include="CodeTemplates\AddController\Controller.tt" />
     <None Include="CodeTemplates\AddView\CSHTML\Create.tt" />
     <None Include="CodeTemplates\AddView\CSHTML\Edit.tt" />
