@@ -53,9 +53,19 @@ namespace MvcMovie.Controllers
         }
 
         //
-        // GET: /Account/Register
+        // GET: /Account/Register 
+        public ActionResult Register()
+        {
+            return View();
+        }
 
-        public ActionResult Register() {
+        //
+        // GET: /Account/Me 
+        public ActionResult Me()
+        {
+            ViewBag.token = string.IsNullOrEmpty(TokenStore.GetToken()) ? "NULL" : TokenStore.GetToken();
+
+            ViewBag.auth = Response.Cookies["auth"] == null ? "NULL" : Response.Cookies["auth"].Value;
             return View();
         }
 
