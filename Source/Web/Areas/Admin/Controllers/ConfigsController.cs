@@ -58,7 +58,7 @@ namespace MvcMovie.Areas.Admin.Controllers
         public static void RemovedCallback(String k, Object v, CacheItemRemovedReason r)
         {
             var s = string.Format("Key: {0}   Object: {1}    Reason: {2}     ", k, v.ToString(), r);
-            Log.Info("remove the config cache");
+            Log.Info(s);
         } 
     }
 }

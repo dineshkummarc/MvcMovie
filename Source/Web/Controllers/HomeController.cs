@@ -146,7 +146,7 @@ namespace MvcMovie.Controllers
         [HttpPost]
         public ActionResult ThrowError(FormCollection collection)
         {
-            throw new Exception("inside throw error testing logger");
+            throw new Exception("inside throw error testing logger inside throw error testing logger inside throw error testing logger inside throw error testing logger inside throw error testing logger abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz ");
             return RedirectToAction("Index");
         }
         [HttpPost]
