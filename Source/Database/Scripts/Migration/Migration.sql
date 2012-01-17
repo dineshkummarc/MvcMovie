@@ -103,27 +103,3 @@ INSERT INTO  [Customers] ([Email], [FirstName], [LastName] ) VALUES
 ,('Barney@test.com' , 'Barney', 'Gumble'    ) 
    
 
-
-
-IF EXISTS ( SELECT  * FROM    sys.objects  WHERE   object_id = OBJECT_ID(N'[dbo].[Users]')  AND type IN ( N'U' ) )  DROP TABLE [Users] 
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Users](
-	[ID] [int] IDENTITY(1,1) NOT NULL  PRIMARY KEY  CLUSTERED (	[ID] ASC) ON [PRIMARY],
-	[Email] [nvarchar](255) NOT NULL,
-	[HashedPassword] [nvarchar](50) NULL,
-	[LastLogin] [datetime] NULL,
-	[CreatedAt] [datetime] NULL default(getdate()),
-	[UpdatedAt] [datetime] NULL default(getdate()),
-	[Token] [nvarchar](255) NULL,
-	[IsBanned] [bit] NOT NULL default(0)
-) ON [PRIMARY]
-GO
-INSERT INTO  [Users] ([Email], [HashedPassword]) VALUES  
-('test123@test.com', 'tttttttttt'  ) 
-,('a@test.com', 'aaaaaaaaaaaa'  ) 
-,('b@test.com', 'bbbbbbbbbbbb'  ) 
-,('c@test.com', 'cccccccccccc'  ) 
-   
