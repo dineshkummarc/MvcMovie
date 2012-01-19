@@ -16,9 +16,16 @@ namespace MvcMovie.Areas.Admin.Controllers{
         }
 
 
+        public override ViewResult Index()
+        {
+            IEnumerable<dynamic> items = Get();
+            return View(items);
+        }
 
 
-        //           /Test/Joe/About 
+         
+
+         
         public ActionResult About()
         {
             return View();

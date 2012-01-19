@@ -12,24 +12,23 @@
 <table>
     <tr>
         <th>Email</th> 
-        <th>LastLogin</th>
-        <th>CreatedAt</th>
-        <th>UpdatedAt</th>
-        <th>IsBanned</th>
-        <th></th>
+        <th>UserName</th>
+        <th>Comment</th>
+        <th>IsApproved</th>
+        <th>DateCreated</th>
+        <th>DateLastLogin</th>
+        <th>DateLastPasswordChange</th>  
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>@item.Email</td>  
-        <td>@item.LastLogin</td> 
-        <td>@item.CreatedAt</td> 
-        <td>@item.UpdatedAt</td>  
-        <td>@item.IsBanned</td>  
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) 
-        </td>
+        <td>@item.UserName</td> 
+        <td>@item.Comment</td> 
+        <td>@item.IsApproved</td>  
+        <td>@item.DateCreated</td>   
+        <td>@item.DateLastLogin</td>  
+        <td>@item.DateLastPasswordChange</td>  
     </tr>
 }
 

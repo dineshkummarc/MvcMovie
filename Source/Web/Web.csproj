@@ -45,6 +45,9 @@
     <Reference Include="Accessibility">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Altairis.Web.Security">
+      <HintPath>..\packages\Altairis.Web.Security.2.4.3\lib\net40\Altairis.Web.Security.dll</HintPath>
+    </Reference>
     <Reference Include="Braintree-2.13.2">
       <HintPath>..\packages\Braintree\Braintree-2.13.2.dll</HintPath>
     </Reference>

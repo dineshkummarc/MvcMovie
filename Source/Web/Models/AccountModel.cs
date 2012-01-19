@@ -5,9 +5,11 @@ using System.Globalization;
 using System.Web.Mvc;
 using System.Web.Security;
 
-namespace Web.Models {
+namespace Web.Models
+{
 
-    public class ChangePasswordModel {
+    public class ChangePasswordModel
+    {
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Current password")]
@@ -25,7 +27,8 @@ namespace Web.Models {
         public string ConfirmPassword { get; set; }
     }
 
-    public class LogOnModel {
+    public class LogOnModel
+    {
         [Required]
         [Display(Name = "User name")]
         public string UserName { get; set; }
@@ -39,7 +42,8 @@ namespace Web.Models {
         public bool RememberMe { get; set; }
     }
 
-    public class RegisterModel {
+    public class RegisterModel
+    {
         [Required]
         [Display(Name = "User name")]
         public string UserName { get; set; }
@@ -50,7 +54,7 @@ namespace Web.Models {
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters 22222 long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }

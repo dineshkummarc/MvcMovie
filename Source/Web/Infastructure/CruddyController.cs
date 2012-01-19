@@ -16,7 +16,7 @@ namespace Web.Infrastructure
 
         protected dynamic _table;
          
-        public ViewResult Index()
+        public virtual ViewResult Index()
         {
             IEnumerable<dynamic> items = Get();
             return View(items);

@@ -7,20 +7,23 @@ using System.Web.Routing;
 using System.Web.Security;
 using Web.Models;
 using Web.Infrastructure;
-using MvcMovie.Models; 
+using MvcMovie.Models;
 
 namespace MvcMovie.Controllers
 {
-    public class AccountController : ApplicationController 
-    {
-        Users _users;
+    public class AccountController : ApplicationController
+    { 
+        
         public AccountController():this(new FormsAuthTokenStore()) {}
-        public AccountController(ITokenHandler tokenStore):base(tokenStore) {
-            _users = new Users();
+        public AccountController(ITokenHandler tokenStore) : base(tokenStore) {
+            //_users = new Users();
         }
 
-        public ActionResult LogOn() {
-            
+        //
+        // GET: /Account/LogOn
+
+        public ActionResult LogOn()
+        {
             return View();
         }
 
@@ -28,44 +31,48 @@ namespace MvcMovie.Controllers
         // POST: /Account/LogOn
 
         [HttpPost]
-        public ActionResult LogOn(string email, string password)
+        public ActionResult LogOn(LogOnModel model, string returnUrl)
         {
-            dynamic result = _users.Login(email, password); 
-            if (result.Authenticated) {
-                SetToken(result.User.ID);
-                return RedirectToAction("Index", "Home");
-            } else {
-                ViewBag.Message = result.Message;
+            if (ModelState.IsValid)
+            {
+                if (Membership.ValidateUser(model.UserName, model.Password))
+                { 
+                    FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
+                    if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
+                        && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                }
             }
 
             // If we got this far, something failed, redisplay form
-            return View();
+            return View(model);
         }
 
         //
         // GET: /Account/LogOff
 
-        public ActionResult LogOff() {
+        public ActionResult LogOff()
+        {
             FormsAuthentication.SignOut();
-            Response.Cookies["auth"].Value = null;
-            Response.Cookies["auth"].Expires = DateTime.Today.AddDays(-1);
+
             return RedirectToAction("Index", "Home");
         }
 
         //
-        // GET: /Account/Register 
+        // GET: /Account/Register
+
         public ActionResult Register()
         {
-            return View();
-        }
-
-        //
-        // GET: /Account/Me 
-        public ActionResult Me()
-        {
-            ViewBag.token = string.IsNullOrEmpty(TokenStore.GetToken()) ? "NULL" : TokenStore.GetToken();
-
-            ViewBag.auth = Response.Cookies["auth"] == null ? "NULL" : Response.Cookies["auth"].Value;
             return View();
         }
 
@@ -76,33 +83,33 @@ namespace MvcMovie.Controllers
         public ActionResult Register(RegisterModel model)
         {
             if (ModelState.IsValid)
-            { 
-                var result = _users.Register(model.Email, model.Password, model.ConfirmPassword);
-                if (result.Success)
-                {
-                    //SetToken(result.UserID);
+            {
+                // Attempt to register the user
+                MembershipCreateStatus createStatus;
+                Membership.CreateUser(model.UserName, model.Password, model.Email, "question", "answer", true, null,
+                                      out createStatus);
+
+                if (createStatus == MembershipCreateStatus.Success)
+                { 
+                    FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
                     return RedirectToAction("Index", "Home");
                 }
                 else
-                { 
-                    this.FlashError((string)result.Message);
+                {
+                    ModelState.AddModelError("", ErrorCodeToString(createStatus));
                 }
             }
-            return View(model);
-        }
 
-        private void SetToken(dynamic userID) 
-        {
-            var token = Guid.NewGuid().ToString();
-            _users.SetToken(token, userID);
-            TokenStore.SetClientAccess(token);
+            // If we got this far, something failed, redisplay form
+            return View(model);
         }
 
         //
         // GET: /Account/ChangePassword
 
         [Authorize]
-        public ActionResult ChangePassword() {
+        public ActionResult ChangePassword()
+        {
             return View();
         }
 
@@ -111,22 +118,30 @@ namespace MvcMovie.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult ChangePassword(ChangePasswordModel model) {
-            if (ModelState.IsValid) {
+        public ActionResult ChangePassword(ChangePasswordModel model)
+        {
+            if (ModelState.IsValid)
+            {
 
                 // ChangePassword will throw an exception rather
                 // than return false in certain failure scenarios.
                 bool changePasswordSucceeded;
-                try {
+                try
+                {
                     MembershipUser currentUser = Membership.GetUser(User.Identity.Name, true /* userIsOnline */);
                     changePasswordSucceeded = currentUser.ChangePassword(model.OldPassword, model.NewPassword);
-                } catch (Exception) {
+                }
+                catch (Exception)
+                {
                     changePasswordSucceeded = false;
                 }
 
-                if (changePasswordSucceeded) {
+                if (changePasswordSucceeded)
+                {
                     return RedirectToAction("ChangePasswordSuccess");
-                } else {
+                }
+                else
+                {
                     ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
                 }
             }
@@ -138,20 +153,25 @@ namespace MvcMovie.Controllers
         //
         // GET: /Account/ChangePasswordSuccess
 
-        public ActionResult ChangePasswordSuccess() {
+        public ActionResult ChangePasswordSuccess()
+        {
             return View();
         }
 
         #region Status Codes
-        private static string ErrorCodeToString(MembershipCreateStatus createStatus) {
+
+        private static string ErrorCodeToString(MembershipCreateStatus createStatus)
+        {
             // See http://go.microsoft.com/fwlink/?LinkID=177550 for
             // a full list of status codes.
-            switch (createStatus) {
+            switch (createStatus)
+            {
                 case MembershipCreateStatus.DuplicateUserName:
                     return "User name already exists. Please enter a different user name.";
 
                 case MembershipCreateStatus.DuplicateEmail:
-                    return "A user name for that e-mail address already exists. Please enter a different e-mail address.";
+                    return
+                        "A user name for that e-mail address already exists. Please enter a different e-mail address.";
 
                 case MembershipCreateStatus.InvalidPassword:
                     return "The password provided is invalid. Please enter a valid password value.";
@@ -169,15 +189,19 @@ namespace MvcMovie.Controllers
                     return "The user name provided is invalid. Please check the value and try again.";
 
                 case MembershipCreateStatus.ProviderError:
-                    return "The authentication provider returned an error. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+                    return
+                        "The authentication provider returned an error. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
 
                 case MembershipCreateStatus.UserRejected:
-                    return "The user creation request has been canceled. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+                    return
+                        "The user creation request has been canceled. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
 
                 default:
-                    return "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+                    return
+                        "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
             }
         }
+
         #endregion
     }
 }

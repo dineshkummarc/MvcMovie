@@ -1,4 +1,5 @@
-﻿
+﻿use Movie
+
 
 
 -- Altairis Web Security Toolkit - database creation script for "Table*Provider" classes

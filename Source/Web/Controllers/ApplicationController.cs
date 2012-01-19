@@ -23,37 +23,16 @@ namespace MvcMovie.Controllers
             TokenStore = tokenStore;
             Logger = logger;
             //initialize this
-            ViewBag.CurrentUser = CurrentUser ?? new {Email = ""};
+            //ViewBag.CurrentUser = CurrentUser ?? new {Email = ""};
         }
 
         public ApplicationController(ITokenHandler tokenStore):this( tokenStore, new NLogger()) { }
 
         public ApplicationController():this(new FormsAuthTokenStore()) {}
 
-        dynamic _currentUser;
-        public dynamic CurrentUser {
-            get {
-                var token = TokenStore.GetToken();
-                if (!String.IsNullOrEmpty(token)) {
-                    _currentUser = Users.FindByToken(token);
 
-                    if (_currentUser == null) {
-                        //force the current user to be logged out...
-                        TokenStore.RemoveClientAccess();
-                    }
-                }
 
-                //Hip to be null...
-                return _currentUser;
-            }
 
-        }
-
-        public bool IsLoggedIn {
-            get {
-                return CurrentUser != null;
-            }
-        }
         public ActionResult ToJson(dynamic content)
         {
             var json = ToJsonString(content);
