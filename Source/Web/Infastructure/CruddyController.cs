@@ -21,6 +21,28 @@ namespace Web.Infrastructure
             IEnumerable<dynamic> items = Get();
             return View(items);
         }
+        [HttpGet]
+        public virtual ActionResult Edit(int id)
+        {
+            var model = Get(id);
+            model._Table = _table;
+            return View(model);
+        }
+        [HttpGet]
+        public virtual ActionResult Details(int id)
+        {
+            var model = Get(id);
+            return View(model);
+        }
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View(_table.Prototype);
+        }
+
+
+
+
 
         protected virtual dynamic Get()
         {
@@ -31,13 +53,6 @@ namespace Web.Infrastructure
             return _table.Get(ID: id);
         }
 
-        [HttpGet]
-        public virtual ActionResult Edit(int id)
-        {
-            var model = Get(id);
-            model._Table = _table;
-            return View(model);
-        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -58,25 +73,7 @@ namespace Web.Infrastructure
                 ModelState.AddModelError(string.Empty, x.Message); 
                 return View(model);
             }
-        }
-
-
-
-        [HttpGet]
-        public virtual ActionResult Details(int id)
-        {
-            var model = Get(id);
-            return View(model);
-        }
-
-
-
-
-        [HttpGet]
-        public ActionResult Create()
-        {
-            return View(_table.Prototype);
-        }
+        } 
 
         [HttpPost]
         [ValidateAntiForgeryToken]

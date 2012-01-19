@@ -17,7 +17,8 @@
         <th>IsApproved</th>
         <th>DateCreated</th>
         <th>DateLastLogin</th>
-        <th>DateLastPasswordChange</th>  
+        <th>DateLastPasswordChange</th> 
+        <th></th>  
     </tr>
 
 @foreach (var item in Model) {
@@ -29,6 +30,12 @@
         <td>@item.DateCreated</td>   
         <td>@item.DateLastLogin</td>  
         <td>@item.DateLastPasswordChange</td>  
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.UserName }) |
+            @Html.ActionLink("Details", "Details", new { id = item.UserName })  |
+            @Html.ActionLink("Roles", "Index", "RoleMemberships", new { Area = "Admin" }, new { id = "" })   @*  item.UserName*@  
+        </td>
+
     </tr>
 }
 

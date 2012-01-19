@@ -11,6 +11,7 @@ IF EXISTS ( SELECT  * FROM    sys.objects  WHERE   object_id = OBJECT_ID(N'[dbo]
 
 IF EXISTS ( SELECT  * FROM    sys.objects  WHERE   object_id = OBJECT_ID(N'[dbo].[Users]')  AND type IN ( N'U' ) )  DROP TABLE [Users] 
 CREATE TABLE dbo.Users (
+	[Id] [int] IDENTITY(1, 1) NOT NULL , 
 	UserName				nvarchar(100)		NOT NULL,
 	PasswordHash			binary(64)			NOT NULL,
 	PasswordSalt			binary(128)			NOT NULL,
@@ -25,24 +26,41 @@ CREATE TABLE dbo.Users (
 	-- long as they are either nullable or have defaults assigned
 	CONSTRAINT PK_Users PRIMARY KEY CLUSTERED (UserName)
 )
+INSERT INTO [Users]([UserName],[PasswordHash],[PasswordSalt],[Email],IsApproved,DateCreated,DateLastPasswordChange )
+     VALUES ('a',0x41F2AFBF15FAD3B4255F7F60C12690CAB28172AC4782E8B773FB745B97EF37D7E2DDA258E7AAC4FEF0AB9997DDEE7EAF929AB53CD0712BA53245659952F34707,0xC641F94B847D2F7FABEB576F2676ED371B72D7B2359BA3FE5C62AB6BD1DD8E43E4A03FFCD840D00029DD9F2EC9AC1884F8CCB6423A21345013BA4FA503355619DF69C227EA134EA85D164B73AD1CAC4A8898EBAD645C5E6200A6B990EEE074D4C1A3109BF091E88A464E80A617BA6992D65FC807822376DA24E57F8075B5E8CD,'a@a.com',1,'1/1/2000','1/1/2000' )
+GO
+
+
+
+
+
+
+
 
 
 IF EXISTS ( SELECT  * FROM    sys.objects  WHERE   object_id = OBJECT_ID(N'[dbo].[Roles]')  AND type IN ( N'U' ) )  DROP TABLE [Roles] 
 CREATE TABLE dbo.Roles (
+	[Id] [int] IDENTITY(1, 1) NOT NULL , 
 	RoleName				nvarchar(100)		NOT NULL,
 	CONSTRAINT PK_Roles PRIMARY KEY CLUSTERED (RoleName)
 )
+INSERT INTO [Roles] ([RoleName]) VALUES ('Administrator')
+GO
+
 
 
 
 CREATE TABLE dbo.RoleMemberships (
+	[Id] [int] IDENTITY(1, 1) NOT NULL , 
 	UserName				nvarchar(100)		NOT NULL,
 	RoleName				nvarchar(100)		NOT NULL,
 	CONSTRAINT PK_RoleMemberships PRIMARY KEY CLUSTERED (UserName, RoleName),
 	CONSTRAINT FK_RoleMemberships_Roles FOREIGN KEY (RoleName) REFERENCES dbo.Roles (RoleName) ON UPDATE CASCADE ON DELETE CASCADE,
-)
-
+) 
 -- When using both these providers together, you may want to add the foreign key
 ALTER TABLE dbo.RoleMemberships ADD CONSTRAINT FK_RoleMemberships_Users FOREIGN KEY (UserName) REFERENCES dbo.Users (UserName) ON UPDATE CASCADE ON DELETE CASCADE
+GO
+INSERT INTO [RoleMemberships] ([UserName],[RoleName]) VALUES ('a','Administrator')
+GO
 
 

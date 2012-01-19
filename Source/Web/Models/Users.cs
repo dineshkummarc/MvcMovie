@@ -16,7 +16,7 @@ namespace MvcMovie.Models
 
     public class Users:DynamicModel {
 
-        public Users() : base("ApplicationConnectionString", "Users", "ID", "Email") { }
+        public Users() : base("ApplicationConnectionString", "Users", "ID", "UserName") { }
           
     }
 }

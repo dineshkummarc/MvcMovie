@@ -115,6 +115,8 @@
     <Compile Include="Areas\Admin\Controllers\ConfigsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ElmahController.cs" />
     <Compile Include="Areas\Admin\Controllers\LogsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RoleMembershipsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Models\Log.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -139,6 +141,8 @@
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\Movies.cs" />
     <Compile Include="Models\PaymentModel.cs" />
+    <Compile Include="Models\RoleMemeberships.cs" />
+    <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -250,6 +254,12 @@
     <Content Include="Areas\Admin\Views\Logs\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Logs\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Logs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\RoleMemberships\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\RoleMemberships\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\RoleMemberships\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\RoleMemberships\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Create.cshtml" />
     <None Include="CodeTemplates\AddController\Controller.tt" />
     <None Include="CodeTemplates\AddView\CSHTML\Create.tt" />
     <None Include="CodeTemplates\AddView\CSHTML\Edit.tt" />
