@@ -1,22 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Caching;
 using System.Web.Mvc;
-using Web.Models;
 using Web.Infrastructure;
-using MvcMovie.Models; 
-using System.Text;
-using Microsoft.CSharp;
+using MvcMovie.Models;
 using NLog;
 using Web.Attributes; 
 
 namespace MvcMovie.Areas.Admin.Controllers
 {
 
-   [AuthorizeByRole(Roles = "Administrator")]
-    // [Authorize]
+    [AuthorizeByRole(Roles = "Administrator,Config,ConfigEdit")] 
     public class ConfigsController : CruddyController
     {
         private static readonly Logger Log = LogManager.GetLogger(typeof(ConfigsController).Name);
@@ -31,6 +26,18 @@ namespace MvcMovie.Areas.Admin.Controllers
         public ActionResult About()
         {
             return View();
+        }
+
+
+        [AuthorizeByRole(Roles = "Config")]
+        public override ViewResult Index()
+        {
+            return base.Index();
+        }
+        [AuthorizeByRole(Roles = "ConfigEdit")]
+        public override ActionResult Edit(int id)
+        {
+            return base.Edit(id);
         }
 
 
