@@ -7,7 +7,8 @@ using System.ComponentModel.DataAnnotations;
 using MvcMovie.Models;
 
 namespace MvcMovie.Models
-{
+{ 
+
 
     public class PaymentModel
     {

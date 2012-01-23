@@ -111,44 +111,42 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectMVC3.cs" />
-    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\ConfigsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ElmahController.cs" />
-    <Compile Include="Areas\Admin\Controllers\LogsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\RoleMembershipsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
-    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
-    <Compile Include="Areas\Admin\Models\Log.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ApplicationController.cs" />
-    <Compile Include="Infastructure\CacheHelper.cs" />
-    <Compile Include="Infastructure\ExpandoObjectConverter.cs" />
-    <Compile Include="Infastructure\FlashHelpers.cs">
+    <Compile Include="App\Areas\AdminAreaRegistration.cs" />
+    <Compile Include="App\Areas\Controllers\ConfigsController.cs" />
+    <Compile Include="App\Areas\Controllers\ElmahController.cs" />
+    <Compile Include="App\Areas\Controllers\LogsController.cs" />
+    <Compile Include="App\Areas\Controllers\RoleMembershipsController.cs" />
+    <Compile Include="App\Areas\Controllers\RolesController.cs" />
+    <Compile Include="App\Areas\Controllers\UsersController.cs" />
+    <Compile Include="App\Areas\Models\Log.cs" />
+    <Compile Include="App\Controllers\AccountController.cs" />
+    <Compile Include="App\Controllers\ApplicationController.cs" />
+    <Compile Include="App\Infastructure\CacheHelper.cs" />
+    <Compile Include="App\Infastructure\ExpandoObjectConverter.cs" />
+    <Compile Include="App\Infastructure\FlashHelpers.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Infastructure\FormsAuthTokenStore.cs" />
-    <Compile Include="Controllers\HelloWorldController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="App\Infastructure\FormsAuthTokenStore.cs" />
+    <Compile Include="App\Controllers\HelloWorldController.cs" />
+    <Compile Include="App\Controllers\HomeController.cs" />
+    <Compile Include="App\Controllers\MoviesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infastructure\CruddyController.cs" />
-    <Compile Include="Infastructure\Logging\ILogger.cs" />
-    <Compile Include="Infastructure\Logging\NLogger.cs" />
-    <Compile Include="Infastructure\Massive.cs" />
-    <Compile Include="Areas\Admin\Models\Config.cs" />
-    <Compile Include="Models\AccountModel.cs" />
-    <Compile Include="Models\Movies.cs" />
-    <Compile Include="Models\PaymentModel.cs" />
-    <Compile Include="Models\RoleMemeberships.cs" />
-    <Compile Include="Models\Roles.cs" />
-    <Compile Include="Models\Users.cs" />
+    <Compile Include="App\Infastructure\CruddyController.cs" />
+    <Compile Include="App\Infastructure\Logging\ILogger.cs" />
+    <Compile Include="App\Infastructure\Logging\NLogger.cs" />
+    <Compile Include="App\Infastructure\Massive.cs" />
+    <Compile Include="App\Areas\Models\Config.cs" />
+    <Compile Include="App\Models\AccountModel.cs" />
+    <Compile Include="App\Models\Movies.cs" />
+    <Compile Include="App\Models\PaymentModel.cs" />
+    <Compile Include="App\Models\RoleMemeberships.cs" />
+    <Compile Include="App\Models\Roles.cs" />
+    <Compile Include="App\Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Readme\glimpse.mvc3.readme.txt" />
-    <Content Include="App_Readme\glimpse.readme.txt" />
     <Content Include="Areas\Admin\Views\Users\About.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Details.cshtml" />
