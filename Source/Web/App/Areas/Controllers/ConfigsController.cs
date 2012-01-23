@@ -39,7 +39,11 @@ namespace MvcMovie.Areas.Admin.Controllers
         {
             return base.Edit(id);
         }
-
+        [AuthorizeByRole(Roles = "Config")]
+        public override ActionResult Details(int id)
+        {
+            return base.Details(id);
+        }
 
 
         protected virtual dynamic Get(string name)
@@ -52,7 +56,7 @@ namespace MvcMovie.Areas.Admin.Controllers
         protected override dynamic Get(int id)
         {
             Func<dynamic, bool> check = x => x.ID == id;
-            return Enumerable.Where<dynamic>(this.Get(), check);
+            return Enumerable.FirstOrDefault<dynamic>(this.Get(), check); 
         }
 
         protected override dynamic Get()
@@ -68,7 +72,7 @@ namespace MvcMovie.Areas.Admin.Controllers
         } 
         public static void RemovedCallback(String k, Object v, CacheItemRemovedReason r)
         {
-            var s = string.Format("Key: {0}   Object: {1}    Reason: {2}     ", k, v.ToString(), r);
+            var s = string.Format("Key:{0} Reason:{2} Object:{1} ", k, v.ToString(), r);
             Log.Info(s);
         } 
     }
