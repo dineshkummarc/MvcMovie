@@ -9,10 +9,14 @@ using Web.Infrastructure;
 using MvcMovie.Models; 
 using System.Text;
 using Microsoft.CSharp;
-using NLog; 
+using NLog;
+using Web.Attributes; 
 
 namespace MvcMovie.Areas.Admin.Controllers
 {
+
+   [AuthorizeByRole(Roles = "Administrator")]
+    // [Authorize]
     public class ConfigsController : CruddyController
     {
         private static readonly Logger Log = LogManager.GetLogger(typeof(ConfigsController).Name);
