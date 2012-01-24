@@ -49,7 +49,7 @@ namespace MvcMovie.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<ILogger>().To<NLogger>();
+            kernel.Bind<ILogger>().To<NLogger>().WithConstructorArgument("currentClassName", x => x.Request.ParentContext.Request.Service.FullName); 
             kernel.Bind<ITokenHandler>().To<FormsAuthTokenStore>();
         }        
     }

@@ -10,6 +10,9 @@ namespace Web.Infrastructure.Logging {
         public NLogger() {
             _logger = LogManager.GetCurrentClassLogger();
         }
+
+          
+
         public void LogInfo(string message) {
             _logger.Info(message);
         }
