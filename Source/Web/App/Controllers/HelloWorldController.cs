@@ -20,5 +20,11 @@ namespace MvcMovie.Controllers
 
             return View();
         }
+
+        public virtual ViewResult Index2()
+        {
+
+            return View();
+        }
     }
 }
