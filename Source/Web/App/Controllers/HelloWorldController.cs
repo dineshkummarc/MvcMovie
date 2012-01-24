@@ -6,7 +6,6 @@ namespace MvcMovie.Controllers
 {
     public class HelloWorldController : ApplicationController
     {
-        public HelloWorldController(ITokenHandler tokenStore) : base(tokenStore) { } 
 
         public ActionResult Index()
         {

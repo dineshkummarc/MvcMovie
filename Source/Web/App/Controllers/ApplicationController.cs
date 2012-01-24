@@ -77,7 +77,7 @@ namespace MvcMovie.Controllers
 
         protected override void OnException(ExceptionContext filterContext)
         {
-            Logger.LogError(filterContext.Exception.ToString());
+            //Logger.LogError(filterContext.Exception.ToString());
         }
 
     }
