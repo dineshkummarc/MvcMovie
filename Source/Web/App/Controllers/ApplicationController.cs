@@ -26,7 +26,7 @@ namespace MvcMovie.Controllers
             //ViewBag.CurrentUser = CurrentUser ?? new {Email = ""};
         }
 
-        public ApplicationController(ITokenHandler tokenStore):this( tokenStore, new NLogger()) { }
+        public ApplicationController(ITokenHandler tokenStore) : this(tokenStore, new NLogger("ApplicationController")) { }
 
         public ApplicationController():this(new FormsAuthTokenStore()) {}
 

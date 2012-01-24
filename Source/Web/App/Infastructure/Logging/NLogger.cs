@@ -7,10 +7,10 @@ using NLog;
 namespace Web.Infrastructure.Logging {
     public class NLogger : Web.Infrastructure.Logging.ILogger {
         Logger _logger;
-        public NLogger()
-        {
-            _logger = LogManager.GetCurrentClassLogger();
-        }
+        //public NLogger()
+        //{
+        //    _logger = LogManager.GetCurrentClassLogger();
+        //}
 
         public NLogger(string currentClassName)
         {
