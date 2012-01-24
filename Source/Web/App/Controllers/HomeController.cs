@@ -8,11 +8,15 @@ using System.Text;
 using System.Configuration;
 using MvcMovie.Models;
 using NLog;
+using Web.Infrastructure;
 
 namespace MvcMovie.Controllers
 {
     public class HomeController : ApplicationController 
     {
+        public HomeController(ITokenHandler tokenStore) : base(tokenStore) { } 
+
+
         private static readonly Logger Log = LogManager.GetLogger(typeof (HomeController).Name); 
         public ActionResult Index()
         {
