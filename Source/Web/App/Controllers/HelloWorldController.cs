@@ -8,22 +8,6 @@ namespace MvcMovie.Controllers
     public class HelloWorldController : ApplicationController
     {
 
-
-        
-        public HelloWorldController(ITokenHandler tokenStore, ILogger logger)
-        {
-            TokenStore = tokenStore;
-            Logger = logger; 
-        }
-
-        public HelloWorldController(ITokenHandler tokenStore):this( tokenStore, new NLogger()) { }
-
-        public HelloWorldController() : this(new FormsAuthTokenStore()) { }
-
-
-
-
-
         public ActionResult Index()
         {
             return View();
