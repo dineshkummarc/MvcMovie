@@ -1,10 +1,13 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using Web.Infrastructure;
 
 namespace MvcMovie.Controllers
 {
     public class HelloWorldController : ApplicationController
     {
+        public HelloWorldController(ITokenHandler tokenStore) : base(tokenStore) { } 
+
         public ActionResult Index()
         {
             return View();
