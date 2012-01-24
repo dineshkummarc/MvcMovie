@@ -39,8 +39,10 @@ CREATE TABLE [dbo].[Log]
 	  [Tag] [nvarchar](100),   
 	  [Layout] [nvarchar](MAX) NULL,
 	  [UpdatedAt] [datetime]  not null default(getdate())  
-) ; 
-
+) ;  
+IF EXISTS ( SELECT * FROM sys.objects WHERE  object_id = OBJECT_ID(N'[dbo].[InsertLog]') AND type IN ( N'P', N'PC' ) ) 	DROP PROCEDURE [dbo].[InsertLog]
+ 
+ 
 
 
  
