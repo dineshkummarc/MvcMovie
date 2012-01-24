@@ -5,7 +5,7 @@ using Web.Infrastructure.Logging;
 
 namespace MvcMovie.Controllers
 {
-    public class HelloWorldController : ApplicationController
+    public class HelloWorldController :  Controller
     {
 
         public ActionResult Index()
