@@ -40,7 +40,7 @@ namespace MvcMovie.Controllers
         }
 
         [HttpGet]
-        public virtual ActionResult PersonalInfo()
+        public virtual ActionResult PaymentInfo()
         {
             this.FlashWarning("about to test the Braintree sandbox"); 
             var payment = new PaymentModel { Number = "4111111111111111", ExpirationDate = "05/2012" }  ;
@@ -49,7 +49,7 @@ namespace MvcMovie.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult PersonalInfo(FormCollection collection)
+        public virtual ActionResult PaymentInfo(FormCollection collection)
         { 
             var payment = new PaymentModel
             {
@@ -113,19 +113,19 @@ namespace MvcMovie.Controllers
 
 
         [HttpGet]
-        public ActionResult PaymentInfo()
+        public ActionResult PersonalInfo()
         {
-            var payment = new PaymentModel { Number = "4111111111111111", ExpirationDate = "05/2012" };
-            return View(payment); 
+            var p = new PersonalModel { Name = "Joe Smith", Email = "a@a.com" };
+            return View(p); 
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PaymentInfo(PaymentModel model)
+        public ActionResult PersonalInfo(PersonalModel model)
         {
             if (ModelState.IsValid)
             {
-                this.FlashInfo("Your Payment info was successfully received");
+                this.FlashInfo("Your Personal info was successfully received");
                 return RedirectToAction("ThankYou");
             }
             return View(model);

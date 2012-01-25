@@ -11,10 +11,11 @@
     <p>
         <label>@name</label>
         <input type="text" name="@name" id="@name" value="@val" />
-    </p>
+    </p> 
 }
 
-@helper TextBoxPassword(string name, object value = null) {
+@helper TextBoxPassword(string name, object value = null)
+    {
     var val = "";
     <p>
         <label>@name</label>
@@ -22,7 +23,8 @@
     </p>
 }
 
-@helper Label(string name, object value = null) {
+@helper Label(string name, object value = null)
+    {
     var val = value ?? "";
     <p>
         <label class="label">@name:</label>
@@ -30,7 +32,8 @@
     </p>
 }
 
-@helper TextBoxRequired(string name, object value = null, string requiredMessage = "Required", int maxLength = 50 ) {
+@helper TextBoxRequired(string name, object value = null, string requiredMessage = "Required", int maxLength = 50)
+    {
     var val = value ?? "";
     <p>
         <label>@name *</label>
@@ -39,7 +42,8 @@
     </p>
     
 }
-@helper TextBoxNumber(string name, object value = null, string numberMessage = "Should be a number") {
+@helper TextBoxNumber(string name, object value = null, string numberMessage = "Should be a number")
+    {
     var val = value ?? "";
     <p>
         <label>@name *</label>
@@ -49,14 +53,16 @@
     </p>
     
 }
-@helper TextArea(string name, string attributes = "", object value = null) {
+@helper TextArea(string name, string attributes = "", object value = null)
+    {
     var val = value ?? "";
     <p>
         <label>@name</label>
         <textarea name="@name" id="@name" @attributes >@val</textarea>
     </p>
 }
-@helper Submit(string value="Save"){
+@helper Submit(string value = "Save")
+    {
     <p>
         <button type="submit" class="button positive">
             <img src="/public/stylesheets/plugins/buttons/icons/tick.png" alt=""/>@value
@@ -64,6 +70,7 @@
     </p>
     <div class="clear"></div>
 }
-@helper HiddenID(object id){
+@helper HiddenID(object id)
+    {
     <input type="hidden" name="ID" id="ID" value="@id" />
 }

@@ -7,20 +7,24 @@ using System.ComponentModel.DataAnnotations;
 using MvcMovie.Models;
 
 namespace MvcMovie.Models
-{ 
+{
 
 
     public class PaymentModel
     {
         [Required]
         public string Number { get; set; }
-         
+
         public string NameOnCard { get; set; }
         public string Ccv { get; set; }
         public string Issuer { get; set; } // ex Visa, Mastercard, American Express
         public string ExpirationDate { get; set; }
-
-         
+    }
+    public class PersonalModel
+    {
+        [Required]
+        public string Name { get; set; } 
+        public string Email { get; set; } 
     }
 
      

@@ -40,9 +40,58 @@ CREATE TABLE [dbo].[Log]
 	  [Layout] [nvarchar](MAX) NULL,
 	  [UpdatedAt] [datetime]  not null default(getdate())  
 ) ;  
-IF EXISTS ( SELECT * FROM sys.objects WHERE  object_id = OBJECT_ID(N'[dbo].[InsertLog]') AND type IN ( N'P', N'PC' ) ) 	DROP PROCEDURE [dbo].[InsertLog]
  
+IF EXISTS ( SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[InsertLog]') AND type IN ( N'P', N'PC' ) ) 	DROP PROCEDURE [dbo].[InsertLog]
+GO
+
+CREATE PROCEDURE InsertLog (@description [NVARCHAR](MAX), @summary [NVARCHAR](100), @level [NVARCHAR](16), @logger [NVARCHAR](128), @status [NVARCHAR](50), @ipAddress [NVARCHAR](100), @browser [NVARCHAR](100), @server [NVARCHAR](100), @session [NVARCHAR](100), @userName [NVARCHAR](100), @application [NVARCHAR](100), @type [NVARCHAR](100), @tag [NVARCHAR](100), @layout [NVARCHAR](MAX)) 
+AS  
+	SET NOCOUNT ON 
+	declare @errorMessage nvarchar(4000),@errorSeverity INT,@errorState INT 
+	BEGIN TRY 
+		DECLARE @idPosition INT 
+
+		IF ( (SELECT COUNT(*) FROM [Log]) > 10 ) 
+		BEGIN 
+			SELECT @idPosition = MAX(d.id) FROM (SELECT TOP 3 id FROM [Log] ORDER BY [UpdatedAt]) d  
+			DELETE FROM [Log] WHERE id <= @idPosition  
+			--DELETE FROM [Log] WHERE id in (SELECT TOP 5 id FROM [Log] ORDER BY [UpdatedAt])
+		END 
+
+		INSERT INTO [Log] 	 ([Description], [Summary], [Level], [Logger], [Status], [IpAddress], [Browser], [Server], [Session], [UserName], [Application], [Type], [Tag], [Layout], [UpdatedAt]) 
+		VALUES ( @description, @summary, @level, @logger, @status, @ipAddress, @browser, @server, @session, @userName, @application, @type, @tag, @layout, Sysutcdatetime()) 
+	END TRY
+	BEGIN CATCH 
+		SELECT @ErrorMessage = ERROR_MESSAGE(),	@ErrorSeverity = ERROR_SEVERITY(),	@ErrorState = ERROR_STATE() 
+		RAISERROR (@ErrorMessage, @ErrorSeverity, @ErrorState 	) 
+	END CATCH
+	
  
+ /*
+EXECUTE [InsertLog] 
+   '@description'
+  ,'@summary		'
+  ,'@level			'
+  ,'@logger			'
+  ,'@status			'
+  ,'@ipAddress		'
+  ,'@browser		'
+  ,'@server			'
+  ,'@session		'
+  ,'@userName		'
+  ,'@application	'
+  ,'@type			'
+  ,'@tag			'
+  ,'@layout			'
+GO*/
+
+
+
+
+
+
+
+
 
 
  

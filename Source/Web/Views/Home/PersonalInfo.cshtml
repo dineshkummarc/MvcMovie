@@ -12,11 +12,9 @@
 <div class="vidform">
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)  
-         
-            
-        @Form.TextBoxRequired(name: "Card Number", value: Model.Number, maxLength: 16) 
-        @Form.TextBox(name: "Exp Date", value: "05/2012")  
+        @Html.ValidationSummary(true)    
+        @Form.TextBox(name: "Email", value: Model.Email ) 
+        @Form.TextBox(name: "Name", value: "Name")  
         @Form.Submit()
     }
 </div>

@@ -154,6 +154,7 @@
     <Content Include="Areas\Admin\Views\Users\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="favicon.ico" />
     <Content Include="Public\javascripts\backbone-min.js" />
     <Content Include="Public\javascripts\underscore-min.js" />
     <Content Include="Public\stylesheets\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
