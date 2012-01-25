@@ -2,10 +2,11 @@
 using System; 
 using System.Web;
 using System.Web.Mvc;
+using Web.Attributes;
 
 namespace MvcMovie.Areas.Admin.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [AuthorizeByRole(Roles = "Administrator,Dev")] 
     public class ElmahController : Controller
     {
         public ActionResult Index()

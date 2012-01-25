@@ -1,6 +1,9 @@
 ﻿using Web.Infrastructure;
 using MvcMovie.Models;
-namespace MvcMovie.Areas.Admin.Controllers{
+using Web.Attributes;
+namespace MvcMovie.Areas.Admin.Controllers
+{ 
+    [AuthorizeByRole(Roles = "Administrator,Dev,Log,Audit")]  
     public class LogsController : CruddyController
     {
         public LogsController(ITokenHandler tokenStore)

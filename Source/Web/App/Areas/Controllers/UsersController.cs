@@ -2,8 +2,12 @@
 using System.Web.Mvc;
 using Web.Infrastructure;
 using MvcMovie.Models;
-namespace MvcMovie.Areas.Admin.Controllers{
-    public class UsersController : CruddyController {
+using Web.Attributes;
+namespace MvcMovie.Areas.Admin.Controllers
+{
+    [AuthorizeByRole(Roles = "Administrator,Dev,User,UserRoleEdit")] 
+    public class UsersController : CruddyController 
+    { 
         public UsersController(ITokenHandler tokenStore)
             : base(tokenStore)
         {
