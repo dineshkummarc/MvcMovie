@@ -20,11 +20,23 @@ namespace MvcMovie.Models
         public string Issuer { get; set; } // ex Visa, Mastercard, American Express
         public string ExpirationDate { get; set; }
     }
-    public class PersonalModel
-    {
-        [Required]
+    public class PersonalModel : Validatable
+    { 
         public string Name { get; set; } 
-        public string Email { get; set; } 
+        public string Email { get; set; }
+
+        public override void Validate(dynamic item)
+        {
+            if (this.ValidatesPresenceOf(item.Name, "Name is required"))
+            { 
+                if (((String)item.Name).Length > 5)
+                {
+                    Errors.Add("name is too long (less than 5 chars please!");
+                }
+            }
+
+        }
+
     }
 
      

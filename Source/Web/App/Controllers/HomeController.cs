@@ -123,12 +123,16 @@ namespace MvcMovie.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult PersonalInfo(PersonalModel model)
         {
-            if (ModelState.IsValid)
+            if (model.IsValid(model))
             {
                 this.FlashInfo("Your Personal info was successfully received");
                 return RedirectToAction("ThankYou");
             }
-            return View(model);
+            else
+            { 
+                ModelState.AddModelError(string.Empty, String.Join("; ", model.Errors.ToArray())) ;   
+                return View(model);
+            }
         }
 
 

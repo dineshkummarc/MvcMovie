@@ -90,7 +90,7 @@ namespace Web.Infrastructure
             catch (Exception x)
             { 
                 this.FlashError("There was a problem creating this record");
-                ModelState.AddModelError(string.Empty, x.Message); 
+                ModelState.AddModelError(string.Empty, x.Message ); 
                 return View(model);
             }
         }

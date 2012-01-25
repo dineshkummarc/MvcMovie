@@ -89,10 +89,67 @@ namespace Massive {
             return (IDictionary<string, object>)thingy.ToExpando();
         }
     }
+
+
+
+    public class Validatable : DynamicObject
+    {
+        //Hooks
+        public virtual void Validate(dynamic item) { }
+
+        //Temporary holder for error messages
+        public IList<string> Errors = new List<string>();
+
+        public bool IsValid(dynamic item)
+        {
+            Errors.Clear();
+            Validate(item);
+            return Errors.Count == 0;
+        }
+         
+
+        //validation methods
+        public virtual bool ValidatesPresenceOf(object value, string message = "Required")
+        {
+            if (value == null || String.IsNullOrEmpty(value.ToString())) 
+            {
+                Errors.Add(message);
+                return false;
+            }
+            return true;
+        }
+        //fun methods
+        public virtual bool ValidatesNumericalityOf(object value, string message = "Should be a number")
+        {
+            var type = value.GetType().Name;
+            var numerics = new string[] { "Int32", "Int16", "Int64", "Decimal", "Double", "Single", "Float" };
+            if (!numerics.Contains(type))
+            {
+                Errors.Add(message);
+                return false;
+            }
+            return true;
+        }
+        public virtual bool ValidateIsCurrency(object value, string message = "Should be money")
+        {
+            if (value == null)
+                Errors.Add(message);
+            decimal val = decimal.MinValue;
+            if (!decimal.TryParse(value.ToString(), out val))
+            {
+                Errors.Add(message);
+                return false;
+            }
+            return true;
+        }
+
+    }
+
     /// <summary>
     /// A class that wraps your database table in Dynamic Funtime
     /// </summary>
-    public class DynamicModel : DynamicObject {
+    public class DynamicModel : Validatable
+    {
         DbProviderFactory _factory;
         string ConnectionString;
         public static DynamicModel Open(string connectionStringName) {
@@ -446,14 +503,7 @@ namespace Massive {
             return CreateCommand(sql, null, args);
         }
 
-        public bool IsValid(dynamic item) {
-            Errors.Clear();
-            Validate(item);
-            return Errors.Count == 0;
-        }
 
-        //Temporary holder for error messages
-        public IList<string> Errors = new List<string>();
         /// <summary>
         /// Adds a record to the database. You can pass in an Anonymous object, an ExpandoObject,
         /// A regular old POCO, or a NameValueColletion from a Request.Form or Request.QueryString
@@ -496,45 +546,11 @@ namespace Massive {
             return result;
         }
 
-        //Hooks
-        public virtual void Validate(dynamic item) { }
+        //Hooks 
         public virtual void Inserted(dynamic item) { }
         public virtual void Updated(dynamic item) { }
         public virtual void Deleted(dynamic item) { }
 
-        //validation methods
-        public virtual bool ValidatesPresenceOf(object value, string message = "Required") {
-            if (value == null)
-                Errors.Add(message);
-            if (String.IsNullOrEmpty(value.ToString()))
-            {
-                Errors.Add(message);
-                return false;
-            }
-            return true;
-        }
-        //fun methods
-        public virtual bool ValidatesNumericalityOf(object value, string message = "Should be a number") {
-            var type = value.GetType().Name;
-            var numerics = new string[]{ "Int32","Int16","Int64", "Decimal", "Double","Single","Float" };
-            if (!numerics.Contains(type))
-            {
-                Errors.Add(message);
-                return false;
-            }
-            return true;
-        }
-        public virtual bool ValidateIsCurrency(object value, string message = "Should be money") {
-            if (value == null)
-                Errors.Add(message);
-            decimal val = decimal.MinValue; 
-            if (!decimal.TryParse(value.ToString(), out val))
-            {
-                Errors.Add(message);
-                return false;
-            }
-            return true;
-        }
         /// <summary>
         /// A helpful query tool
         /// </summary>
