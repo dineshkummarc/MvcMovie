@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Massive;
-using System.ComponentModel.DataAnnotations;
-using MvcMovie.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using FluentValidation;
+using FluentValidation.Attributes;
 
 namespace MvcMovie.Models
 {
@@ -12,7 +8,6 @@ namespace MvcMovie.Models
 
     public class PaymentModel
     {
-        [Required]
         public string Number { get; set; }
 
         public string NameOnCard { get; set; }
@@ -20,25 +15,21 @@ namespace MvcMovie.Models
         public string Issuer { get; set; } // ex Visa, Mastercard, American Express
         public string ExpirationDate { get; set; }
     }
-    public class PersonalModel : Validatable
+
+    [Validator(typeof(PersonalModelValidator))]
+    public class PersonalModel 
     { 
         public string Name { get; set; } 
-        public string Email { get; set; }
-
-        public override void Validate(dynamic item)
-        {
-            if (this.ValidatesPresenceOf(item.Name, "Name is required"))
-            { 
-                if (((String)item.Name).Length > 5)
-                {
-                    Errors.Add("name is too long (less than 5 chars please!");
-                }
-            }
-
-        }
-
+        public string Email { get; set; } 
     }
-
+    public class PersonalModelValidator : AbstractValidator<PersonalModel>
+    {
+        public PersonalModelValidator()
+        {
+            RuleFor(x => x.Name).NotEmpty().NotEqual("Name"); 
+            RuleFor(x => x.Email).NotEmpty() ; 
+        }
+    }
      
     //public class BaseClass
     //{

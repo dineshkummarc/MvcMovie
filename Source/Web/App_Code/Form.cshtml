@@ -10,7 +10,7 @@
     var val = value ?? "";
     <p>
         <label>@name</label>
-        <input type="text" name="@name" id="@name" value="@val" />
+        <input type="text" name="@name" id="@name" value="@val" /> 
     </p> 
 }
 
@@ -39,16 +39,16 @@
         <label>@name *</label>
         <input type="text" name="@name" id="@name" value="@val" maxlength="@maxLength" data-val="true" data-val-required="@requiredMessage" />
         @ValidationMessage(name)
-    </p>
-    
+    </p> 
 }
+
+
 @helper TextBoxNumber(string name, object value = null, string numberMessage = "Should be a number")
     {
     var val = value ?? "";
     <p>
         <label>@name *</label>
-        <input type="text" name="@name" id="@name" value="@val" data-val="true" 
-        data-val-number="@numberMessage" />
+        <input type="text" name="@name" id="@name" value="@val" data-val="true"  data-val-number="@numberMessage" />
         @ValidationMessage(name)
     </p>
     
@@ -74,3 +74,5 @@
     {
     <input type="hidden" name="ID" id="ID" value="@id" />
 }
+
+

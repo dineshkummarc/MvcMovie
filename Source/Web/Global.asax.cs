@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using MvcMovie.Models;              // MovieInitializer
 using System.Data.Entity;
+using FluentValidation.Mvc;
 
 namespace MvcMovie
 {
@@ -31,6 +32,11 @@ namespace MvcMovie
 
         }
 
+        protected void Session_Start(Object sender, EventArgs e)
+        {
+            Session["email"] = "none";
+        }
+
         protected void Application_Start()
         {
             //Database.SetInitializer<MovieDBContext>(new MovieInitializer());
@@ -38,6 +44,8 @@ namespace MvcMovie
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+
+            FluentValidationModelValidatorProvider.Configure();
         }
     }
 }

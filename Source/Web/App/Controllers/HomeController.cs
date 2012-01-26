@@ -115,7 +115,7 @@ namespace MvcMovie.Controllers
         [HttpGet]
         public ActionResult PersonalInfo()
         {
-            var p = new PersonalModel { Name = "Joe Smith", Email = "a@a.com" };
+            var p = new PersonalModel { Name = "", Email = "a@a.com" };
             return View(p); 
         }
 
@@ -123,6 +123,17 @@ namespace MvcMovie.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult PersonalInfo(PersonalModel model)
         {
+            if (ModelState.IsValid)
+            {
+                // The model is valid => process it
+                return RedirectToAction("ThankYou");
+            }
+            // Validation failed => redisplay the view in order to show error
+            // messages
+            ModelState.AddModelError(string.Empty, "Errors");
+            return View(model);
+
+            /*
             if (model.IsValid(model))
             {
                 this.FlashInfo("Your Personal info was successfully received");
@@ -132,7 +143,7 @@ namespace MvcMovie.Controllers
             { 
                 ModelState.AddModelError(string.Empty, String.Join("; ", model.Errors.ToArray())) ;   
                 return View(model);
-            }
+            }*/
         }
 
 
