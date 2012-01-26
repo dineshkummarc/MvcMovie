@@ -36,7 +36,7 @@ CREATE TABLE [dbo].[Log]
 	  [UserName] [nvarchar](100) NULL, 
 	  [Application] [nvarchar](100) NULL,
 	  [Type] [nvarchar](100) NULL,
-	  [Tag] [nvarchar](100),   
+	  [Email] [nvarchar](100),   
 	  [Layout] [nvarchar](MAX) NULL,
 	  [UpdatedAt] [datetime]  not null default(getdate())  
 ) ;  
@@ -44,7 +44,7 @@ CREATE TABLE [dbo].[Log]
 IF EXISTS ( SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[InsertLog]') AND type IN ( N'P', N'PC' ) ) 	DROP PROCEDURE [dbo].[InsertLog]
 GO
 
-CREATE PROCEDURE InsertLog (@description [NVARCHAR](MAX), @summary [NVARCHAR](100), @level [NVARCHAR](16), @logger [NVARCHAR](128), @status [NVARCHAR](50), @ipAddress [NVARCHAR](100), @browser [NVARCHAR](100), @server [NVARCHAR](100), @session [NVARCHAR](100), @userName [NVARCHAR](100), @application [NVARCHAR](100), @type [NVARCHAR](100), @tag [NVARCHAR](100), @layout [NVARCHAR](MAX)) 
+CREATE PROCEDURE InsertLog (@description [NVARCHAR](MAX), @summary [NVARCHAR](100), @level [NVARCHAR](16), @logger [NVARCHAR](128), @status [NVARCHAR](50), @ipAddress [NVARCHAR](100), @browser [NVARCHAR](100), @server [NVARCHAR](100), @session [NVARCHAR](100), @userName [NVARCHAR](100), @application [NVARCHAR](100), @type [NVARCHAR](100), @email [NVARCHAR](100), @layout [NVARCHAR](MAX)) 
 AS  
 	SET NOCOUNT ON 
 	declare @errorMessage nvarchar(4000),@errorSeverity INT,@errorState INT 
@@ -58,8 +58,8 @@ AS
 			--DELETE FROM [Log] WHERE id in (SELECT TOP 5 id FROM [Log] ORDER BY [UpdatedAt])
 		END 
 
-		INSERT INTO [Log] 	 ([Description], [Summary], [Level], [Logger], [Status], [IpAddress], [Browser], [Server], [Session], [UserName], [Application], [Type], [Tag], [Layout], [UpdatedAt]) 
-		VALUES ( @description, @summary, @level, @logger, @status, @ipAddress, @browser, @server, @session, @userName, @application, @type, @tag, @layout, Sysutcdatetime()) 
+		INSERT INTO [Log] 	 ([Description], [Summary], [Level], [Logger], [Status], [IpAddress], [Browser], [Server], [Session], [UserName], [Application], [Type], [Email], [Layout], [UpdatedAt]) 
+		VALUES ( @description, @summary, @level, @logger, @status, @ipAddress, @browser, @server, @session, @userName, @application, @type, @email, @layout, Sysutcdatetime()) 
 	END TRY
 	BEGIN CATCH 
 		SELECT @ErrorMessage = ERROR_MESSAGE(),	@ErrorSeverity = ERROR_SEVERITY(),	@ErrorState = ERROR_STATE() 
@@ -81,7 +81,7 @@ EXECUTE [InsertLog]
   ,'@userName		'
   ,'@application	'
   ,'@type			'
-  ,'@tag			'
+  ,'@email			'
   ,'@layout			'
 GO*/
 

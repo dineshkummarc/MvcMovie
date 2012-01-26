@@ -15,6 +15,7 @@
         <th>Server</th>
         <th>Session</th>
         <th>UserName</th>
+        <th>Email</th>
         <th>Date</th>
         <th></th>
     </tr>
@@ -25,7 +26,8 @@
         <td>@item.IpAddress</td>  
         <td>@item.Server</td> 
         <td>@item.Session</td> 
-        <td>@item.UserName</td>  
+        <td>@item.UserName</td> 
+        <td>@item.Email</td>  
         <td>@item.UpdatedAt</td>  
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

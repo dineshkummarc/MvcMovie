@@ -125,7 +125,8 @@ namespace MvcMovie.Controllers
         {
             if (ModelState.IsValid)
             {
-                // The model is valid => process it
+                Session["email"] = model.Email;
+                Log.Info("saved personal info");
                 return RedirectToAction("ThankYou");
             }
             // Validation failed => redisplay the view in order to show error
