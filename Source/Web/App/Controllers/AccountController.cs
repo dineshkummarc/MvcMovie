@@ -104,6 +104,58 @@ namespace MvcMovie.Controllers
             return View(model);
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //
+        // GET: /Account/Forgot
+
+        public ActionResult Forgot()
+        {
+            var v = new ForgotPasswordModel {  Email = "" };
+            return View(v);  
+        }
+
+        //
+        // POST: /Account/Forgot
+
+        [HttpPost]
+        public ActionResult Forgot(ForgotPasswordModel model)
+        { 
+            if (ModelState.IsValid && EmailExist(model.Email))
+            {
+                Session["email"] = model.Email;
+                //Send email with new password here
+                this.FlashInfo("an email has been sent to <b> " + model.Email + "</b>");
+                ViewBag.Result = true;
+                return View(model); 
+            }  
+            ModelState.AddModelError(string.Empty, "Errors: "+ String.Join("; ",  ModelState.Values.First().Errors.Select(x=>x.ErrorMessage)));
+            return View(model); 
+        }
+
+        private bool EmailExist(string email)
+        {  
+            dynamic u = new Users(); 
+            //return u.Get().Where(x => x.Email == email).Count() == 1;
+            var v =u.Get(Email: email);
+            return v.Count() == 1;
+        }
+         
+
+
+
         //
         // GET: /Account/ChangePassword
 

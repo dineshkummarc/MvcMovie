@@ -132,19 +132,7 @@ namespace MvcMovie.Controllers
             // Validation failed => redisplay the view in order to show error
             // messages
             ModelState.AddModelError(string.Empty, "Errors");
-            return View(model);
-
-            /*
-            if (model.IsValid(model))
-            {
-                this.FlashInfo("Your Personal info was successfully received");
-                return RedirectToAction("ThankYou");
-            }
-            else
-            { 
-                ModelState.AddModelError(string.Empty, String.Join("; ", model.Errors.ToArray())) ;   
-                return View(model);
-            }*/
+            return View(model); 
         }
 
 

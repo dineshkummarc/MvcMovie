@@ -6,6 +6,34 @@ using FluentValidation.Attributes;
 namespace Web.Models
 {
 
+    [Validator(typeof(ForgotPasswordModelValidator))]
+    public class ForgotPasswordModel
+    {  
+        public string Email { get; set; } 
+    }
+    public class ForgotPasswordModelValidator : AbstractValidator<ForgotPasswordModel>
+    {
+        public ForgotPasswordModelValidator()
+        { 
+            RuleFor(x => x.Email).NotEmpty().EmailAddress().WithMessage("Email must be provided");
+        }
+    }
+    
+    [Validator(typeof(LogOnModelValidator))]
+    public class LogOnModel
+    {  
+        public string UserName { get; set; } 
+        public string Password { get; set; } 
+        public bool RememberMe { get; set; }
+    } 
+    public class LogOnModelValidator : AbstractValidator<LogOnModel>
+    {
+        public LogOnModelValidator()
+        {
+            RuleFor(x => x.UserName).NotEmpty() ;
+            RuleFor(x => x.Password).NotEmpty();
+        }
+    }
     public class ChangePasswordModel
     {
         [Required]
@@ -23,30 +51,6 @@ namespace Web.Models
         [Display(Name = "Confirm new password")]
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-    }
-
-    [Validator(typeof(LogOnModelValidator))]
-    public class LogOnModel
-    { 
-        [Display(Name = "User name")]
-        public string UserName { get; set; }
-         
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
-
-        [Display(Name = "Remember me?")]
-        public bool RememberMe { get; set; }
-    }
-
-
-    public class LogOnModelValidator : AbstractValidator<LogOnModel>
-    {
-        public LogOnModelValidator()
-        {
-            RuleFor(x => x.UserName).NotEmpty() ;
-            RuleFor(x => x.Password).NotEmpty();
-        }
     }
 
 
