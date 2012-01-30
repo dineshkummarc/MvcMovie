@@ -68,30 +68,6 @@ AS
 GO
 
 
-
-CREATE PROCEDURE InsertLog2 (@description [NVARCHAR](MAX) ) 
-AS  
-	SET NOCOUNT ON 
-	declare @errorMessage nvarchar(4000),@errorSeverity INT,@errorState INT 
-	BEGIN TRY 
-		DECLARE @idPosition INT 
-
-		IF ( (SELECT COUNT(*) FROM [Log]) > 1000 ) 
-		BEGIN 
-			SELECT @idPosition = MAX(d.id) FROM (SELECT TOP 100 id FROM [Log] ORDER BY [UpdatedAt]) d  
-			DELETE FROM [Log] WHERE id <= @idPosition  
-			--DELETE FROM [Log] WHERE id in (SELECT TOP 5 id FROM [Log] ORDER BY [UpdatedAt])
-		END 
-
-		INSERT INTO [Log] 	 ([Description] ) 
-		VALUES ( @description ) 
-	END TRY
-	BEGIN CATCH 
-		SELECT @ErrorMessage = ERROR_MESSAGE(),	@ErrorSeverity = ERROR_SEVERITY(),	@ErrorState = ERROR_STATE() 
-		RAISERROR (@ErrorMessage, @ErrorSeverity, @ErrorState 	) 
-	END CATCH
-GO
-
  
  /*
 EXECUTE [InsertLog] 
