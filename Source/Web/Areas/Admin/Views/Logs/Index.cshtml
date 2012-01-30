@@ -4,7 +4,7 @@
 
 <h2>Index</h2> 
 
- 
+@*
 <div class="vidform">
     @using (Html.BeginForm("TestLogger", "Logs"))
     {    
@@ -12,26 +12,31 @@
         @Form.Submit(value: "TestLogger")
     }
 </div> 
-
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+*@
+
+
 <table>
     <tr>
+        <th></th>
         <th>Summary</th> 
         <th>Level</th> 
         <th>IpAddress</th> 
         <th>Server</th>
         <th>Session</th>
-        <th>UserName</th>
+        <th>User</th>
         <th>Email</th>
         <th>Date</th>
-        <th></th>
     </tr>
 @foreach (var item in Model)
 {
     <tr> 
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) 
+
+        </td>
         <td>@item.Summary</td> 
         <td>@item.Level</td> 
         <td>@item.IpAddress</td>  
@@ -40,11 +45,6 @@
         <td>@item.UserName</td> 
         <td>@item.Email</td>  
         <td>@item.UpdatedAt</td>  
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) 
-
-        </td>
     </tr>
 }
 

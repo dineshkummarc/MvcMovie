@@ -48,14 +48,16 @@ CREATE PROCEDURE InsertLog (@description [NVARCHAR](MAX), @summary [NVARCHAR](10
 AS  
 	SET NOCOUNT ON 
 	declare @errorMessage nvarchar(4000),@errorSeverity INT,@errorState INT 
+	declare @maxRecords INT
+	set @maxRecords = 1000
 	BEGIN TRY 
 		DECLARE @idPosition INT 
 
-		IF ( (SELECT COUNT(*) FROM [Log]) > 1000 ) 
+		IF ( (SELECT COUNT(*) FROM [Log]) > @maxRecords ) 
 		BEGIN 
-			SELECT @idPosition = MAX(d.id) FROM (SELECT TOP 100 id FROM [Log] ORDER BY [UpdatedAt]) d  
-			DELETE FROM [Log] WHERE id <= @idPosition  
-			--DELETE FROM [Log] WHERE id in (SELECT TOP 5 id FROM [Log] ORDER BY [UpdatedAt])
+			--SELECT @idPosition = MAX(d.id) FROM (SELECT TOP @removeRecords id FROM [Log] ORDER BY [UpdatedAt]) d  
+			--DELETE FROM [Log] WHERE id <= @idPosition  
+			DELETE FROM [Log] WHERE id in (SELECT TOP 100 id FROM [Log] ORDER BY [UpdatedAt])
 		END 
 
 		INSERT INTO [Log] 	 ([Description], [Summary], [Level], [Logger], [Status], [IpAddress], [Browser], [Server], [Session], [UserName], [Application], [Type], [Email], [Layout], [UpdatedAt]) 

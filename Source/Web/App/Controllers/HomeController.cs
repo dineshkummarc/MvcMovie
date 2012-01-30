@@ -130,6 +130,8 @@ namespace MvcMovie.Controllers
                 return RedirectToAction("ThankYou");
             } 
             ModelState.AddModelError(string.Empty, "Errors:  " + string.Join(" ; ", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)));  
+
+
             return View(model); 
         }
 
