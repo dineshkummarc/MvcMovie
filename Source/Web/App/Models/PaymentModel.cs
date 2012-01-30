@@ -18,16 +18,18 @@ namespace MvcMovie.Models
 
     [Validator(typeof(PersonalModelValidator))]
     public class PersonalModel 
-    { 
-        public string Name { get; set; } 
-        public string Email { get; set; } 
+    {
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public decimal Salary { get; set; } 
     }
     public class PersonalModelValidator : AbstractValidator<PersonalModel>
     {
         public PersonalModelValidator()
         {
-            RuleFor(x => x.Name).NotEmpty().NotEqual("Name"); 
-            RuleFor(x => x.Email).NotEmpty() ; 
+            RuleFor(x => x.Name).NotEmpty().NotEqual("Name");
+            RuleFor(x => x.Email).NotEmpty().WithMessage("Email Required").EmailAddress().WithMessage("Please enter a valid email address (ex. joe@test.com)");
+            RuleFor(x => x.Salary).NotEmpty().WithMessage("Salary Required").GreaterThan(0) ; ; 
         }
     }
      

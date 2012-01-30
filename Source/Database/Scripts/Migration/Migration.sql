@@ -1,10 +1,7 @@
 ﻿USE [Movie]
 GO
 
-
-
-
-
+ 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Schema]') AND type in (N'U'))  Drop Table [Schema] 
 CREATE TABLE [dbo].[Schema](
 	[Id] [int] IDENTITY(1, 1) NOT NULL , 
@@ -16,11 +13,15 @@ CREATE TABLE [dbo].[Schema](
 	[UpdatedAt] [datetime]  not null default(getdate())  
 ) ;
 INSERT [Schema] ([Version] ) Values(1 )
+GO
 
-
-
-
+ 
+IF EXISTS ( SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[InsertLog]') AND type IN ( N'P', N'PC' ) ) 	DROP PROCEDURE [dbo].[InsertLog]
+GO 
+IF EXISTS ( SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[InsertLog2]') AND type IN ( N'P', N'PC' ) ) DROP PROCEDURE [dbo].[InsertLog2] 
+GO  
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Log]') AND type in (N'U'))  Drop Table [Log] 
+GO
 CREATE TABLE [dbo].[Log]
 	(
 	  [Id] [int] IDENTITY(1, 1) NOT NULL, 
@@ -40,9 +41,8 @@ CREATE TABLE [dbo].[Log]
 	  [Layout] [nvarchar](MAX) NULL,
 	  [UpdatedAt] [datetime]  not null default(getdate())  
 ) ;  
- 
-IF EXISTS ( SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[InsertLog]') AND type IN ( N'P', N'PC' ) ) 	DROP PROCEDURE [dbo].[InsertLog]
 GO
+
 
 CREATE PROCEDURE InsertLog (@description [NVARCHAR](MAX), @summary [NVARCHAR](100), @level [NVARCHAR](16), @logger [NVARCHAR](128), @status [NVARCHAR](50), @ipAddress [NVARCHAR](100), @browser [NVARCHAR](100), @server [NVARCHAR](100), @session [NVARCHAR](100), @userName [NVARCHAR](100), @application [NVARCHAR](100), @type [NVARCHAR](100), @email [NVARCHAR](100), @layout [NVARCHAR](MAX)) 
 AS  
@@ -51,9 +51,9 @@ AS
 	BEGIN TRY 
 		DECLARE @idPosition INT 
 
-		IF ( (SELECT COUNT(*) FROM [Log]) > 10 ) 
+		IF ( (SELECT COUNT(*) FROM [Log]) > 1000 ) 
 		BEGIN 
-			SELECT @idPosition = MAX(d.id) FROM (SELECT TOP 3 id FROM [Log] ORDER BY [UpdatedAt]) d  
+			SELECT @idPosition = MAX(d.id) FROM (SELECT TOP 100 id FROM [Log] ORDER BY [UpdatedAt]) d  
 			DELETE FROM [Log] WHERE id <= @idPosition  
 			--DELETE FROM [Log] WHERE id in (SELECT TOP 5 id FROM [Log] ORDER BY [UpdatedAt])
 		END 
@@ -64,8 +64,34 @@ AS
 	BEGIN CATCH 
 		SELECT @ErrorMessage = ERROR_MESSAGE(),	@ErrorSeverity = ERROR_SEVERITY(),	@ErrorState = ERROR_STATE() 
 		RAISERROR (@ErrorMessage, @ErrorSeverity, @ErrorState 	) 
+	END CATCH 
+GO
+
+
+
+CREATE PROCEDURE InsertLog2 (@description [NVARCHAR](MAX) ) 
+AS  
+	SET NOCOUNT ON 
+	declare @errorMessage nvarchar(4000),@errorSeverity INT,@errorState INT 
+	BEGIN TRY 
+		DECLARE @idPosition INT 
+
+		IF ( (SELECT COUNT(*) FROM [Log]) > 1000 ) 
+		BEGIN 
+			SELECT @idPosition = MAX(d.id) FROM (SELECT TOP 100 id FROM [Log] ORDER BY [UpdatedAt]) d  
+			DELETE FROM [Log] WHERE id <= @idPosition  
+			--DELETE FROM [Log] WHERE id in (SELECT TOP 5 id FROM [Log] ORDER BY [UpdatedAt])
+		END 
+
+		INSERT INTO [Log] 	 ([Description] ) 
+		VALUES ( @description ) 
+	END TRY
+	BEGIN CATCH 
+		SELECT @ErrorMessage = ERROR_MESSAGE(),	@ErrorSeverity = ERROR_SEVERITY(),	@ErrorState = ERROR_STATE() 
+		RAISERROR (@ErrorMessage, @ErrorSeverity, @ErrorState 	) 
 	END CATCH
-	
+GO
+
  
  /*
 EXECUTE [InsertLog] 
@@ -108,7 +134,8 @@ GO
 INSERT INTO  [Config] ( [Name], [Value] ) VALUES  
 ('BrainTree-MerchantId', 'BrainTree-MerchantId'  )  ,
 ('BrainTree-PublicKey', 'BrainTree-PublicKey'  )  ,
-('BrainTree-PrivateKey', 'BrainTree-PrivateKey'  )  
+('BrainTree-PrivateKey', 'BrainTree-PrivateKey'  ) 
+GO
 
  
 
@@ -130,7 +157,8 @@ INSERT INTO  [Movies] ([Title], [Genre], [Price], [Rating]) VALUES
 ('Raiders of the lost arc', 'Action', 3.99, 'G'  ) ,
 ('Ghostbusters', 'Comedy', 4.99, 'G'  )  ,
 ('Ghostbusters 2', 'Comedy', 2.99, 'G'  ) ,
-('Spaceballs', 'Comedy', 7.99, 'G'  )  							    
+('Spaceballs', 'Comedy', 7.99, 'G'  )  		
+GO					    
  
 
   
@@ -152,5 +180,6 @@ INSERT INTO  [Customers] ([Email], [FirstName], [LastName] ) VALUES
 ,('Bart@test.com', 'Bart', 'Simpson'     ) 
 ,('Homer@test.com' , 'Homer', 'Simpson'    ) 
 ,('Barney@test.com' , 'Barney', 'Gumble'    ) 
+GO
    
 

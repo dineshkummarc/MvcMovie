@@ -18,9 +18,10 @@
         @Html.ValidationSummary(true)    
         
         
-        @Form.TextBoxRequired(name: "Email", value: Model.Email ) 
-        @Form.TextBoxRequired(name: "Name", value: Model.Name)   
-        
+        @Form.TextBox(name: "Email", value: Model.Email ) 
+        @Form.TextBox(name: "Name", value: Model.Name)   
+
+        @Form.TextBoxRequired(name: "Salary", value: Model.Salary)           
         @Form.Submit()
     }
 </div>

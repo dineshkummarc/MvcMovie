@@ -128,10 +128,8 @@ namespace MvcMovie.Controllers
                 Session["email"] = model.Email;
                 Log.Info("saved personal info");
                 return RedirectToAction("ThankYou");
-            }
-            // Validation failed => redisplay the view in order to show error
-            // messages
-            ModelState.AddModelError(string.Empty, "Errors");
+            } 
+            ModelState.AddModelError(string.Empty, "Errors:  " + string.Join(" ; ", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)));  
             return View(model); 
         }
 
