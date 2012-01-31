@@ -30,12 +30,14 @@ namespace MvcMovie.Areas.Admin.Controllers
         {
             //return _table.Paged(where: "BaseId = @0", orderby: "DateUpdated DESC", currentPage: currentPage, pageSize: pageSize, args: baseId); 
             //var model = _table.Paged(orderby: "UpdatedAt DESC", currentPage: page, pageSize: 5); 
-            int page = id ?? 1;
-            var model = _table.Paged(where: "1=1", orderBy: "UpdatedAt DESC", currentPage: page);
+            int page = id ?? 1; 
+            int ps = 20;
+            var model = _table.Paged(where: "1=1", orderBy: "UpdatedAt DESC", currentPage: page, pageSize: ps);
 
             ViewBag.CurrentPage = page;
             ViewBag.TotalRecords = model.TotalRecords;
-            ViewBag.TotalPages = model.TotalPages; 
+            ViewBag.TotalPages = model.TotalPages;
+            ViewBag.PageSize = ps; 
             return View(model.Items);
         }
 

@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Index";
 }
 
@@ -7,8 +8,12 @@
 <div>CurrentPage : @ViewBag.CurrentPage </div>
 <div>TotalRecords : @ViewBag.TotalRecords </div>
 <div>TotalPages : @ViewBag.TotalPages </div>
+<div>PageSize : @ViewBag.PageSize </div>
              
 
+<p/> 
+@Html.Raw(List.Pager((int)ViewBag.CurrentPage, (int)ViewBag.PageSize, (int)ViewBag.TotalRecords, "/Admin/Logs/Index") )
+<p/>
 @*
 <div class="vidform">
     @using (Html.BeginForm("TestLogger", "Logs"))
