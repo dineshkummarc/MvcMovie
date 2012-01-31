@@ -33,7 +33,9 @@ namespace MvcMovie.Areas.Admin.Controllers
             int page = id ?? 1;
             var model = _table.Paged(where: "1=1", orderBy: "UpdatedAt DESC", currentPage: page);
 
-
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalRecords = model.TotalRecords;
+            ViewBag.TotalPages = model.TotalPages; 
             return View(model.Items);
         }
 
