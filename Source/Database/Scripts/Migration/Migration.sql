@@ -24,7 +24,7 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Log]'
 GO
 CREATE TABLE [dbo].[Log]
 	(
-	  [Id] [int] IDENTITY(1, 1) NOT NULL, 
+	  [ID] [int] IDENTITY(1, 1) NOT NULL, 
 	  [Description] [nvarchar](MAX) NULL,
 	  [Summary] [nvarchar](100) NULL,
 	  [Level] [nvarchar](16) NULL,
@@ -57,7 +57,7 @@ AS
 		BEGIN 
 			--SELECT @idPosition = MAX(d.id) FROM (SELECT TOP @removeRecords id FROM [Log] ORDER BY [UpdatedAt]) d  
 			--DELETE FROM [Log] WHERE id <= @idPosition  
-			DELETE FROM [Log] WHERE id in (SELECT TOP 100 id FROM [Log] ORDER BY [UpdatedAt])
+			DELETE FROM [Log] WHERE ID in (SELECT TOP 100 ID FROM [Log] ORDER BY [UpdatedAt])
 		END 
 
 		INSERT INTO [Log] 	 ([Description], [Summary], [Level], [Logger], [Status], [IpAddress], [Browser], [Server], [Session], [UserName], [Application], [Type], [Email], [Layout], [UpdatedAt]) 

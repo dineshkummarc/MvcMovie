@@ -26,20 +26,15 @@ namespace MvcMovie.Areas.Admin.Controllers
         //    return base.Index();
         //}
 
-        public override ViewResult Index(int? page)
+        public override ViewResult Index(int? id)
         {
-            //return _table.Paged(where: "BaseId = @0", orderby: "DateUpdated DESC", currentPage: currentPage, pageSize: pageSize, args: baseId);
-            page = page ?? 0;
-            //var model = _table.Paged(orderby: "UpdatedAt DESC", currentPage: page, pageSize: 5);
-            var allId = 1;
+            //return _table.Paged(where: "BaseId = @0", orderby: "DateUpdated DESC", currentPage: currentPage, pageSize: pageSize, args: baseId); 
+            //var model = _table.Paged(orderby: "UpdatedAt DESC", currentPage: page, pageSize: 5); 
+            int page = id ?? 1;
+            var model = _table.Paged(where: "1=1", orderBy: "UpdatedAt DESC", currentPage: page);
 
 
-            //var model = _table.Paged(where: "ID > -1", orderby: "UpdatedAt DESC", currentPage: page, pageSize: 5);
-
-            var model = _table.Paged(orderby: "UpdatedAt DESC");
-
-
-            return View(model);
+            return View(model.Items);
         }
 
 

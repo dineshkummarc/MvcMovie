@@ -367,7 +367,7 @@ namespace Massive {
         /// </summary>
         public virtual dynamic Paged(string where = "", string orderBy = "", string columns = "*", int pageSize = 20, int currentPage = 1, params object[] args) {
             dynamic result = new ExpandoObject();
-            var countSQL = string.Format("SELECT COUNT({0}) FROM {1}", PrimaryKeyField, TableName);
+            var countSQL = string.Format("SELECT COUNT({0}) FROM {1} ", PrimaryKeyField, TableName);
             if (String.IsNullOrEmpty(orderBy))
                 orderBy = PrimaryKeyField;
 
@@ -378,7 +378,7 @@ namespace Massive {
             }
             var sql = string.Format("SELECT {0} FROM (SELECT ROW_NUMBER() OVER (ORDER BY {2}) AS Row, {0} FROM {3} {4}) AS Paged ", columns, pageSize, orderBy, TableName, where);
             var pageStart = (currentPage - 1) * pageSize;
-            sql += string.Format(" WHERE Row > {0} AND Row <={1}", pageStart, (pageStart + pageSize));
+            sql += string.Format(" WHERE Row > {0} AND Row <={1} ", pageStart, (pageStart + pageSize));
             countSQL += where;
             result.TotalRecords = Scalar(countSQL, args);
             result.TotalPages = result.TotalRecords / pageSize;
