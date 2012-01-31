@@ -17,12 +17,6 @@ namespace MvcMovie.Areas.Admin.Controllers
             ViewBag.Table = _table;
         }
 
-
-        protected override dynamic Get()
-        {
-            var ret = _table.All(orderby: "UpdatedAt DESC");
-            return ret;
-        } 
          
 
 
@@ -35,7 +29,17 @@ namespace MvcMovie.Areas.Admin.Controllers
         public override ViewResult Index(int? page)
         {
             //return _table.Paged(where: "BaseId = @0", orderby: "DateUpdated DESC", currentPage: currentPage, pageSize: pageSize, args: baseId);
-            return base.Index(page);
+            page = page ?? 0;
+            //var model = _table.Paged(orderby: "UpdatedAt DESC", currentPage: page, pageSize: 5);
+            var allId = 1;
+
+
+            //var model = _table.Paged(where: "ID > -1", orderby: "UpdatedAt DESC", currentPage: page, pageSize: 5);
+
+            var model = _table.Paged(orderby: "UpdatedAt DESC");
+
+
+            return View(model);
         }
 
 
