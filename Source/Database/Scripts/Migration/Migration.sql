@@ -70,27 +70,6 @@ AS
 GO
 
 
- 
- /*
-EXECUTE [InsertLog] 
-   '@description'
-  ,'@summary		'
-  ,'@level			'
-  ,'@logger			'
-  ,'@status			'
-  ,'@ipAddress		'
-  ,'@browser		'
-  ,'@server			'
-  ,'@session		'
-  ,'@userName		'
-  ,'@application	'
-  ,'@type			'
-  ,'@email			'
-  ,'@layout			'
-GO*/
-
-
-
 
 
 

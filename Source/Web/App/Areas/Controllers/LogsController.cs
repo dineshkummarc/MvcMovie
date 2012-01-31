@@ -18,6 +18,27 @@ namespace MvcMovie.Areas.Admin.Controllers
         }
 
 
+        protected override dynamic Get()
+        {
+            var ret = _table.All(orderby: "UpdatedAt DESC");
+            return ret;
+        } 
+         
+
+
+        //public override ViewResult Index()
+        //{
+        //    //return _table.Paged(where: "BaseId = @0", orderby: "DateUpdated DESC", currentPage: currentPage, pageSize: pageSize, args: baseId); 
+        //    return base.Index();
+        //}
+
+        public override ViewResult Index(int? page)
+        {
+            //return _table.Paged(where: "BaseId = @0", orderby: "DateUpdated DESC", currentPage: currentPage, pageSize: pageSize, args: baseId);
+            return base.Index(page);
+        }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult TestLogger()
@@ -61,14 +82,6 @@ namespace MvcMovie.Areas.Admin.Controllers
                 @Layout  )   return View(sales);
 
     */
-
-        protected override dynamic Get()
-        { 
-             var   ret = _table.All(  orderby:"UpdatedAt DESC"); 
-            return ret;
-        } 
-         
-
 
 
     }

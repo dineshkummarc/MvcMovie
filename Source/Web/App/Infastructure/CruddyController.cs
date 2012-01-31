@@ -15,8 +15,8 @@ namespace Web.Infrastructure
         public CruddyController(ITokenHandler tokenStore) : base(tokenStore) { } 
 
         protected dynamic _table;
-         
-        public virtual ViewResult Index()
+
+        public virtual ViewResult Index(int? page)
         {
             IEnumerable<dynamic> items = Get();
             return View(items);
@@ -39,11 +39,7 @@ namespace Web.Infrastructure
         {
             return View(_table.Prototype);
         }
-
-
-
-
-
+         
         protected virtual dynamic Get()
         {
             return _table.All();

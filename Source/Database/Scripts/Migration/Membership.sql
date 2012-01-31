@@ -86,3 +86,17 @@ INSERT INTO [RoleMemberships] ([UserName],[RoleName]) VALUES
 GO
 
 
+
+IF EXISTS ( SELECT  * FROM    sys.objects  WHERE   object_id = OBJECT_ID(N'[dbo].[Logins]')  AND type IN ( N'U' ) )  DROP TABLE [Logins]  
+
+CREATE TABLE dbo.Logins (
+	[ID] [int] IDENTITY(1, 1) NOT NULL , 
+	UserName				nvarchar(100)		NOT NULL, 
+	Email					nvarchar(max)		NOT NULL,
+	Comment					nvarchar(max)		NULL,
+	FailedAttempts			INT					NULL,
+	DateCreated				datetime			NOT NULL , 
+	IpAddress				nvarchar(50)		NULL,
+	SessionId				nvarchar(50)		NULL 
+)  
+GO

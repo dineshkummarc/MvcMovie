@@ -30,9 +30,9 @@ namespace MvcMovie.Areas.Admin.Controllers
 
 
         [AuthorizeByRole(Roles = "Config")]
-        public override ViewResult Index()
+        public override ViewResult Index(int? page)
         {
-            return base.Index();
+            return base.Index(page);
         }
         [AuthorizeByRole(Roles = "ConfigEdit")]
         public override ActionResult Edit(int id)

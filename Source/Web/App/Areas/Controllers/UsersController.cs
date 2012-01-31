@@ -16,7 +16,7 @@ namespace MvcMovie.Areas.Admin.Controllers
         }
 
 
-        public override ViewResult Index()
+        public override ViewResult Index(int? page)
         {
             IEnumerable<dynamic> items = Get();
             return View(items);
