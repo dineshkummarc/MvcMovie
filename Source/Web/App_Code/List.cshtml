@@ -1,47 +1,51 @@
-﻿@functions{ 
-  public static string Pager(  int currentPage, int pageSize, int totalRecords, string urlPrefix)
-  {
-      System.Text.StringBuilder sb1 = new System.Text.StringBuilder();
+﻿@using System.Text
+@functions{ 
+    public static string Pager(int currentPage, int pageSize, int totalRecords, string urlPrefix)
+    {
+        var sb1 = new StringBuilder();
+        int totalPages = totalRecords % pageSize == 0 ? totalRecords / pageSize : totalRecords / pageSize + 1;
+        if (totalPages <= 1)
+        {
+            return sb1.ToString();
+        }
+        AddPrevLink(currentPage, urlPrefix, sb1); 
+        AddPageNumberLinks(currentPage, urlPrefix, totalPages, sb1); 
+        AddNextPageLink(currentPage, urlPrefix, sb1, totalPages); 
+        return sb1.ToString();
+    }
 
-      int seed = currentPage%pageSize == 0 ? currentPage : currentPage - (currentPage%pageSize);
+    private static void AddPrevLink(int currentPage, string urlPrefix, StringBuilder sb1)
+    {
+        var href = "";
+        if (currentPage > 1)
+        {
+            href = String.Format(" href=\"{0}/{1}\" ", urlPrefix, currentPage - 1);
+        }
+        sb1.AppendLine(String.Format("<a {0} >Previous</a>", href));
+    }
 
-      int totalPages = totalRecords%pageSize == 0 ? totalRecords/pageSize : totalRecords/pageSize + 1;
-      
+    private static void AddNextPageLink(int currentPage, string urlPrefix, StringBuilder sb1, int totalPages)
+    {
+        string href = "";
+        if (currentPage < totalPages)
+        {
+            href = String.Format("href=\"{0}/{1}\"", urlPrefix, currentPage + 1);
+        }
+        sb1.AppendLine(String.Format("<a {0} >Next</a>", href));
+    }
 
-      var href = "";
-      if (currentPage > 1)
-      {
-          href = String.Format(" href=\"{0}/{1}\" ", urlPrefix, currentPage - 1);
-      }
-      sb1.AppendLine(String.Format("<a {0} >Previous</a>", href));
-
-
-
-      for (int i = 1; i <= totalPages  ; i++)
-      {
-          href = (currentPage == i) ? "" : String.Format("href=\"{0}/{1}\"", urlPrefix, i); 
-          sb1.AppendLine(String.Format("<a {0}  >{1}</a>", href, i ));
-      }
-      //if(currentPage - pageSize >= 0)
-      //    sb1.AppendLine(String.Format("<a href=\"{0}/{1}\">...</a>", urlPrefix, (currentPage - pageSize) + 1));
-
-      //for (int i = seed; i < Math.Round((totalRecords / 10) + 0.5) && i < seed + pageSize; i++)
-      //{
-      //    sb1.AppendLine(String.Format("<a href=\"{0}/{1}\">{1}</a>", urlPrefix, i + 1));
-      //}
-
-      //if (currentPage + pageSize <= (Math.Round((totalRecords / 10) + 0.5) - 1))
-      //    sb1.AppendLine(String.Format("<a href=\"{0}/{1}\">...</a>", urlPrefix, (currentPage + pageSize) + 1));
-
-      href = "";
-      if (currentPage < totalPages)
-      {
-          href = String.Format("href=\"{0}/{1}\"", urlPrefix, currentPage + 1);
-      }
-      sb1.AppendLine(String.Format("<a {0} >Next</a>", href));
-
-
-      return sb1.ToString();
-  }
+    private static void AddPageNumberLinks(int currentPage, string urlPrefix, int totalPages, StringBuilder sb1)
+    {
+        string href = "";
+        const int numNextLinks = 4;
+        int minpageToShow = currentPage - numNextLinks;
+        int maxpageToShow = currentPage + numNextLinks;
+        for (int i = Math.Max(1, minpageToShow); i <= Math.Min(totalPages, maxpageToShow); i++)
+        {
+            href = (currentPage == i) ? "" : String.Format("href=\"{0}/{1}\"", urlPrefix, i);
+            sb1.AppendLine(String.Format("<a {0} >{1}</a>", href,
+                                         (i == minpageToShow || i == maxpageToShow) ? "..." : i.ToString()));
+        }
+    }
 
 }
