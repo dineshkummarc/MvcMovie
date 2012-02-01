@@ -3,25 +3,15 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>  
+<h2>Logs</h2> 
  
+@List.Filter( "Logs", "Index","admin") 
+
 <div>TotalRecords : @ViewBag.TotalRecords </div>  
 
 <p/> 
 @Html.Raw(List.Pager((int)ViewBag.CurrentPage, (int)ViewBag.PageSize, (int)ViewBag.TotalRecords, "/Admin/Logs/Index") )
 <p/>
-@*
-<div class="vidform">
-    @using (Html.BeginForm("TestLogger", "Logs"))
-    {    
-        @Html.AntiForgeryToken()
-        @Form.Submit(value: "TestLogger")
-    }
-</div> 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-*@
 
 
 <table>

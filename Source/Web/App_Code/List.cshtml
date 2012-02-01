@@ -49,3 +49,16 @@
     }
 
 }
+
+
+@helper Filter(string controller, string action, string area)
+    {  
+    <fieldset class="filter left">
+        <legend class="clearFilterButton">Filter</legend>  
+        <form action="/@area/@controller/@action" method="post">   
+            <input type="text" name="Search" id="Search"   /> 
+            <button type="submit" class="button positive">Search</button> 
+        </form> 
+    </fieldset>
+    <br class="clear"/>
+} 

@@ -26,19 +26,35 @@ namespace MvcMovie.Areas.Admin.Controllers
         //    return base.Index();
         //}
 
+
+        [HttpPost]
+        public virtual ViewResult Index( FormCollection form)
+        {
+            var model = GetModel(null);
+            return View(model.Items);
+        }
+
+
+        [HttpGet]
         public override ViewResult Index(int? id)
         {
             //return _table.Paged(where: "BaseId = @0", orderby: "DateUpdated DESC", currentPage: currentPage, pageSize: pageSize, args: baseId); 
             //var model = _table.Paged(orderby: "UpdatedAt DESC", currentPage: page, pageSize: 5); 
-            int page = id ?? 1; 
+            var model = GetModel(id);
+            return View(model.Items);
+        }
+
+        private dynamic GetModel(int? id)
+        {
+            int page = id ?? 1;
             int ps = 25;
             var model = _table.Paged(where: "1=1", orderBy: "UpdatedAt DESC", currentPage: page, pageSize: ps);
 
             ViewBag.CurrentPage = page;
             ViewBag.TotalRecords = model.TotalRecords;
             ViewBag.TotalPages = model.TotalPages;
-            ViewBag.PageSize = ps; 
-            return View(model.Items);
+            ViewBag.PageSize = ps;
+            return model;
         }
 
 
