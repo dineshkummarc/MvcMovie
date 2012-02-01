@@ -24,7 +24,7 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Log]'
 GO
 CREATE TABLE [dbo].[Log]
 	(
-	  [ID] [int] IDENTITY(1, 1) NOT NULL, 
+	  [Id] [int] IDENTITY(1, 1) NOT NULL, 
 	  [Description] [nvarchar](MAX) NULL,
 	  [Summary] [nvarchar](100) NULL,
 	  [Level] [nvarchar](16) NULL,

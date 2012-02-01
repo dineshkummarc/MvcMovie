@@ -31,7 +31,7 @@ namespace MvcMovie.Areas.Admin.Controllers
             //return _table.Paged(where: "BaseId = @0", orderby: "DateUpdated DESC", currentPage: currentPage, pageSize: pageSize, args: baseId); 
             //var model = _table.Paged(orderby: "UpdatedAt DESC", currentPage: page, pageSize: 5); 
             int page = id ?? 1; 
-            int ps = 20;
+            int ps = 25;
             var model = _table.Paged(where: "1=1", orderBy: "UpdatedAt DESC", currentPage: page, pageSize: ps);
 
             ViewBag.CurrentPage = page;

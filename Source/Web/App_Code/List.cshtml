@@ -1,27 +1,47 @@
 ﻿@functions{ 
-  public static string Pager(  int currentPage, int currentPageSize, int totalRecords, string urlPrefix)
-    {
-        System.Text.StringBuilder sb1 = new System.Text.StringBuilder();
+  public static string Pager(  int currentPage, int pageSize, int totalRecords, string urlPrefix)
+  {
+      System.Text.StringBuilder sb1 = new System.Text.StringBuilder();
 
-        int seed = currentPage % currentPageSize == 0 ? currentPage : currentPage - (currentPage % currentPageSize);
+      int seed = currentPage%pageSize == 0 ? currentPage : currentPage - (currentPage%pageSize);
 
-        if(currentPage > 0)
-            sb1.AppendLine(String.Format("<a href=\"{0}/{1}\">Previous</a>", urlPrefix, currentPage));
+      int totalPages = totalRecords%pageSize == 0 ? totalRecords/pageSize : totalRecords/pageSize + 1;
+      
 
-        if(currentPage - currentPageSize >= 0)
-            sb1.AppendLine(String.Format("<a href=\"{0}/{1}\">...</a>", urlPrefix, (currentPage - currentPageSize) + 1));
+      var href = "";
+      if (currentPage > 1)
+      {
+          href = String.Format(" href=\"{0}/{1}\" ", urlPrefix, currentPage - 1);
+      }
+      sb1.AppendLine(String.Format("<a {0} >Previous</a>", href));
 
-        for (int i = seed; i < Math.Round((totalRecords / 10) + 0.5) && i < seed + currentPageSize; i++)
-        {
-            sb1.AppendLine(String.Format("<a href=\"{0}/{1}\">{1}</a>", urlPrefix, i + 1));
-        }
 
-        if (currentPage + currentPageSize <= (Math.Round((totalRecords / 10) + 0.5) - 1))
-            sb1.AppendLine(String.Format("<a href=\"{0}/{1}\">...</a>", urlPrefix, (currentPage + currentPageSize) + 1));
 
-        if (currentPage < (Math.Round((totalRecords / 10) + 0.5) - 1))
-            sb1.AppendLine(String.Format("<a href=\"{0}/{1}\">Next</a>", urlPrefix, currentPage + 2));
+      for (int i = 1; i <= totalPages  ; i++)
+      {
+          href = (currentPage == i) ? "" : String.Format("href=\"{0}/{1}\"", urlPrefix, i); 
+          sb1.AppendLine(String.Format("<a {0}  >{1}</a>", href, i ));
+      }
+      //if(currentPage - pageSize >= 0)
+      //    sb1.AppendLine(String.Format("<a href=\"{0}/{1}\">...</a>", urlPrefix, (currentPage - pageSize) + 1));
 
-        return sb1.ToString();
-    }
+      //for (int i = seed; i < Math.Round((totalRecords / 10) + 0.5) && i < seed + pageSize; i++)
+      //{
+      //    sb1.AppendLine(String.Format("<a href=\"{0}/{1}\">{1}</a>", urlPrefix, i + 1));
+      //}
+
+      //if (currentPage + pageSize <= (Math.Round((totalRecords / 10) + 0.5) - 1))
+      //    sb1.AppendLine(String.Format("<a href=\"{0}/{1}\">...</a>", urlPrefix, (currentPage + pageSize) + 1));
+
+      href = "";
+      if (currentPage < totalPages)
+      {
+          href = String.Format("href=\"{0}/{1}\"", urlPrefix, currentPage + 1);
+      }
+      sb1.AppendLine(String.Format("<a {0} >Next</a>", href));
+
+
+      return sb1.ToString();
+  }
+
 }

@@ -4,12 +4,8 @@
 }
 
 <h2>Index</h2>  
-
-<div>CurrentPage : @ViewBag.CurrentPage </div>
-<div>TotalRecords : @ViewBag.TotalRecords </div>
-<div>TotalPages : @ViewBag.TotalPages </div>
-<div>PageSize : @ViewBag.PageSize </div>
-             
+ 
+<div>TotalRecords : @ViewBag.TotalRecords </div>  
 
 <p/> 
 @Html.Raw(List.Pager((int)ViewBag.CurrentPage, (int)ViewBag.PageSize, (int)ViewBag.TotalRecords, "/Admin/Logs/Index") )
@@ -44,7 +40,7 @@
 {
     <tr> 
         <td>
-            @Html.ActionLink("Details", "Details", new { id = item.ID }) 
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) 
 
         </td>
         <td>@item.Summary</td> 
