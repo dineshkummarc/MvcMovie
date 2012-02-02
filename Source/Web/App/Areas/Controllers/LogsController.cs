@@ -50,15 +50,33 @@ namespace MvcMovie.Areas.Admin.Controllers
         {
             int page = id ?? 1;
             int ps = 25;
-            var sb = new StringBuilder();
-            sb.Append("IpAddress like '%'+@0+'%' or Email like '%'+@0+'%' or Summary like '%'+@0+'%' or Session like '%'+@0+'%'");
-            var model = _table.Paged(where: sb.ToString(), orderBy: "UpdatedAt DESC", currentPage: page, pageSize: ps, args: searchExpression);
+            var whereClause = BuildWhereClause(searchExpression);
+            var model = _table.Paged(where: whereClause, orderBy: "UpdatedAt DESC", currentPage: page, pageSize: ps, args: searchExpression);
 
             ViewBag.CurrentPage = page;
             ViewBag.TotalRecords = model.TotalRecords;
             ViewBag.TotalPages = model.TotalPages;
             ViewBag.PageSize = ps;
             return model;
+        }
+
+        private static string BuildWhereClause(string searchExpression)
+        {
+            var sb = new StringBuilder();
+            if (string.IsNullOrEmpty(searchExpression))
+            {
+                sb.Append(" 1=1 ");
+            }
+            else
+            {
+                sb.Append(
+                    @"IpAddress LIKE ('%'+@0+'%') 
+                        or Email LIKE('%'+@0+'%')
+                        or Summary LIKE('%'+@0+'%')
+                        or Session LIKE('%'+@0+'%')");
+            }
+            var where = sb.ToString();
+            return @where;
         }
 
 
