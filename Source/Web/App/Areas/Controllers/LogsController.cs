@@ -5,6 +5,7 @@ using MvcMovie.Models;
 using Web.Attributes;
 using System.Web.Mvc;
 using Massive;
+using System.Text;
 namespace MvcMovie.Areas.Admin.Controllers
 { 
     [AuthorizeByRole(Roles = "Administrator,Dev,Log,Audit")]  
@@ -30,7 +31,8 @@ namespace MvcMovie.Areas.Admin.Controllers
         [HttpPost]
         public virtual ViewResult Index( FormCollection form)
         {
-            var model = GetModel(null);
+            var s = form["Search"];
+            var model = GetModel(null, s);
             return View(model.Items);
         }
 
@@ -44,11 +46,13 @@ namespace MvcMovie.Areas.Admin.Controllers
             return View(model.Items);
         }
 
-        private dynamic GetModel(int? id)
+        private dynamic GetModel(int? id, string searchExpression = "")
         {
             int page = id ?? 1;
             int ps = 25;
-            var model = _table.Paged(where: "1=1", orderBy: "UpdatedAt DESC", currentPage: page, pageSize: ps);
+            var sb = new StringBuilder();
+            sb.Append("IpAddress like '%'+@0+'%' or Email like '%'+@0+'%' or Summary like '%'+@0+'%' or Session like '%'+@0+'%'");
+            var model = _table.Paged(where: sb.ToString(), orderBy: "UpdatedAt DESC", currentPage: page, pageSize: ps, args: searchExpression);
 
             ViewBag.CurrentPage = page;
             ViewBag.TotalRecords = model.TotalRecords;
