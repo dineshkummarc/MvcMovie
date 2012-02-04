@@ -6,8 +6,29 @@ using Web.Attributes;
 using System.Web.Mvc;
 using Massive;
 using System.Text;
+using KendoGridBinder;
+using System;
+
+using System.Linq; 
+
+
+
+
 namespace MvcMovie.Areas.Admin.Controllers
-{ 
+{
+
+    public class LogDto
+    {
+        public string Summary {get; set;} 
+        public string Level {get; set;} 
+        public string IpAddress {get; set;} 
+        public string Server {get; set;} 
+        public string Session {get; set;} 
+        public string User {get; set;} 
+        public string Email {get; set;} 
+        public DateTime Date {get; set;}  
+    }
+
     [AuthorizeByRole(Roles = "Administrator,Dev,Log,Audit")]  
     public class LogsController : CruddyController
     {
@@ -15,11 +36,25 @@ namespace MvcMovie.Areas.Admin.Controllers
             : base(tokenStore)
         {
             _table = new Log();
-            ViewBag.Table = _table;
+            ViewBag.Table = _table; 
         }
 
+
+
+        public ActionResult Index2()
+        {
+            return View();
+        }
          
 
+        [HttpPost]
+        public JsonResult Grid(KendoGridRequest request)
+        {
+            var fromdb = ((Log)_table).All();
+            var dto = fromdb.Select(x => new LogDto { User = x.User, Summary = x.Summary });
+            var grid = new KendoGrid<LogDto>(request, dto);
+            return Json(grid);
+        }
 
         //public override ViewResult Index()
         //{

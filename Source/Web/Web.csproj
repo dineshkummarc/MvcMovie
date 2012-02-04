@@ -52,6 +52,9 @@
     <Reference Include="Braintree-2.13.2">
       <HintPath>..\packages\Braintree\Braintree-2.13.2.dll</HintPath>
     </Reference>
+    <Reference Include="Dynamic">
+      <HintPath>..\packages\DynamicQuery.1.0\lib\35\Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="Elmah, Version=1.2.14318.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\elmah.corelibrary.1.2.1\lib\Elmah.dll</HintPath>
     </Reference>
@@ -69,6 +72,9 @@
     </Reference>
     <Reference Include="Glimpse.Mvc3">
       <HintPath>..\packages\Glimpse.Mvc3.0.86\lib\net40\Glimpse.Mvc3.dll</HintPath>
+    </Reference>
+    <Reference Include="KendoGridBinder">
+      <HintPath>..\packages\KendoGridBinder.1.3\lib\KendoGridBinder.dll</HintPath>
     </Reference>
     <Reference Include="le_nlog">
       <HintPath>..\packages\le_nlog.1.5\lib\4.0\le_nlog.dll</HintPath>
@@ -115,8 +121,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="WebActivator">
-      <HintPath>..\packages\WebActivator.1.4.4\lib\net40\WebActivator.dll</HintPath>
+    <Reference Include="WebActivator, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebActivator.1.5\lib\net40\WebActivator.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +170,52 @@
     <Content Include="Areas\Admin\Views\Users\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Content\2011.3.1129\Black\editor.png" />
+    <Content Include="Content\2011.3.1129\Black\imagebrowser.png" />
+    <Content Include="Content\2011.3.1129\Black\loading-image.gif" />
+    <Content Include="Content\2011.3.1129\Black\loading.gif" />
+    <Content Include="Content\2011.3.1129\Black\slider-h.gif" />
+    <Content Include="Content\2011.3.1129\Black\slider-v.gif" />
+    <Content Include="Content\2011.3.1129\Black\sprite.png" />
+    <Content Include="Content\2011.3.1129\BlueOpal\editor.png" />
+    <Content Include="Content\2011.3.1129\BlueOpal\imagebrowser.png" />
+    <Content Include="Content\2011.3.1129\BlueOpal\loading-image.gif" />
+    <Content Include="Content\2011.3.1129\BlueOpal\loading.gif" />
+    <Content Include="Content\2011.3.1129\BlueOpal\slider-h.gif" />
+    <Content Include="Content\2011.3.1129\BlueOpal\slider-v.gif" />
+    <Content Include="Content\2011.3.1129\BlueOpal\sprite.png" />
+    <Content Include="Content\2011.3.1129\Default\editor.png" />
+    <Content Include="Content\2011.3.1129\Default\imagebrowser.png" />
+    <Content Include="Content\2011.3.1129\Default\loading-image.gif" />
+    <Content Include="Content\2011.3.1129\Default\loading.gif" />
+    <Content Include="Content\2011.3.1129\Default\slider-h.gif" />
+    <Content Include="Content\2011.3.1129\Default\slider-v.gif" />
+    <Content Include="Content\2011.3.1129\Default\sprite.png" />
+    <Content Include="Content\2011.3.1129\kendo.black.min.css" />
+    <Content Include="Content\2011.3.1129\kendo.blueopal.min.css" />
+    <Content Include="Content\2011.3.1129\kendo.common.min.css" />
+    <Content Include="Content\2011.3.1129\kendo.default.min.css" />
+    <Content Include="Content\2011.3.1129\kendo.hakama.min.css" />
+    <Content Include="Content\2011.3.1129\kendo.kendo.min.css" />
+    <Content Include="Content\2011.3.1129\kendo.metro.min.css" />
+    <Content Include="Content\2011.3.1129\kendo.silver.min.css" />
+    <Content Include="Content\2011.3.1129\Metro\editor.png" />
+    <Content Include="Content\2011.3.1129\Metro\imagebrowser.png" />
+    <Content Include="Content\2011.3.1129\Metro\loading-image.gif" />
+    <Content Include="Content\2011.3.1129\Metro\loading.gif" />
+    <Content Include="Content\2011.3.1129\Metro\slider-h.gif" />
+    <Content Include="Content\2011.3.1129\Metro\slider-v.gif" />
+    <Content Include="Content\2011.3.1129\Metro\sprite.png" />
+    <Content Include="Content\2011.3.1129\Silver\editor.png" />
+    <Content Include="Content\2011.3.1129\Silver\imagebrowser.png" />
+    <Content Include="Content\2011.3.1129\Silver\loading-image.gif" />
+    <Content Include="Content\2011.3.1129\Silver\loading.gif" />
+    <Content Include="Content\2011.3.1129\Silver\slider-h.gif" />
+    <Content Include="Content\2011.3.1129\Silver\slider-v.gif" />
+    <Content Include="Content\2011.3.1129\Silver\sprite.png" />
+    <Content Include="Content\2011.3.1129\textures\glass.png" />
+    <Content Include="Content\2011.3.1129\textures\highlight.png" />
+    <Content Include="Dynamic Expressions.html" />
     <Content Include="favicon.ico" />
     <Content Include="Public\javascripts\backbone-min.js" />
     <Content Include="Public\javascripts\underscore-min.js" />
@@ -198,6 +251,44 @@
     <Content Include="Public\javascripts\jquery.validate.min.js" />
     <Content Include="Public\javascripts\modernizr-1.7.min.js" />
     <Content Include="Release Notes - Microsoft.Web.Helpers.txt" />
+    <Content Include="Scripts\2011.3.1129\kendo.all.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.autocomplete.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.binder.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.calendar.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.chart.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.combobox.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.core.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.data.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.data.odata.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.data.xml.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.dataviz.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.datepicker.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.draganddrop.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.dropdownlist.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.editable.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.filtermenu.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.fx.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.grid.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.groupable.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.list.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.menu.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.model.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.numerictextbox.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.pager.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.panelbar.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.popup.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.resizable.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.selectable.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.slider.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.sortable.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.splitter.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.tabstrip.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.timepicker.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.treeview.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.upload.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.validator.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.web.min.js" />
+    <Content Include="Scripts\2011.3.1129\kendo.window.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -296,6 +387,7 @@
     <Content Include="Views\HelloWorld\Index2.cshtml" />
     <Content Include="Views\Account\Forgot.cshtml" />
     <Content Include="Views\Account\ForgotSuccess.cshtml" />
+    <Content Include="Areas\Admin\Views\Logs\Index2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
