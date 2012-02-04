@@ -49,7 +49,10 @@
                     fields: {
                         Summary: { type: 'string' },
                         Email: { type: 'string' },
-                        Date: { type: 'date' }
+                        IpAddress: { type: 'string' },
+                        UserName: { type: 'string' },
+                        Session: { type: 'string' },
+                        UpdatedAt: { type: 'date' }
                     }
                 }
             }
@@ -60,8 +63,11 @@
             height: 400,
             columns: [
                 { field: 'Summary', title: 'Summary' },
+                { field: 'IpAddress', title: 'IpAddress' },
+                { field: 'Session', title: 'Session' },
+                { field: 'UserName', title: 'User' },
                 { field: 'Email' }, 
-                { field: 'Date', title: 'Date', template: '#= kendo.toString(toDate(Date), "MM/dd/yyyy")#' }
+                { field: 'UpdatedAt', title: 'Date', template: '#= kendo.toString(toDate(UpdatedAt), "MM/dd/yyyy HH:mm")#' }
             ],
             filterable: true,
             sortable: {

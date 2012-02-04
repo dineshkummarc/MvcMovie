@@ -25,9 +25,9 @@ namespace MvcMovie.Areas.Admin.Controllers
         public string IpAddress {get; set;} 
         public string Server {get; set;} 
         public string Session {get; set;} 
-        public string User {get; set;} 
+        public string UserName {get; set;} 
         public string Email {get; set;} 
-        public DateTime Date {get; set;}  
+        public DateTime UpdatedAt {get; set;}  
     }
 
     [AuthorizeByRole(Roles = "Administrator,Dev,Log,Audit")]  
@@ -52,7 +52,14 @@ namespace MvcMovie.Areas.Admin.Controllers
         public JsonResult Grid(KendoGridRequest request)
         {
             var fromdb = ((Log)_table).All();
-            var dto = fromdb.Select(x => new LogDto { Date = x.UpdatedAt, Summary = x.Summary, Id = x.Id, Email = x.Email });
+            var dto = fromdb.Select(x => new LogDto 
+            { 
+                UpdatedAt = x.UpdatedAt, 
+                IpAddress = x.IpAddress, Level = x.Level, Server = x.Server, 
+                Session=x.Session, UserName= x.UserName, 
+                Summary = x.Summary, Id = x.Id, 
+                Email = x.Email 
+            });
             var grid = new KendoGrid<LogDto>(request, dto);
             return Json(grid);
         }
