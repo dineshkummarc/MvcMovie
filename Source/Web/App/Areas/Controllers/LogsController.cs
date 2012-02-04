@@ -66,17 +66,22 @@ namespace MvcMovie.Areas.Admin.Controllers
         [HttpPost]
         public virtual ViewResult Index( FormCollection form)
         {
-            var s = form["Search"];
-            var model = GetModel(null, s);
+            TempData["query"] = form["Search"]; 
+            var model = GetModel(null, (string)TempData["query"]);
             return View(model.Items);
         }
 
 
+        //[HttpGet]
+        //public virtual ViewResult Index(int? id, string q = "")
+        //{
+        //    var model = GetModel(id, q);
+        //    return View(model.Items);
+        //}
+
         [HttpGet]
-        public override ViewResult Index(int? id)
-        {
-            //return _table.Paged(where: "BaseId = @0", orderby: "DateUpdated DESC", currentPage: currentPage, pageSize: pageSize, args: baseId); 
-            //var model = _table.Paged(orderby: "UpdatedAt DESC", currentPage: page, pageSize: 5); 
+        public override ViewResult Index(int? id )
+        {  
             var model = GetModel(id);
             return View(model.Items);
         }
@@ -84,16 +89,34 @@ namespace MvcMovie.Areas.Admin.Controllers
         private dynamic GetModel(int? id, string searchExpression = "")
         {
             int page = id ?? 1;
-            int ps = 25;
-            var sb = new StringBuilder();
-            sb.Append("IpAddress like '%'+@0+'%' or Email like '%'+@0+'%' or Summary like '%'+@0+'%' or Session like '%'+@0+'%'");
-            var model = _table.Paged(where: sb.ToString(), orderBy: "UpdatedAt DESC", currentPage: page, pageSize: ps, args: searchExpression);
+            const int ps = 25;
+            var whereClause = BuildWhereClause(searchExpression);
+            var model = _table.Paged(where: whereClause, orderBy: "UpdatedAt DESC", currentPage: page, pageSize: ps, args: searchExpression);
 
             ViewBag.CurrentPage = page;
             ViewBag.TotalRecords = model.TotalRecords;
             ViewBag.TotalPages = model.TotalPages;
             ViewBag.PageSize = ps;
             return model;
+        }
+
+        private static string BuildWhereClause(string searchExpression)
+        {
+            var sb = new StringBuilder();
+            if (string.IsNullOrEmpty(searchExpression))
+            {
+                sb.Append(" 1=1 ");
+            }
+            else
+            {
+                //sb.Append(@"FREETEXT  ((IpAddress,Email,Summary,Session) , @0)");
+                sb.Append(@"IpAddress LIKE ('%'+@0+'%') 
+                        or Email LIKE('%'+@0+'%')
+                        or Summary LIKE('%'+@0+'%')
+                        or Session LIKE('%'+@0+'%')");
+            }
+            var where = sb.ToString();
+            return @where;
         }
 
 

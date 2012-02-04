@@ -49,14 +49,14 @@
     }
 
 }
+ 
 
-
-@helper Filter(string controller, string action, string area)
+@helper Filter(string controller, string action, string area, string query)
     {  
     <fieldset class="filter left">
         <legend class="clearFilterButton">Filter</legend>  
         <form action="/@area/@controller/@action" method="post">   
-            <input type="text" name="Search" id="Search"   /> 
+            <input type="text" name="Search" id="Search" value='@query'   /> 
             <button type="submit" class="button positive">Search</button> 
         </form> 
     </fieldset>
