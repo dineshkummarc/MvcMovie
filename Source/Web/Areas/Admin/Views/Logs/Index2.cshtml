@@ -3,3 +3,74 @@
 }
 
 <h2>Index2</h2>
+
+
+
+
+
+<div id="grid"></div>
+
+<script type="text/javascript">
+
+    var dateRegExp = /^\/Date\((.*?)\)\/$/;
+
+    function toDate(value) {
+        var date = dateRegExp.exec(value);
+        return new Date(parseInt(date[1]));
+    }
+
+    $(document).ready(function () {
+        var url = '@Url.Action("Grid")';
+
+        var dataSource = new kendo.data.DataSource({
+            serverPaging: true,
+            serverSorting: true,
+            serverFiltering: true,
+            pageSize: 20,
+            transport: {
+                read: {
+                    type: 'post',
+                    dataType: 'json',
+                    url: url
+                },
+                // annyoing work-around for adding date types to the request
+                parameterMap: function (options) {
+                    if (options.filter) {
+                        options.filter.filters[0].value = kendo.toString(options.filter.filters[0].value, "MM/dd/yyyy");
+                    }
+                    return options;
+                }
+            },
+            schema: {
+                data: 'data',
+                total: 'total',
+                model: {
+                    id: 'ID',
+                    fields: {
+                        Summary: { type: 'string' },
+                        Email: { type: 'string' },
+                        Date: { type: 'date' }
+                    }
+                }
+            }
+        });
+
+        $('#grid').kendoGrid({
+            dataSource: dataSource,
+            height: 400,
+            columns: [
+                { field: 'Summary', title: 'Summary' },
+                { field: 'Email' }, 
+                { field: 'Date', title: 'Date', template: '#= kendo.toString(toDate(Date), "MM/dd/yyyy")#' }
+            ],
+            filterable: true,
+            sortable: {
+                mode: 'multiple'
+            },
+            pageable: true
+        });
+    });
+    
+
+</script>
+

@@ -19,6 +19,7 @@ namespace MvcMovie.Areas.Admin.Controllers
 
     public class LogDto
     {
+        public int Id { get; set; }
         public string Summary {get; set;} 
         public string Level {get; set;} 
         public string IpAddress {get; set;} 
@@ -51,7 +52,7 @@ namespace MvcMovie.Areas.Admin.Controllers
         public JsonResult Grid(KendoGridRequest request)
         {
             var fromdb = ((Log)_table).All();
-            var dto = fromdb.Select(x => new LogDto { User = x.User, Summary = x.Summary });
+            var dto = fromdb.Select(x => new LogDto { Date = x.UpdatedAt, Summary = x.Summary, Id = x.Id, Email = x.Email });
             var grid = new KendoGrid<LogDto>(request, dto);
             return Json(grid);
         }
