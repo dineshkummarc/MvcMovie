@@ -59,17 +59,17 @@
         });
 
         $('#grid').kendoGrid({
-            dataSource: dataSource,
-            height: 400,
+            dataSource: dataSource, 
             columns: [
                 { field: 'Summary', title: 'Summary' },
                 { field: 'IpAddress', title: 'IpAddress' },
                 { field: 'Session', title: 'Session' },
                 { field: 'UserName', title: 'User' },
-                { field: 'Email' }, 
-                { field: 'UpdatedAt', title: 'Date', template: '#= kendo.toString(toDate(UpdatedAt), "MM/dd/yyyy HH:mm")#' }
+                { field: 'Email' },
+                { field: 'UpdatedAt', title: 'Date', template: '<div class="date nowrap"> #= kendo.toString(toDate(UpdatedAt), "MM/dd/yyyy HH:mm")# </div>' }
             ],
             filterable: true,
+            scrollable: false,
             sortable: {
                 mode: 'multiple'
             },

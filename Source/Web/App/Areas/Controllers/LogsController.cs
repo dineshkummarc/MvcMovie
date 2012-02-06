@@ -59,7 +59,7 @@ namespace MvcMovie.Areas.Admin.Controllers
                 Session=x.Session, UserName= x.UserName, 
                 Summary = x.Summary, Id = x.Id, 
                 Email = x.Email 
-            });
+            }).OrderByDescending(x => x.UpdatedAt);
             var grid = new KendoGrid<LogDto>(request, dto);
             return Json(grid);
         }

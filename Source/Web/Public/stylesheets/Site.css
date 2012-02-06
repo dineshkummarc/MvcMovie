@@ -1,7 +1,8 @@
 ﻿
 /* Common   
 ----------------------------------------------------------*/
-.left{float:left;}.right{float:right;}.clear{clear:both;}.none{display:none !important;}.hidden{visibility:hidden;}.highlight{ background-color:Yellow;}.inline{ display:inline;}.blockImage{ text-indent:-9999px; display:block; }.hand{cursor:pointer;}
+.left{float:left;}.right{float:right;}.clear{clear:both;}.none{display:none !important;}.hidden{visibility:hidden;}.highlight{ background-color:Yellow;}.inline{ display:inline;}.blockImage{ text-indent:-9999px; display:block; }.hand{cursor:pointer;}.nowrap{ white-space: nowrap;}
+
 
 
 /*----------------------------------------------------------
