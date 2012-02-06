@@ -353,7 +353,7 @@
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Configs\About.cshtml" />
-    <Content Include="Areas\Admin\Views\Logs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Logs\Index3.cshtml" />
     <Content Include="Areas\Admin\Views\Logs\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Logs\Details.cshtml" />
     <Content Include="Areas\Admin\Views\RoleMemberships\Create.cshtml" />
@@ -387,7 +387,7 @@
     <Content Include="Views\HelloWorld\Index2.cshtml" />
     <Content Include="Views\Account\Forgot.cshtml" />
     <Content Include="Views\Account\ForgotSuccess.cshtml" />
-    <Content Include="Areas\Admin\Views\Logs\Index2.cshtml" />
+    <Content Include="Areas\Admin\Views\Logs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

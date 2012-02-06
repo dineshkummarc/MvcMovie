@@ -42,7 +42,14 @@ namespace MvcMovie.Areas.Admin.Controllers
 
 
 
-        public ActionResult Index2()
+        public override ViewResult Index( )
+        { 
+            return View( );
+        }
+
+         
+
+        public ActionResult Index3()
         {
             return View();
         }
@@ -86,13 +93,7 @@ namespace MvcMovie.Areas.Admin.Controllers
         //    var model = GetModel(id, q);
         //    return View(model.Items);
         //}
-
-        [HttpGet]
-        public override ViewResult Index(int? id )
-        {  
-            var model = GetModel(id);
-            return View(model.Items);
-        }
+         
 
         private dynamic GetModel(int? id, string searchExpression = "")
         {
