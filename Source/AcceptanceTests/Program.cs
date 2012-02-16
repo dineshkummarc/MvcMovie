@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Quixote;
 
+
 namespace Vidpub.AcceptanceTests {
     class Program {
         static void Main(string[] args) {
@@ -15,10 +16,14 @@ namespace Vidpub.AcceptanceTests {
                 return Runner.Get("/").Title.ShouldContain("Index");
             });
 
-            //It.Should("Log me in with correct credentials", () => {
-            //    var post = Runner.Post("/account/logon", new { login = "rob@tekpub.com", password = "password" });
-            //    return post.Title.ShouldContain("Welcome");
-            //});
+            It.Should("fail Log in with incorrect credentials", () =>
+            {
+                var post = Runner.Post("/account/logon", new  { UserName = "a", Password = "a" });
+                //Console.WriteLine(post.Body);
+                //return post.Body.ShouldContain("Welcome");
+                return post.Body.ShouldContain("Login was unsuccessful");
+            });
+             
 
             Console.Read();
         }
