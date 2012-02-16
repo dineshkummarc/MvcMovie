@@ -1,5 +1,7 @@
 ﻿//#define OverloadDelete
 
+using System;
+using System.Web.Mvc;
 using MvcMovie.Models;
 using Web.Infrastructure;
 
@@ -13,7 +15,33 @@ namespace MvcMovie.Controllers
         {
             _table = new Movies();
             ViewBag.Table = _table;
-        } 
+        }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public override ActionResult Create(FormCollection collection)
+        {
+            var model = _table.CreateFrom(collection);
+            try
+            {
+                // TODO: Add insert logic here
+
+                var o1 = new { Title = "TestTitle", Genre = "TestingGenre", Price = 1.00, Rating = "TestingRating" };
+                _table.Insert(o1);
+                this.FlashInfo("Item Created");
+                return RedirectToAction("Index");
+            }
+            catch (Exception x)
+            {
+                this.FlashError("There was a problem creating this record");
+                ModelState.AddModelError(string.Empty, x.Message);
+                return View(model);
+            }
+        }
+
+
 
         /*
 
