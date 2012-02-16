@@ -133,10 +133,10 @@ CREATE TABLE [dbo].[Customers](
 GO
 
 INSERT INTO  [Customers] ([Email], [FirstName], [LastName] ) VALUES  
-('cust1@test.com' , 'Joe', 'Smith'  ) 
-,('Bart@test.com', 'Bart', 'Simpson'     ) 
-,('Homer@test.com' , 'Homer', 'Simpson'    ) 
-,('Barney@test.com' , 'Barney', 'Gumble'    ) 
+('cust1@test.com'	, 'Joe'		, 'Smith'	),
+('Bart@test.com'	, 'Bart'	, 'Simpson'	),
+('Homer@test.com'	, 'Homer'	, 'Simpson'	),
+('Barney@test.com'	, 'Barney'	, 'Gumble'  ) 
 GO
    
 
