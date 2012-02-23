@@ -11,12 +11,24 @@ namespace Vidpub.AcceptanceTests
     {
         static void Main(string[] args)
         {
-            Runner.SiteRoot = "http://nmacellaio7:17222"; 
+            //Runner.SiteRoot = "http://nmacellaio7:17222";
+            Runner.SiteRoot = "http://localhost:49765"; 
             HomePage(); 
-            LoginPage(); 
+            LoginPage();
+            //CreateNewMovie();
             Console.Read();
         }
 
+
+        static void CreateNewMovie()
+        {
+            TheFollowing.Describes("Creating a movie");
+            It.Should("fail if price is not a decimal", () =>
+            {
+                var post = Runner.Post("/movies/create", new { Title = "a", Genre = "a", Price = 1.2, Rating = "a" });
+                return post.Title.ShouldContain("Index"); 
+            });
+        }
 
         static void HomePage()
         {

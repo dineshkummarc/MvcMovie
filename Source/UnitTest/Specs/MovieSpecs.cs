@@ -17,15 +17,18 @@ namespace UnitTest.Specs
         {
             dynamic movies = new Movies(); 
             dynamic o = new ExpandoObject();
-            o.Title = "TestTitle";
+            o.Title = "TestTitle"; 
             o.Genre = "TestingGenre";
             o.Price = "1.00";
             o.Rating = "R"; 
+
+
+            
             var m = movies.Insert(o);
             Assert.AreEqual("TestTitle", m.Title);
             // clean up record
-             
-            movies.Execute("Delete From Movies where Title =@0  ", o.Title);
+
+            movies.Execute("Delete From Movies where Title =@0 and Genre=@1 and Price=@2 and Rating=@3  ", o.Title, o.Genre, o.Price, o.Rating);
 
             //this.Execute("UPDATE Customers SET HighriseID=@0 WHERE ID=@1", newPerson["id"], item.ID);
 

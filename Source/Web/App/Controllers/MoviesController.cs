@@ -26,10 +26,9 @@ namespace MvcMovie.Controllers
             var model = _table.CreateFrom(collection);
             try
             {
-                // TODO: Add insert logic here
-
-                var o1 = new { Title = "TestTitle", Genre = "TestingGenre", Price = 1.00, Rating = "TestingRating" };
-                _table.Insert(o1);
+                Logger.LogInfo(string.Format(" model.Title={0} model.Rating={1}  model.Genre={2}  model.Price={3}  ", model.Title, model.Rating, model.Genre, model.Price));
+                // TODO: Add insert logic here 
+                _table.Insert(model);
                 this.FlashInfo("Item Created");
                 return RedirectToAction("Index");
             }
