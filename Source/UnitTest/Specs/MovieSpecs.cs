@@ -15,9 +15,13 @@ namespace UnitTest.Specs
         [TestMethod]
         public void a_movie_has_a_title()
         {
-            dynamic movies = new Movies();
-            var o1 = new {Title = "TestTitle", Genre = "TestingGenre", Price = 1.00, Rating = "TestingRating"};
-            var m = movies.Insert(o1);
+            dynamic movies = new Movies(); 
+            dynamic o = new ExpandoObject();
+            o.Title = "TestTitle";
+            o.Genre = "TestingGenre";
+            o.Price = "1.00";
+            o.Rating = "R"; 
+            var m = movies.Insert(o);
             Assert.AreEqual("TestTitle", m.Title);
         } 
     }
