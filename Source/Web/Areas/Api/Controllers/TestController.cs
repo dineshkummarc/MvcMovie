@@ -5,7 +5,7 @@ using Web.Infrastructure;
 using MvcMovie.Controllers;
 using NLog;
 
-namespace MvcMovie.Areas.Api.Controllers
+namespace MvcMovie.Areas.Api.Controllers 
 {
     public class TestController : ApplicationController
     {

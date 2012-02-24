@@ -143,11 +143,16 @@
     <Compile Include="Areas\Admin\Models\Log.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
     <Compile Include="Areas\Api\Controllers\CommentsController.cs" />
+    <Compile Include="Areas\Api\Controllers\RanchController.cs" />
     <Compile Include="Areas\Api\Controllers\TestController.cs" />
     <Compile Include="Areas\Api\Models\Comment.cs" />
     <Compile Include="Areas\Api\Models\CommentManager.cs" />
     <Compile Include="Areas\Api\Models\ICommentManager.cs" />
+    <Compile Include="Areas\Ranch\Controllers\CommentsController.cs" />
     <Compile Include="Areas\Ranch\Controllers\TestController.cs" />
+    <Compile Include="Areas\Ranch\Models\Comment.cs" />
+    <Compile Include="Areas\Ranch\Models\CommentManager.cs" />
+    <Compile Include="Areas\Ranch\Models\ICommentManager.cs" />
     <Compile Include="Areas\Ranch\RanchAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
@@ -322,7 +327,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Api\Views\Shared\" />
-    <Folder Include="Areas\Ranch\Models\" />
     <Folder Include="Areas\Ranch\Views\Shared\" />
     <Folder Include="Public\images\" />
   </ItemGroup>
@@ -382,6 +386,7 @@
     <Content Include="Areas\Api\Views\Test\Index.cshtml" />
     <Content Include="Areas\Ranch\Views\Web.config" />
     <Content Include="Areas\Ranch\Views\Test\Index.cshtml" />
+    <Content Include="Areas\Api\Views\Ranch\Index.cshtml" />
     <None Include="CodeTemplates\AddController\Controller.tt" />
     <None Include="CodeTemplates\AddView\CSHTML\Create.tt" />
     <None Include="CodeTemplates\AddView\CSHTML\Edit.tt" />

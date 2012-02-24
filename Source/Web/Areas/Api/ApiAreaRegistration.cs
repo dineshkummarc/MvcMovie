@@ -8,7 +8,7 @@ namespace Web.Areas.Api
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
-            /*context.MapRoute(
+            context.MapRoute(
                 "SingleComment",
                 "Api/Comments/Comment/{id}",
                 new { controller = "Comments", action = "Comment", 
@@ -25,7 +25,7 @@ namespace Web.Areas.Api
                 "Api/Comments",
                 new { controller = "Comments", action = "CommentList", 
                     page = UrlParameter.Optional, count = UrlParameter.Optional }
-            );*/
+            ); 
 
             context.MapRoute(
                 "Api_default",
