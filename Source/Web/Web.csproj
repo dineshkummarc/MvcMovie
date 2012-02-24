@@ -131,19 +131,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App\Attributes\AuthorizeByRoleAttribute.cs" />
-    <Compile Include="App\Services\Movie.cs" />
-    <Compile Include="App\Services\MovieService.svc.cs">
-      <DependentUpon>MovieService.svc</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\NinjectMVC3.cs" />
-    <Compile Include="App\Areas\AdminAreaRegistration.cs" />
-    <Compile Include="App\Areas\Controllers\ConfigsController.cs" />
-    <Compile Include="App\Areas\Controllers\ElmahController.cs" />
-    <Compile Include="App\Areas\Controllers\LogsController.cs" />
-    <Compile Include="App\Areas\Controllers\RoleMembershipsController.cs" />
-    <Compile Include="App\Areas\Controllers\RolesController.cs" />
-    <Compile Include="App\Areas\Controllers\UsersController.cs" />
-    <Compile Include="App\Areas\Models\Log.cs" />
+    <Compile Include="App\Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="App\Areas\Admin\Controllers\ConfigsController.cs" />
+    <Compile Include="App\Areas\Admin\Controllers\ElmahController.cs" />
+    <Compile Include="App\Areas\Admin\Controllers\LogsController.cs" />
+    <Compile Include="App\Areas\Admin\Controllers\RoleMembershipsController.cs" />
+    <Compile Include="App\Areas\Admin\Controllers\RolesController.cs" />
+    <Compile Include="App\Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="App\Areas\Admin\Models\Log.cs" />
     <Compile Include="App\Controllers\AccountController.cs" />
     <Compile Include="App\Controllers\ApplicationController.cs" />
     <Compile Include="App\Infastructure\CacheHelper.cs" />
@@ -162,7 +158,7 @@
     <Compile Include="App\Infastructure\Logging\ILogger.cs" />
     <Compile Include="App\Infastructure\Logging\NLogger.cs" />
     <Compile Include="App\Infastructure\Massive.cs" />
-    <Compile Include="App\Areas\Models\Config.cs" />
+    <Compile Include="App\Areas\Admin\Models\Config.cs" />
     <Compile Include="App\Models\AccountModel.cs" />
     <Compile Include="App\Models\Movies.cs" />
     <Compile Include="App\Models\PaymentModel.cs" />
@@ -172,7 +168,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App\Services\MovieService.svc" />
     <Content Include="Areas\Admin\Views\Users\About.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Details.cshtml" />
