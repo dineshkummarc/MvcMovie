@@ -67,6 +67,12 @@
     <Reference Include="FluentValidation.Mvc">
       <HintPath>..\packages\FluentValidation.MVC3.3.2.0.0\lib\Net40\FluentValidation.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="Gallio">
+      <HintPath>..\packages\mbunit.3.3.454.0\lib\net40\Gallio.dll</HintPath>
+    </Reference>
+    <Reference Include="Gallio40">
+      <HintPath>..\packages\mbunit.3.3.454.0\lib\net40\Gallio40.dll</HintPath>
+    </Reference>
     <Reference Include="Glimpse.Core">
       <HintPath>..\packages\Glimpse.0.86\lib\net40\Glimpse.Core.dll</HintPath>
     </Reference>
@@ -78,6 +84,9 @@
     </Reference>
     <Reference Include="le_nlog">
       <HintPath>..\packages\le_nlog.1.5\lib\4.0\le_nlog.dll</HintPath>
+    </Reference>
+    <Reference Include="MbUnit40">
+      <HintPath>..\packages\mbunit.3.3.454.0\lib\net40\MbUnit40.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Helpers">
