@@ -15,7 +15,7 @@ namespace MvcMovie.Areas.Ranch
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                "SingleComment",
+                "RanchSingleComment",
                 "Ranch/Comments/Comment/{id}",
                 new
                 {
@@ -25,7 +25,7 @@ namespace MvcMovie.Areas.Ranch
                 }
             );
             context.MapRoute(
-                "ListComments",
+                "RanchListComments",
                 "Ranch/Comments/{page}/{count}",
                 new
                 {
@@ -36,7 +36,7 @@ namespace MvcMovie.Areas.Ranch
                 }
             );
             context.MapRoute(
-                "ListCommentsAll",
+                "RanchListCommentsAll",
                 "Ranch/Comments",
                 new
                 {
