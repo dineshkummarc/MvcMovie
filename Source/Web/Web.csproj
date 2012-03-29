@@ -171,6 +171,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="App\Infastructure\FormsAuthTokenStore.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HelloWorldController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
