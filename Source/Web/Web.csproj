@@ -141,6 +141,7 @@
   <ItemGroup>
     <Compile Include="App\Attributes\AuthorizeByRoleAttribute.cs" />
     <Compile Include="App\Attributes\RestHttpVerbFilter.cs" />
+    <Compile Include="App\Models\Customer.cs" />
     <Compile Include="App_Start\NinjectMVC3.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ConfigsController.cs" />

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Web.Models;
 using Web.Infrastructure;
+using MvcMovie.App.Models;
 namespace MvcMovie.Controllers{
     public class CustomerController : CruddyController {
         public CustomerController(ITokenHandler tokenStore):base(tokenStore) {
