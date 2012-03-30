@@ -317,6 +317,7 @@
     <Content Include="Scripts\kendo\kendo.validator.min.js" />
     <Content Include="Scripts\kendo\kendo.web.min.js" />
     <Content Include="Scripts\kendo\kendo.window.min.js" />
+    <Content Include="Views\Home\ViewPage1.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -399,8 +400,17 @@
     <Content Include="Areas\Ranch\Views\Test\Index.cshtml" />
     <Content Include="Areas\Api\Views\Ranch\Index.cshtml" />
     <None Include="CodeTemplates\AddController\Controller.tt" />
+    <None Include="CodeTemplates\AddView\AspxCSharp\Create.tt" />
+    <None Include="CodeTemplates\AddView\AspxCSharp\Delete.tt" />
+    <None Include="CodeTemplates\AddView\AspxCSharp\Details.tt" />
+    <None Include="CodeTemplates\AddView\AspxCSharp\Edit.tt" />
+    <None Include="CodeTemplates\AddView\AspxCSharp\Empty.tt" />
+    <None Include="CodeTemplates\AddView\AspxCSharp\List.tt" />
     <None Include="CodeTemplates\AddView\CSHTML\Create.tt" />
+    <None Include="CodeTemplates\AddView\CSHTML\Delete.tt" />
+    <None Include="CodeTemplates\AddView\CSHTML\Details.tt" />
     <None Include="CodeTemplates\AddView\CSHTML\Edit.tt" />
+    <None Include="CodeTemplates\AddView\CSHTML\Empty.tt" />
     <None Include="CodeTemplates\AddView\CSHTML\List.tt" />
     <Content Include="Views\Home\PersonalInfo.cshtml" />
     <Content Include="Views\Home\PaymentInfo.cshtml" />
@@ -423,6 +433,10 @@
     <Content Include="Views\Account\Forgot.cshtml" />
     <Content Include="Views\Account\ForgotSuccess.cshtml" />
     <Content Include="Areas\Admin\Views\Logs\Index.cshtml" />
+    <Content Include="Views\Home\ViewPage1.cshtml" />
+    <Content Include="Views\Home\ViewPage2.cshtml" />
+    <Content Include="Views\Home\ViewPage3.cshtml" />
+    <Content Include="Views\Home\ViewPage4.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
