@@ -147,7 +147,7 @@ if (pkName != null) {
 foreach (ModelProperty property in GetModelProperties(mvcHost.ViewDataType)) {
     if (!property.IsPrimaryKey) {
 #> 
-                        <#= property.Name #>: { type: 'string' }, 
+                        <#= property.Name #>: { type: '<#= property.JavascriptType #>' }, 
 <#
     }
 }
@@ -165,7 +165,7 @@ foreach (ModelProperty property in GetModelProperties(mvcHost.ViewDataType)) {
 foreach (ModelProperty property in GetModelProperties(mvcHost.ViewDataType)) {
     if (!property.IsPrimaryKey) {
 #> 
-                { field: '<#= property.Name #>', title: '<#= property.Name #>' },
+                { field: '<#= property.Name #>', title: '<#= property.Name #>'   <#= property.Template #> },
 <#
     }
 }
@@ -206,6 +206,7 @@ class ModelProperty {
     public string ValueExpression { get; set; }
     public Type UnderlyingType { get; set; }
     public string JavascriptType { get; set; }
+    public string Template { get; set; }
     public bool IsPrimaryKey { get; set; }
     public bool IsReadOnly { get; set; }
 }
@@ -285,6 +286,16 @@ string GetJavascriptType(Type type)
 {
 	return type.ToString().Replace("System.","").Replace("DateTime","Date").ToLower();
 }
+string GetTemplate(Type type)
+{
+	var r = "";
+	if ( type ==  typeof(System.DateTime))
+	{
+			r = "tttttttttttttttttttttttttttt";
+	}
+	
+	return r;
+}
 
 // Helper
 List<ModelProperty> GetEligibleProperties(Type type) {
@@ -297,6 +308,7 @@ List<ModelProperty> GetEligibleProperties(Type type) {
                 Name = prop.Name,
                 ValueExpression = "Model." + prop.Name,
                 UnderlyingType = underlyingType,
+                Template = "",
 				JavascriptType = GetJavascriptType(underlyingType),
                 IsPrimaryKey = IsPrimaryKey(prop),
                 IsReadOnly = prop.GetSetMethod() == null
