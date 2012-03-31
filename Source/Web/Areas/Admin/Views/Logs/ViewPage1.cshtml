@@ -1,0 +1,40 @@
+﻿@model MvcMovie.Areas.Admin.Controllers.LogDto
+
+@{
+    ViewBag.Title = "ViewPage1";
+}
+
+<h2>ViewPage1</h2>
+
+<fieldset>
+    <legend>LogDto</legend>
+
+    <div class="display-label">Summary</div>
+    <div class="display-field">@Model.Summary</div>
+
+    <div class="display-label">Level</div>
+    <div class="display-field">@Model.Level</div>
+
+    <div class="display-label">IpAddress</div>
+    <div class="display-field">@Model.IpAddress</div>
+
+    <div class="display-label">Server</div>
+    <div class="display-field">@Model.Server</div>
+
+    <div class="display-label">Session</div>
+    <div class="display-field">@Model.Session</div>
+
+    <div class="display-label">UserName</div>
+    <div class="display-field">@Model.UserName</div>
+
+    <div class="display-label">Email</div>
+    <div class="display-field">@Model.Email</div>
+
+    <div class="display-label">UpdatedAt</div>
+    <div class="display-field">@String.Format("{0:g}", Model.UpdatedAt)</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+

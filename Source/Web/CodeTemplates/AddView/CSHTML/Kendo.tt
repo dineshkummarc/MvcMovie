@@ -62,6 +62,30 @@ if (!String.IsNullOrEmpty(mvcHost.MasterPageFile)) {
 	
 	
 	
+<div id="grid"></div>
+
+<#
+foreach (ModelProperty property in GetModelProperties(mvcHost.ViewDataType)) {
+    if (!property.IsPrimaryKey) {
+#>
+
+    <div class="display-label">name:<#= property.Name #></div>
+    <div class="display-field">ValueExpression:<#= property.ValueExpression #></div>
+    <div class="display-field">UnderlyingType:<#= property.UnderlyingType #></div>
+    <div class="display-field">IsPrimaryKey:<#= property.IsPrimaryKey #></div>
+    <div class="display-field">IsReadOnly:<#= property.IsReadOnly #></div>
+	<br /><br />
+<#
+    }
+}
+#>
+
+	
+	
+	
+	
+	
+	
 <script type="text/javascript">
 
     var dateRegExp = /^\/Date\((.*?)\)\/$/;

@@ -399,6 +399,8 @@
     <Content Include="Areas\Ranch\Views\Web.config" />
     <Content Include="Areas\Ranch\Views\Test\Index.cshtml" />
     <Content Include="Areas\Api\Views\Ranch\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Logs\ViewPage1.cshtml" />
+    <Content Include="Areas\Admin\Views\Logs\ViewPage2.cshtml" />
     <None Include="CodeTemplates\AddController\Controller.tt" />
     <None Include="CodeTemplates\AddView\AspxCSharp\Create.tt" />
     <None Include="CodeTemplates\AddView\AspxCSharp\Delete.tt" />
