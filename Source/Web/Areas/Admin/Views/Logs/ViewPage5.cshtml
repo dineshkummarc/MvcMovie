@@ -1,10 +1,10 @@
 ﻿@model MvcMovie.Areas.Admin.Controllers.LogDto
 
 @{
-    ViewBag.Title = "ViewPage2";
+    ViewBag.Title = "ViewPage5";
 }
 
-<h2>ViewPage2</h2>
+<h2>ViewPage5</h2>
 
 
     <h2>LogDto</h2>
@@ -18,6 +18,7 @@
     <div class="display-label">name:Summary</div>
     <div class="display-field">ValueExpression:Model.Summary</div>
     <div class="display-field">UnderlyingType:System.String</div>
+    <div class="display-field">JavascriptType:string</div>
     <div class="display-field">IsPrimaryKey:False</div>
     <div class="display-field">IsReadOnly:False</div>
 	<br /><br />
@@ -25,6 +26,7 @@
     <div class="display-label">name:Level</div>
     <div class="display-field">ValueExpression:Model.Level</div>
     <div class="display-field">UnderlyingType:System.String</div>
+    <div class="display-field">JavascriptType:string</div>
     <div class="display-field">IsPrimaryKey:False</div>
     <div class="display-field">IsReadOnly:False</div>
 	<br /><br />
@@ -32,6 +34,7 @@
     <div class="display-label">name:IpAddress</div>
     <div class="display-field">ValueExpression:Model.IpAddress</div>
     <div class="display-field">UnderlyingType:System.String</div>
+    <div class="display-field">JavascriptType:string</div>
     <div class="display-field">IsPrimaryKey:False</div>
     <div class="display-field">IsReadOnly:False</div>
 	<br /><br />
@@ -39,6 +42,7 @@
     <div class="display-label">name:Server</div>
     <div class="display-field">ValueExpression:Model.Server</div>
     <div class="display-field">UnderlyingType:System.String</div>
+    <div class="display-field">JavascriptType:string</div>
     <div class="display-field">IsPrimaryKey:False</div>
     <div class="display-field">IsReadOnly:False</div>
 	<br /><br />
@@ -46,6 +50,7 @@
     <div class="display-label">name:Session</div>
     <div class="display-field">ValueExpression:Model.Session</div>
     <div class="display-field">UnderlyingType:System.String</div>
+    <div class="display-field">JavascriptType:string</div>
     <div class="display-field">IsPrimaryKey:False</div>
     <div class="display-field">IsReadOnly:False</div>
 	<br /><br />
@@ -53,6 +58,7 @@
     <div class="display-label">name:UserName</div>
     <div class="display-field">ValueExpression:Model.UserName</div>
     <div class="display-field">UnderlyingType:System.String</div>
+    <div class="display-field">JavascriptType:string</div>
     <div class="display-field">IsPrimaryKey:False</div>
     <div class="display-field">IsReadOnly:False</div>
 	<br /><br />
@@ -60,6 +66,7 @@
     <div class="display-label">name:Email</div>
     <div class="display-field">ValueExpression:Model.Email</div>
     <div class="display-field">UnderlyingType:System.String</div>
+    <div class="display-field">JavascriptType:string</div>
     <div class="display-field">IsPrimaryKey:False</div>
     <div class="display-field">IsReadOnly:False</div>
 	<br /><br />
@@ -67,16 +74,12 @@
     <div class="display-label">name:UpdatedAt</div>
     <div class="display-field">ValueExpression:String.Format("{0:g}", Model.UpdatedAt)</div>
     <div class="display-field">UnderlyingType:System.DateTime</div>
+    <div class="display-field">JavascriptType:datetime</div>
     <div class="display-field">IsPrimaryKey:False</div>
     <div class="display-field">IsReadOnly:False</div>
 	<br /><br />
 
 	
-	
-                ValueExpression = "Model." + prop.Name,
-                UnderlyingType = underlyingType,
-                IsPrimaryKey = IsPrimaryKey(prop),
-                IsReadOnly = prop.GetSetMethod() == null
 	
 	
 	

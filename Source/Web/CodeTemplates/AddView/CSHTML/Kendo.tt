@@ -72,6 +72,7 @@ foreach (ModelProperty property in GetModelProperties(mvcHost.ViewDataType)) {
     <div class="display-label">name:<#= property.Name #></div>
     <div class="display-field">ValueExpression:<#= property.ValueExpression #></div>
     <div class="display-field">UnderlyingType:<#= property.UnderlyingType #></div>
+    <div class="display-field">JavascriptType:<#= property.JavascriptType #></div>
     <div class="display-field">IsPrimaryKey:<#= property.IsPrimaryKey #></div>
     <div class="display-field">IsReadOnly:<#= property.IsReadOnly #></div>
 	<br /><br />
@@ -82,6 +83,23 @@ foreach (ModelProperty property in GetModelProperties(mvcHost.ViewDataType)) {
 
 	
 	
+	 
+<p>
+<#
+string pkName = GetPrimaryKeyName(mvcHost.ViewDataType);
+if (pkName != null) {
+#>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.<#= pkName #> }) |
+    @Html.ActionLink("Back to List", "Index")
+<#
+} else {
+#>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+<#
+}
+#>
+</p>
 	
 	
 	
@@ -171,23 +189,6 @@ foreach (ModelProperty property in GetModelProperties(mvcHost.ViewDataType)) {
 	
 	
 	
-	 
-<p>
-<#
-string pkName = GetPrimaryKeyName(mvcHost.ViewDataType);
-if (pkName != null) {
-#>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.<#= pkName #> }) |
-    @Html.ActionLink("Back to List", "Index")
-<#
-} else {
-#>
-    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-<#
-}
-#>
-</p>
 <#
 if(!mvcHost.IsPartialView && !mvcHost.IsContentPage) {
     ClearIndent();
@@ -204,12 +205,15 @@ class ModelProperty {
     public string Name { get; set; }
     public string ValueExpression { get; set; }
     public Type UnderlyingType { get; set; }
+    public string JavascriptType { get; set; }
     public bool IsPrimaryKey { get; set; }
     public bool IsReadOnly { get; set; }
 }
 
 // Change this list to include any non-primitive types you think should be eligible for display/edit
 static Type[] bindableNonPrimitiveTypes = new[] {
+    typeof(Int32),
+    typeof(int),
     typeof(string),
     typeof(decimal),
     typeof(Guid),
@@ -277,6 +281,11 @@ IEnumerable<string> GetPrimaryKeyNames(Type type) {
     return GetEligibleProperties(type).Where(mp => mp.IsPrimaryKey).Select(mp => mp.Name);
 }
 
+string GetJavascriptType(Type type)
+{
+	return type.ToString().Replace("System.","").Replace("DateTime","Date").ToLower();
+}
+
 // Helper
 List<ModelProperty> GetEligibleProperties(Type type) {
     List<ModelProperty> results = new List<ModelProperty>();
@@ -288,6 +297,7 @@ List<ModelProperty> GetEligibleProperties(Type type) {
                 Name = prop.Name,
                 ValueExpression = "Model." + prop.Name,
                 UnderlyingType = underlyingType,
+				JavascriptType = GetJavascriptType(underlyingType),
                 IsPrimaryKey = IsPrimaryKey(prop),
                 IsReadOnly = prop.GetSetMethod() == null
             });

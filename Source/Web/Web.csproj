@@ -401,6 +401,8 @@
     <Content Include="Areas\Api\Views\Ranch\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Logs\ViewPage1.cshtml" />
     <Content Include="Areas\Admin\Views\Logs\ViewPage2.cshtml" />
+    <Content Include="Areas\Admin\Views\Logs\ViewPage3.cshtml" />
+    <Content Include="Areas\Admin\Views\Logs\ViewPage4.cshtml" />
     <None Include="CodeTemplates\AddController\Controller.tt" />
     <None Include="CodeTemplates\AddView\AspxCSharp\Create.tt" />
     <None Include="CodeTemplates\AddView\AspxCSharp\Delete.tt" />
