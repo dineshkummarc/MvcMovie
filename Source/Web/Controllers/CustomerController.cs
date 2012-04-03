@@ -60,10 +60,13 @@ namespace MvcMovie.Controllers{
             var dto = fromdb.Select(x => new CustomerDto 
             { 
                 Id = x.Id,
-				UpdatedAt = x.UpdatedAt, 
-                IpAddress = x.IpAddress
-				/*, Level = x.Level, Server = x.Server, 
-                Session=x.Session, UserName= x.UserName, 
+				UpdatedAt = x.UpdatedAt,
+                IpAddress = x.IpAddress,
+                Session = x.Session,
+                FirstName = x.FirstName,
+                LastName = x.LastName,
+                Email = x.Email
+				/*, Level = x.Level, Server = x.Server, UserName= x.UserName, 
                 Summary = x.Summary,  
                 Email = x.Email*/ 
             }).OrderByDescending(x => x.UpdatedAt);

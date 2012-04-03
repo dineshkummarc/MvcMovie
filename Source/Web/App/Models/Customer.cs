@@ -11,7 +11,7 @@ namespace MvcMovie.App.Models
     {
 
         public Customer()
-            : base("ApplicationConnectionString", "Customer", "ID")
+            : base("ApplicationConnectionString", "Customer", "Id")
         {
             //Test check-ins
         }
@@ -29,6 +29,7 @@ namespace MvcMovie.App.Models
         public string State { get; set; }
         public string Zip { get; set; }
         public string IpAddress { get; set; }
+        public string Session { get; set; }
         public System.DateTime UpdatedAt { get; set; }
 
     }

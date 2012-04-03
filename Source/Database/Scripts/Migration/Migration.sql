@@ -119,10 +119,11 @@ GO
  
 
   
-
+  
 IF EXISTS ( SELECT  * FROM    sys.objects  WHERE   object_id = OBJECT_ID(N'[dbo].[Customers]')  AND type IN ( N'U' ) )  DROP TABLE [Customers] 
-CREATE TABLE [dbo].[Customers](
-	[ID] [int] IDENTITY(1,1) NOT NULL  PRIMARY KEY  CLUSTERED (	[ID] ASC) ON [PRIMARY],
+IF EXISTS ( SELECT  * FROM    sys.objects  WHERE   object_id = OBJECT_ID(N'[dbo].[Customer]')  AND type IN ( N'U' ) )  DROP TABLE [Customer] 
+CREATE TABLE [dbo].[Customer](
+	[Id] [int] IDENTITY(1,1) NOT NULL  PRIMARY KEY  CLUSTERED (	[ID] ASC) ON [PRIMARY],
 	[FirstName] [nvarchar](55)  ,  
 	[LastName] [nvarchar](55)  ,  
 	[Email] [nvarchar](55)  ,  
@@ -134,7 +135,7 @@ CREATE TABLE [dbo].[Customers](
 ) ON [PRIMARY]
 GO
 
-INSERT INTO  [Customers] ([Email], [FirstName], [LastName] ) VALUES  
+INSERT INTO  [Customer] ([Email], [FirstName], [LastName] ) VALUES  
 ('cust1@test.com'	, 'Joe'		, 'Smith'	),
 ('Bart@test.com'	, 'Bart'	, 'Simpson'	),
 ('Homer@test.com'	, 'Homer'	, 'Simpson'	),
