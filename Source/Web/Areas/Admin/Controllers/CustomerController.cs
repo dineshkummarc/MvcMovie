@@ -18,9 +18,8 @@ namespace MvcMovie.Areas.Admin.Controllers{
             ViewBag.Table = _table;
         }
 		
+		
 
-
-   
 
         public override ViewResult Index()
         {
@@ -57,9 +56,6 @@ namespace MvcMovie.Areas.Admin.Controllers{
                 FirstName = x.FirstName,
                 LastName = x.LastName,
                 Email = x.Email
-                /*, Level = x.Level, Server = x.Server, UserName= x.UserName, 
-                Summary = x.Summary,  
-                Email = x.Email*/ 
             }).OrderByDescending(x => x.UpdatedAt);
             var grid = new KendoGrid< CustomerDto>(request, dto);
             return Json(grid);
