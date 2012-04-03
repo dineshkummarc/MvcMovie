@@ -127,6 +127,8 @@ CREATE TABLE [dbo].[Customers](
 	[LastName] [nvarchar](55)  ,  
 	[Email] [nvarchar](55)  ,  
 	[Address] [nvarchar](55)  ,  
+	[IpAddress] [nvarchar](100) NULL,
+	[Session] [nvarchar](100) NULL,
 	[CreatedAt] [datetime] NULL default(getdate()),
 	[UpdatedAt] [datetime] NULL default(getdate()) 
 ) ON [PRIMARY]

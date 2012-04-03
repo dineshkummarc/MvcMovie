@@ -57,13 +57,7 @@ namespace MvcMovie.Areas.Admin.Controllers
             var grid = new KendoGrid<LogDto>(request, dto);
             return Json(grid);
         }
-
-        //public override ViewResult Index()
-        //{
-        //    //return _table.Paged(where: "BaseId = @0", orderby: "DateUpdated DESC", currentPage: currentPage, pageSize: pageSize, args: baseId); 
-        //    return base.Index();
-        //}
-
+         
 
         [HttpPost]
         public virtual ViewResult Index( FormCollection form)
@@ -72,14 +66,6 @@ namespace MvcMovie.Areas.Admin.Controllers
             var model = GetModel(null, (string)TempData["query"]);
             return View(model.Items);
         }
-
-
-        //[HttpGet]
-        //public virtual ViewResult Index(int? id, string q = "")
-        //{
-        //    var model = GetModel(id, q);
-        //    return View(model.Items);
-        //}
          
 
         private dynamic GetModel(int? id, string searchExpression = "")

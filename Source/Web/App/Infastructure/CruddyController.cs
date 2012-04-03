@@ -16,6 +16,8 @@ namespace Web.Infrastructure
 
         protected dynamic _table;
 
+
+
         public virtual ViewResult Index( )
         {
             IEnumerable<dynamic> items = Get();
@@ -35,19 +37,12 @@ namespace Web.Infrastructure
             return View(model);
         }
         [HttpGet]
-        public ActionResult Create()
+        public virtual ActionResult Create()
         {
             return View(_table.Prototype);
         }
          
-        protected virtual dynamic Get()
-        {
-            return _table.All();
-        }
-        protected virtual dynamic Get(int id)
-        {
-            return _table.Get(ID: id);
-        }
+
 
 
         [HttpPost]
@@ -90,6 +85,18 @@ namespace Web.Infrastructure
                 return View(model);
             }
         }
+
+
+
+        protected virtual dynamic Get()
+        {
+            return _table.All();
+        }
+        protected virtual dynamic Get(int id)
+        {
+            return _table.Get(ID: id);
+        }
+
 
 
 

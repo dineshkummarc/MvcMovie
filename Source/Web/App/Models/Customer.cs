@@ -6,7 +6,7 @@ using Massive;
 
 namespace MvcMovie.App.Models
 {
-    /*
+    /**/
     public class Customer : DynamicModel
     {
 
@@ -16,9 +16,9 @@ namespace MvcMovie.App.Models
             //Test check-ins
         }
 
-    }*/
+    }
 
-    public class Customer
+    public class CustomerDto
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -28,6 +28,9 @@ namespace MvcMovie.App.Models
         public string City { get; set; }
         public string State { get; set; }
         public string Zip { get; set; }
+        public string IpAddress { get; set; }
+        public System.DateTime UpdatedAt { get; set; }
+
     }
 
 }
