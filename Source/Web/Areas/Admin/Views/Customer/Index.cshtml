@@ -14,8 +14,9 @@
 	
 <div id="grid"></div>
 
- 
+
 	
+	 
 	
 <script type="text/javascript">
 
@@ -75,6 +76,8 @@
  
                         IpAddress: { type: 'string' }, 
  
+                        Session: { type: 'string' }, 
+ 
                         UpdatedAt: { type: 'date' }, 
  
                     }
@@ -104,6 +107,8 @@
                 { field: 'Zip', title: 'Zip'            },
  
                 { field: 'IpAddress', title: 'IpAddress'            },
+ 
+                { field: 'Session', title: 'Session'            },
  
                 { field: 'UpdatedAt', title: 'UpdatedAt'   , template: '<div class=\'date nowrap\'> #= kendo.toString(toDate(UpdatedAt), \'MM/dd/yyyy HH:mm\')# </div>' },
  

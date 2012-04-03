@@ -145,6 +145,7 @@
     <Compile Include="App_Start\NinjectMVC3.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ConfigsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\ElmahController.cs" />
     <Compile Include="Areas\Admin\Controllers\LogsController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleMembershipsController.cs" />
@@ -166,7 +167,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="App\Infastructure\FormsAuthTokenStore.cs" />
-    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HelloWorldController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
@@ -394,6 +394,8 @@
     <Content Include="Areas\Admin\Views\Logs\ViewPage2.cshtml" />
     <Content Include="Areas\Admin\Views\Logs\ViewPage3.cshtml" />
     <Content Include="Areas\Admin\Views\Logs\ViewPage4.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Create.cshtml" />
     <None Include="CodeTemplates\AddController\Controller.tt" />
     <None Include="CodeTemplates\AddView\AspxCSharp\Create.tt" />
     <None Include="CodeTemplates\AddView\AspxCSharp\Delete.tt" />
@@ -429,7 +431,6 @@
     <Content Include="Views\Account\Forgot.cshtml" />
     <Content Include="Views\Account\ForgotSuccess.cshtml" />
     <Content Include="Areas\Admin\Views\Logs\Index.cshtml" />
-    <Content Include="Views\Customer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

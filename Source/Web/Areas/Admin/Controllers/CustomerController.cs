@@ -9,7 +9,7 @@ using Web.Attributes;
 using Web.Models;
 using Web.Infrastructure;
 using MvcMovie.App.Models;
-namespace MvcMovie.Controllers{
+namespace MvcMovie.Areas.Admin.Controllers{
     public class CustomerController : CruddyController 
 	{
         public CustomerController(ITokenHandler tokenStore):base(tokenStore) 
@@ -17,18 +17,22 @@ namespace MvcMovie.Controllers{
             _table = new Customer();
             ViewBag.Table = _table;
         }
+		
 
+
+   
 
         public override ViewResult Index()
         {
             return View();
         } 
+
         [AuthorizeByRole(Roles = "Dev")]
         public override ActionResult Edit(int id)
         {
             return base.Edit(id);
         }
-        [AuthorizeByRole(Roles = "Dev")] 
+        [AuthorizeByRole(Roles = "Dev")]
         public override ActionResult Create()
         {
             return base.Create();
@@ -38,43 +42,30 @@ namespace MvcMovie.Controllers{
         {
             return base.Details(id);
         }
-
-
-
-
-
-
-        [HttpPost]
-        public virtual ViewResult Index(FormCollection form)
-        {
-            TempData["query"] = form["Search"];
-            var model = GetModel(null, (string)TempData["query"]);
-            return View(model.Items);
-        } 
-
+		
 
         [HttpPost]
         public JsonResult Grid(KendoGridRequest request)
         {
             var fromdb = ((Customer)_table).All();
-            var dto = fromdb.Select(x => new CustomerDto 
-            { 
+            var dto = fromdb.Select(x => new CustomerDto
+            {
                 Id = x.Id,
-				UpdatedAt = x.UpdatedAt,
+                UpdatedAt = x.UpdatedAt,
                 IpAddress = x.IpAddress,
                 Session = x.Session,
                 FirstName = x.FirstName,
                 LastName = x.LastName,
                 Email = x.Email
-				/*, Level = x.Level, Server = x.Server, UserName= x.UserName, 
+                /*, Level = x.Level, Server = x.Server, UserName= x.UserName, 
                 Summary = x.Summary,  
                 Email = x.Email*/ 
             }).OrderByDescending(x => x.UpdatedAt);
             var grid = new KendoGrid< CustomerDto>(request, dto);
             return Json(grid);
-        } 
-
-
+        }
+         
+ 
     }
 }
 
