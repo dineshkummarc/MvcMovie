@@ -74,37 +74,7 @@ namespace MvcMovie.Controllers{
             return Json(grid);
         } 
 
-        private dynamic GetModel(int? id, string searchExpression = "")
-        {
-            int page = id ?? 1;
-            const int ps = 25;
-            var whereClause = BuildWhereClause(searchExpression);
-            var model = _table.Paged(where: whereClause, orderBy: "UpdatedAt DESC", currentPage: page, pageSize: ps, args: searchExpression);
 
-            ViewBag.CurrentPage = page;
-            ViewBag.TotalRecords = model.TotalRecords;
-            ViewBag.TotalPages = model.TotalPages;
-            ViewBag.PageSize = ps;
-            return model;
-        }
-
-        private static string BuildWhereClause(string searchExpression)
-        {
-            var sb = new StringBuilder();
-            if (string.IsNullOrEmpty(searchExpression))
-            {
-                sb.Append(" 1=1 ");
-            }
-            else
-            {
-                sb.Append(@"IpAddress LIKE ('%'+@0+'%') 
-                        or Session LIKE('%'+@0+'%')
-                        or XXXXXXX LIKE('%'+@0+'%')
-                        or ZZZZZZZ LIKE('%'+@0+'%')");
-            }
-            var where = sb.ToString();
-            return @where;
-        } 
     }
 }
 
