@@ -53,6 +53,9 @@ namespace MvcMovie.Areas.Admin.Controllers{
                 UpdatedAt = x.UpdatedAt,
                 IpAddress = x.IpAddress,
                 Session = x.Session,
+                City = "xxxxxxxxx",
+                State = "xxxxxxxxx",
+                Zip = "xxxxxxxxx",
                 FirstName = x.FirstName,
                 LastName = x.LastName,
                 Email = x.Email

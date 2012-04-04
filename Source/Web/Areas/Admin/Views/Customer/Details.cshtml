@@ -1,0 +1,37 @@
+﻿
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+@Assets.Script("jquery.validate.min.js")  
+@Assets.Script("jquery.validate.unobtrusive.min.js")   
+
+
+<div class="vidform"> 
+ 
+    @Form.Label(name: "FirstName", value: Model.FirstName) 
+ 
+    @Form.Label(name: "LastName", value: Model.LastName) 
+ 
+    @Form.Label(name: "Email", value: Model.Email) 
+ 
+    @Form.Label(name: "Address", value: Model.Address)  
+ 
+    @Form.Label(name: "IpAddress", value: Model.IpAddress) 
+ 
+    @Form.Label(name: "Session", value: Model.Session) 
+ 
+    @Form.Label(name: "UpdatedAt", value: Model.UpdatedAt) 
+  
+</div>
+  
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+
+
